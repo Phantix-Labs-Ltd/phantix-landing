@@ -10,8 +10,11 @@ import {
   Applications,
 } from "@/components/sections-v3";
 import { Pricing, FinalCTA } from "@/components/Pricing";
-import IntegrationsMarquee from "@/components/IntegrationsMarquee";
 import { FAQ } from "@/components/FAQ";
+
+// ~170 KB of inlined integration logos, seven sections below the fold: they
+// load after first paint, into a placeholder of the same height.
+const IntegrationsMarquee = React.lazy(() => import("@/components/IntegrationsMarquee"));
 
 /*
  * Landing — a single conversion funnel.
@@ -65,7 +68,11 @@ export default function Landing() {
         <PrivacyModel />
 
         {/* 7 — Objection: "will it work with our tools?" */}
-        <IntegrationsMarquee />
+        <React.Suspense
+          fallback={<section aria-hidden className="relative min-h-[360px] border-y border-phantix-800/60 py-10" />}
+        >
+          <IntegrationsMarquee />
+        </React.Suspense>
 
         {/* 8 — How to start, ending on the primary CTA */}
         <HowItWorks />
