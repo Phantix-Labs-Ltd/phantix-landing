@@ -9,6 +9,7 @@ const ProductDemo = React.lazy(() => import("@/pages/ProductDemo"));
 const PlatformCapability = React.lazy(() => import("@/pages/PlatformCapability"));
 const PricingPage = React.lazy(() => import("@/pages/PricingPage"));
 const Trust = React.lazy(() => import("@/pages/Trust"));
+const Company = React.lazy(() => import("@/pages/Company"));
 const BusinessLeaders = React.lazy(() => import("@/pages/solutions/BusinessLeaders"));
 const SecurityTeams = React.lazy(() => import("@/pages/solutions/SecurityTeams"));
 const Developers = React.lazy(() => import("@/pages/solutions/Developers"));
@@ -82,6 +83,7 @@ export default function App() {
           <Route path="/platform/:slug" element={<PlatformCapability />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/trust" element={<Trust />} />
+          <Route path="/company" element={<Company />} />
           <Route path="/solutions/business-leaders" element={<BusinessLeaders />} />
           <Route path="/solutions/security-teams" element={<SecurityTeams />} />
           <Route path="/solutions/developers" element={<Developers />} />

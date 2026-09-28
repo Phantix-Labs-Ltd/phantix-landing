@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { APP_DOCS_URL, BLOG_URL, PLATFORM_REGISTER_URL } from "@/lib/links";
 import { PLATFORM_PAGES } from "@/lib/platform-content";
+import { COMPANY, TEAM, companyLinks } from "@/lib/company";
 import { cx } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandWordmark } from "@/components/BrandLogo";
@@ -499,6 +500,15 @@ const FOOTER_SOLUTIONS_LINKS: FootLink[] = [
   { label: "Trust & security", to: "/trust" },
   { label: "Pricing", to: "/pricing" },
 ];
+/* Who is behind the product — the identity a buyer (or a startup-programme
+   reviewer) checks. Team only appears once real profiles are configured in
+   lib/company.ts, and the third-party links only once those pages exist. */
+const FOOTER_COMPANY_LINKS: FootLink[] = [
+  { label: "About", to: "/company" },
+  ...(TEAM.length ? [{ label: "Team", to: "/company#team" } as FootLink] : []),
+  { label: "Contact", href: COMPANY.contactEmail ? `mailto:${COMPANY.contactEmail}` : "/demo" },
+  ...companyLinks().map((l) => ({ label: l.label, href: l.href }) as FootLink),
+];
 const FOOTER_RESOURCE_LINKS: FootLink[] = [
   { label: "Documentation", href: APP_DOCS_URL },
   { label: "Blog", href: BLOG_URL },
@@ -524,7 +534,7 @@ export function Footer() {
   return (
     <footer className="border-t border-phantix-700/30 pb-12 pt-16 md:pt-20">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(5,1fr)] lg:gap-8">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(6,1fr)] lg:gap-8">
           <div className="max-w-xs">
             <div className="flex items-center gap-2.5">
               <div className="flex flex-col">
@@ -540,6 +550,7 @@ export function Footer() {
 
           <FooterLinkColumn label="Platform" links={FOOTER_PLATFORM_LINKS} />
           <FooterLinkColumn label="Solutions" links={FOOTER_SOLUTIONS_LINKS} />
+          <FooterLinkColumn label="Company" links={FOOTER_COMPANY_LINKS} />
           <FooterLinkColumn label="Resources" links={FOOTER_RESOURCE_LINKS} />
           <FooterLinkColumn label="Get started" links={FOOTER_START_LINKS} />
           <FooterLinkColumn label="Legal" links={FOOTER_LEGAL_LINKS} />
