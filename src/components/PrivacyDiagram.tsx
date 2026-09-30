@@ -16,7 +16,7 @@ export default function PrivacyDiagram() {
         viewBox="0 0 520 360"
         className="block w-full"
         role="img"
-        aria-label="Your database on the left connected to the SecureGraph engine on the right; data flows only from the database into the engine, never back out"
+        aria-label="Your database sits on the left. The SecureGraph engine sits on the right. Data flows from the database into the engine. Nothing leaves the boundary."
       >
         <defs>
           <linearGradient id="pd-wire" x1="0" x2="1">
@@ -84,7 +84,7 @@ export default function PrivacyDiagram() {
       </svg>
 
       <p className="border-t border-phantix-800 px-5 py-3 text-center font-mono text-[12px] text-slate-600">
-        one direction only · nothing leaves the boundary
+        One direction only. Nothing leaves the boundary.
       </p>
     </div>
   );

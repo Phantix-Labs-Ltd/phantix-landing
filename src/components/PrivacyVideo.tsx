@@ -152,7 +152,7 @@ export default function PrivacyVideo() {
       </div>
 
       <figcaption className="border-t border-phantix-800 px-5 py-3 text-center font-mono text-[12px] text-slate-600">
-        Your data flows in one direction only · nothing leaves the boundary
+        Your data flows in one direction only. Nothing leaves the boundary.
       </figcaption>
     </figure>
   );

@@ -48,9 +48,9 @@ export default function Marquee() {
   const track = [...SECTORS, ...SECTORS];
 
   return (
-    <section aria-label="Sectors SecureGraph is built for" className="relative border-y border-phantix-800/60 py-10">
+    <section aria-label="Sectors that SecureGraph supports" className="relative border-y border-phantix-800/60 py-10">
       <p className="mb-7 text-center text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-        Built for security teams across
+        SecureGraph is built for security teams in these sectors
       </p>
 
       {/* Edge fades so items dissolve rather than clipping at the viewport edge. */}

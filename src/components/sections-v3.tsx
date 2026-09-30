@@ -151,30 +151,30 @@ export function Capabilities() {
     {
       icon: Crosshair,
       title: "Test it like an attacker would",
-      body: "Scoped vulnerability assessment and penetration testing (VAPT) — approval-gated campaigns that end in verified findings, not a noisy scanner dump.",
+      body: "Scoped vulnerability assessment and penetration testing (VAPT) campaigns with an approval gate. They end in verified findings, not a noisy scanner dump.",
       shot: "vapt",
       alt: "VAPT campaigns view showing scoped assessments and their progress",
     },
     {
       icon: Radar,
       title: "See every asset you own",
-      body: "Domains, subdomains, IPs, APIs and mobile builds discovered continuously — not a spreadsheet someone updates quarterly.",
+      body: "Domains, subdomains, IPs, APIs and mobile builds, discovered continuously. Not a spreadsheet that someone updates each quarter.",
       shot: "assets",
       alt: "Attack-surface inventory listing discovered domains and APIs with verification state",
     },
     {
       icon: ShieldAlert,
       title: "Know what to fix first",
-      body: "Risks are prioritised with clear business impact and tracked to closure — remediation guidance, not another unread PDF.",
+      body: "SecureGraph puts each risk in priority order by business impact and tracks it until it is fixed. You get remediation guidance, not another unread PDF file.",
       shot: "risks",
       alt: "Risk register ordered by priority with P1 to P5 scoring and treatment states",
     },
     {
       icon: Scale,
       title: "Prove it to leadership",
-      body: "Board-ready reports built from verified findings only — evidence you can stand behind, with compliance mapping when you need it.",
+      body: "Board-ready reports use verified findings only. The evidence holds up, and the report includes compliance mapping when you need it.",
       shot: "compliance",
-      alt: "Compliance view mapping verified findings to framework controls",
+      alt: "Compliance view that maps verified findings to framework controls",
     },
   ];
 
@@ -185,7 +185,7 @@ export function Capabilities() {
           eyebrow="What you get"
           lead="Assess. Fix."
           accent="Prove."
-          body="Start with vulnerability assessment and penetration testing, keep testing continuously, and show leadership evidence — not adjectives. Screens below are the real product."
+          body="Start with vulnerability assessment and penetration testing. Test continuously, and show leadership evidence, not adjectives. The screens below are the real product."
         />
       </motion.div>
 
@@ -242,22 +242,22 @@ export function Principles() {
     {
       icon: Database,
       title: "Your database",
-      body: "Every company gets its own Postgres — your findings never share a table with anyone else's.",
+      body: "Every company gets its own Postgres database. Your findings never share a table with the findings of another company.",
     },
     {
       icon: Lock,
       title: "Dual control",
-      body: "No account can approve its own sensitive action; an initiator and a separate authorizer are both required.",
+      body: "No account can approve its own sensitive action. An initiator and a separate authorizer are both necessary.",
     },
     {
       icon: FileCheck,
       title: "Verified only",
-      body: "Heuristic probes stay quarantined in a report appendix — severity rollups count verified findings only.",
+      body: "Heuristic probes stay in a report appendix. Severity rollups count verified findings only.",
     },
     {
       icon: Eye,
       title: "Full audit trail",
-      body: "Every mutation is attributed, timestamped and append-only, so auditors can replay the full history.",
+      body: "Every action is attributed, timestamped and append-only. An auditor can replay the full history.",
     },
   ];
 
@@ -268,7 +268,7 @@ export function Principles() {
           eyebrow="The four non-negotiables"
           lead="Guarantees with a "
           accent="mechanism attached"
-          body="Each promise names the control that enforces it — your data stays yours, actions stay two-person, findings stay verified, history stays replayable."
+          body="Each promise names the control that enforces it. Your data stays yours, a sensitive action needs two persons, findings stay verified, and the history stays replayable."
         />
       </motion.div>
 
@@ -309,15 +309,15 @@ export function PrivacyModel() {
             <span className="hero-accent">leaves your database</span>
           </h2>
           <p className="mt-5 text-[15px] leading-7 text-slate-400">
-            SecureGraph provisions a dedicated Postgres you control, and writes assets, scans and findings
-            there. Production business data is never read, copied or stored.
+            SecureGraph provisions a dedicated Postgres database that you control, and writes assets, scans
+            and findings to it. SecureGraph never reads, copies or stores production business data.
           </p>
 
           <ul className="mt-8 space-y-3">
             {[
               "Findings and assets live only in your dedicated security database.",
               "We store account, billing and setup state only.",
-              "Sensitive mutations require dual-control approval.",
+              "A sensitive action needs dual-control approval.",
             ].map((line) => (
               <li key={line} className="flex items-start gap-3 text-[14px] leading-6 text-slate-300">
                 <Check size={16} className="mt-0.5 shrink-0 text-gold-400" />
@@ -327,7 +327,7 @@ export function PrivacyModel() {
           </ul>
 
           <p className="mt-6 text-xs text-slate-600">
-            Wording taken verbatim from the Platform's own privacy notice — not a marketing paraphrase.
+            This wording is verbatim from the privacy notice of the Platform. It is not a marketing paraphrase.
           </p>
         </motion.div>
 
@@ -350,12 +350,12 @@ export function HowItWorks() {
     {
       n: "02",
       title: "Connect your security database",
-      body: "Provision a dedicated Postgres. SecureGraph writes assets, scans and findings there — never your production database.",
+      body: "Provision a dedicated Postgres database. SecureGraph writes assets, scans and findings there, never to your production database.",
     },
     {
       n: "03",
       title: "Discover, assess, report",
-      body: "Run discovery and scoped assessments, then ship a board-ready report built from verified findings.",
+      body: "Run discovery and scoped assessments. Then send a board-ready report that uses verified findings only.",
     },
   ];
 
@@ -384,7 +384,7 @@ export function HowItWorks() {
       {/* The steps end where the funnel starts — step 01 is one click away. */}
       <motion.div {...fadeUp} className="mt-10 flex flex-col items-center gap-3">
         <a href={PLATFORM_REGISTER_URL} className="btn-primary btn-shine !px-6 !py-3 !text-base">
-          Start step 01 — it's free <ArrowRight size={16} />
+          Start free <ArrowRight size={16} />
         </a>
         <p className="text-xs text-slate-500">No credit card required</p>
       </motion.div>
@@ -395,7 +395,7 @@ export function HowItWorks() {
 /** 5. The verification gate — the strongest single proof point on the page. */
 export function VerificationGate() {
   const funnel = [
-    { value: 19, label: "After dedupe", tone: "text-slate-300" },
+    { value: 19, label: "After deduplication", tone: "text-slate-300" },
     { value: 14, label: "After verification", tone: "text-gold-300" },
     { value: 5, label: "Excluded as noise", tone: "text-slate-500" },
   ];
@@ -406,13 +406,13 @@ export function VerificationGate() {
         <motion.div {...fadeUp}>
           <Eyebrow>False-positive control</Eyebrow>
           <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            If it isn't verified, it{" "}
-            <span className="hero-accent">doesn't ship</span>
+            If it is not verified, it{" "}
+            <span className="hero-accent">does not enter the report</span>
           </h2>
           <p className="mt-5 text-[15px] leading-7 text-slate-400">
-            Every scan result carries a verification state. Risks skip non-reportable noise, compliance
-            maps verified signals only, and executive reports collate auto- and human-verified findings
-            exclusively. Heuristic probes are held to an appendix — never in your severity rollups.
+            Every scan result has a verification state. The risk register skips noise. Compliance maps
+            verified signals only. Executive reports use auto-verified and human-verified findings only.
+            Heuristic probes stay in an appendix, never in your severity rollups.
           </p>
           <p className="mt-6 inline-flex rounded-md border border-gold-400/25 bg-gold-400/[0.08] px-3 py-2 font-mono text-[12px] text-gold-300">
             REPORT_REQUIRE_VERIFIED_FINDINGS
@@ -463,27 +463,27 @@ export function PentestAgent() {
           }
           lead="An agent that earns"
           accent="every skill it uses"
-          body="A chief agent routes to specialists — VAPT, SOC, GRC, Threat Intel, Asset. AI orchestrates; the engines execute. It never discovers a vulnerability without a finding ID."
+          body="A chief agent routes work to specialists: VAPT, SOC, GRC, Threat Intel and Asset. AI plans the work and the engines execute it. The agent never discovers a vulnerability without a finding ID."
         />
       </motion.div>
 
       <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} className="mt-14">
         <Shot
           name="agent"
-          alt="The SecureGraph Agent routing to VAPT, SOC, GRC, Threat Intel and Asset specialists, with dual-control required"
+          alt="The SecureGraph Agent and its routes to VAPT, SOC, GRC, Threat Intel and Asset specialists, with dual control necessary"
         />
         {/* The screenshot names the model behind the router — answer the
             data-residency question it raises right here, not a card below. */}
         <p className="mx-auto mt-4 max-w-2xl text-center text-xs leading-5 text-slate-500">
-          Model calls route through a provider-agnostic router: prompts are PII-stripped before any
-          external call, and findings are written only to your Postgres.
+          Model calls go through a provider-agnostic router. The router removes personal data from a
+          prompt before any external call. Findings go only to your Postgres database.
         </p>
       </motion.div>
 
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {[
           ["Dual-control required", "Sensitive agent actions need an initiator and an authorizer."],
-          ["PII redacted", "Personal data is stripped before any provider call."],
+          ["Personal data removed", "SecureGraph removes personal data before any provider call."],
           ["Never rewrites findings", "The agent can read and explain, but never changes a finding or a risk score."],
         ].map(([t, b], i) => (
           <motion.div
@@ -510,7 +510,7 @@ export function PlatformTeaser() {
           eyebrow="The platform"
           lead="Four surfaces, tested"
           accent="the same disciplined way"
-          body="Web, API, mobile and cloud testing run through one pipeline and land in one register — so a finding means the same thing wherever it came from."
+          body="Web, API, mobile and cloud tests run through one pipeline and land in one register. A finding then means the same thing wherever it came from."
         />
       </motion.div>
 
@@ -546,7 +546,7 @@ export function PlatformTeaser() {
               AI pentest agent
             </span>
             <span className="mt-1 block text-[13px] leading-6 text-slate-500">
-              Domain specialists that route to the engines — and never report a vulnerability without a finding ID.
+              Domain specialists that route work to the engines. They never report a vulnerability without a finding ID.
             </span>
           </span>
           <span className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-gold-400">
@@ -569,10 +569,10 @@ export function Lifecycle() {
   const stages = [
     { n: "01", icon: Search, name: "Discover", engine: "asset engine", body: "Domains, subdomains, IPs, APIs and mobile builds enter inventory. Dead hosts never do." },
     { n: "02", icon: Crosshair, name: "Assess", engine: "scanner engine", body: "Scoped scans and VAPT campaigns run in sandboxed workers, under the scope you approved." },
-    { n: "03", icon: FileCheck, name: "Verify", engine: "shared classifier", body: "Every result is stamped: auto-verified, human-verified, or held back as heuristic noise." },
-    { n: "04", icon: GitBranch, name: "Correlate", engine: "vapt engine", body: "Related findings chain into attack paths, so you see the route rather than the fragments." },
-    { n: "05", icon: LineChart, name: "Prioritise", engine: "risk engine", body: "Explainable Likelihood × Impact ordering puts the queue in the order you should work it." },
-    { n: "06", icon: FileText, name: "Deliver", engine: "reporting engine", body: "Verified findings become a board-ready package, and remediation is tracked to closure." },
+    { n: "03", icon: FileCheck, name: "Verify", engine: "shared classifier", body: "Every result gets a state: auto-verified, human-verified, or held back as heuristic noise." },
+    { n: "04", icon: GitBranch, name: "Correlate", engine: "vapt engine", body: "Related findings chain into attack paths. You then see the route, not the fragments." },
+    { n: "05", icon: LineChart, name: "Prioritize", engine: "risk engine", body: "An explainable Likelihood × Impact score puts the queue in the order you should work it." },
+    { n: "06", icon: FileText, name: "Deliver", engine: "reporting engine", body: "Verified findings become a board-ready package. SecureGraph tracks the remediation until it is fixed." },
   ];
 
   return (
@@ -584,7 +584,7 @@ export function Lifecycle() {
           eyebrow="The lifecycle"
           lead="Security that compounds"
           accent="with every assessment"
-          body="One disciplined path from an unknown asset to a finding your board can read — and nothing skips a stage."
+          body="One disciplined path from an unknown asset to a finding that your board can read. Nothing skips a stage."
         />
       </motion.div>
 
@@ -622,8 +622,8 @@ export function Lifecycle() {
       </div>
 
       <motion.p {...fadeUp} className="mx-auto mt-14 max-w-xl text-center text-[13px] leading-6 text-slate-500">
-        Everything closed becomes the baseline for the next run — and anything that regresses comes
-        straight back onto the queue.
+        Everything that is closed becomes the baseline for the next run. Anything that regresses goes
+        back to the queue.
       </motion.p>
     </Section>
   );
@@ -644,7 +644,7 @@ export function Coverage() {
       items: [
         ["Asset inventory", "Free"],
         ["Asset intelligence", "Free"],
-        ["DNS & network hygiene", "Free"],
+        ["DNS and network hygiene", "Free"],
         ["GitHub connection", "Free"],
       ],
     },
@@ -652,21 +652,21 @@ export function Coverage() {
       icon: Crosshair,
       title: "Assess what matters",
       items: [
-        ["Vulnerability & network scanning", "Free"],
+        ["Vulnerability and network scanning", "Free"],
         ["Web application pipeline", "Free"],
         ["VAPT campaigns", "Free"],
         ["API security checks", "Free"],
-        ["Threat modelling (1 project)", "Free"],
+        ["Threat modeling, 1 project", "Free"],
         ["Mobile static analysis", "Starter"],
         ["Credentialed tests", "Starter"],
-        ["Cloud & container packs", "Growth"],
-        ["Secrets / SCA / SAST", "Growth"],
-        ["Mobile dynamic / AVD", "Engagement"],
+        ["Cloud and container packs", "Growth"],
+        ["Secrets, SCA and SAST", "Growth"],
+        ["Mobile dynamic and AVD", "Engagement"],
       ],
     },
     {
       icon: Scale,
-      title: "Prioritise & govern",
+      title: "Prioritize and govern",
       items: [
         ["Risk scoring", "Free"],
         ["Dual control", "Platform"],
@@ -674,30 +674,30 @@ export function Coverage() {
         ["Compliance mapping", "Free"],
         ["Compliance workbench", "Growth"],
         ["SOC alert console", "Growth"],
-        ["Org RBAC & MFA", "Platform"],
+        ["Organization RBAC and MFA", "Platform"],
       ],
     },
     {
       icon: FileText,
-      title: "Prove & communicate",
+      title: "Prove and communicate",
       items: [
         ["Verification gate", "All plans"],
         ["Impact analysis", "All plans"],
-        ["Every report type & format", "All plans"],
+        ["Every report type and format", "All plans"],
         ["Finding tracker", "All plans"],
-        ["Channel alerts (WhatsApp/Telegram)", "Free"],
-        ["Continuous PR review", "Growth"],
+        ["Channel alerts for WhatsApp and Telegram", "Free"],
+        ["Continuous pull request review", "Growth"],
       ],
     },
     {
       icon: Sparkles,
       title: "AI that stays accountable",
       items: [
-        ["Finding explanation", "All plans (credits)"],
-        ["Executive summary assist", "All plans (credits)"],
-        ["Domain agents", "All plans (credits)"],
+        ["Finding explanation", "Credits on all plans"],
+        ["Executive summary assist", "Credits on all plans"],
+        ["Domain agents", "Credits on all plans"],
         ["Skill library", "Platform"],
-        ["AI governance & audit", "Platform"],
+        ["AI governance and audit", "Platform"],
         ["Public agent API", "AI Agent plan"],
       ],
     },
@@ -712,7 +712,7 @@ export function Coverage() {
           eyebrow="Coverage"
           lead={`${total} capabilities across`}
           accent="five outcomes"
-          body="Grouped by what they get you, not by which engine happens to run them — and labelled honestly, including the ones that are an add-on or an engagement."
+          body="Grouped by the result they give you, not by the engine that runs them. Each item is labeled honestly, including the add-ons and the engagements."
         />
       </motion.div>
 
@@ -749,8 +749,8 @@ export function Coverage() {
       </div>
 
       <motion.p {...fadeUp} className="mx-auto mt-8 max-w-2xl text-center text-xs leading-5 text-slate-600">
-        Monitoring surfaces are still growing — we'd rather label "available now" and "coming" separately
-        than sell you a roadmap.
+        Monitoring surfaces are still growing. We label "available now" and "coming" separately instead of
+        selling a roadmap.
       </motion.p>
     </Section>
   );
@@ -771,18 +771,19 @@ export function WhyWeBuilt() {
         <motion.div {...fadeUp}>
           <Eyebrow>Why this exists</Eyebrow>
           <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            Most teams doing this work are{" "}
+            Most teams that do this work are{" "}
             <span className="hero-accent">one person deep</span>
           </h2>
           <p className="mt-5 text-[15px] leading-7 text-slate-400">
-            Not a SOC running three shifts — an engineer, an IT manager, or an ops lead who also handles
-            security because somebody has to. That person doesn't need more alerts. They need the tool to
-            do the sorting, and to be right often enough that leadership believes the output.
+            This is not a SOC with three shifts. It is an engineer, an IT manager, or an operations lead
+            who also has the security duty, because someone must do it. That person does not need more
+            alerts. That person needs the tool to sort the work, and to be correct often enough that
+            leadership believes the output.
           </p>
           <p className="mt-4 text-[15px] leading-7 text-slate-400">
-            So the product is built around what survives scrutiny: continuous discovery instead of a stale
-            spreadsheet, a verification gate instead of a raw dump, and reports generated from findings
-            that already held up. When you need help, you call a specialist agent for one task — it works
+            So we built the product around the work that survives scrutiny: continuous discovery instead of
+            a stale spreadsheet, a verification gate instead of a raw dump, and reports from findings that
+            already held up. When you need help, you ask a specialist agent to do one task. The agent works
             beside you, not ahead of you.
           </p>
         </motion.div>
@@ -834,13 +835,13 @@ const CORE_APP: AppDef = {
   key: "core",
   name: "Core",
   tagline: "Connect the security picture",
-  body: "The shared security graph: findings, risk, reports, alerts and the AI assistant. Always included — the other three hang off it.",
+  body: "The shared security graph: findings, risk, reports, alerts and the AI assistant. It is always included. The other three applications connect to it.",
   points: [
     { label: "Overview", hint: "Launcher and at-a-glance status across every connected engine." },
     { label: "Findings", hint: "Every finding from every engine, deduplicated onto one graph." },
-    { label: "Risk", hint: "Business-impact risk register scored from live findings, not a spreadsheet." },
-    { label: "Reports", hint: "Generate, track and view verified-findings reports — VAPT, executive, compliance and more." },
-    { label: "AI assistant", hint: "Ask the graph directly: findings, posture, remediation guidance, cited to evidence." },
+    { label: "Risk", hint: "A risk register scored by business impact from live findings, not from a spreadsheet." },
+    { label: "Reports", hint: "Generate, track and view reports of verified findings: VAPT, executive, compliance and more." },
+    { label: "AI assistant", hint: "Ask the graph directly about findings, posture and remediation guidance. Each answer cites the evidence." },
   ],
   accent: "border-gold-400/40 text-gold-300",
   dot: "bg-gold-400",
@@ -854,11 +855,11 @@ const BRANCH_APPS: AppDef[] = [
     tagline: "Test your security",
     body: "Offensive work: scoped VAPT campaigns, web, API and mobile scans, pentest scope and the autonomous pentest agent.",
     points: [
-      { label: "Targets", hint: "Scope the hosts, domains and repos an engagement is allowed to touch." },
+      { label: "Targets", hint: "Scope the hosts, domains and repositories that an engagement can touch." },
       { label: "VAPT", hint: "Scoped penetration-test campaigns with an auditable step-by-step run." },
-      { label: "Web & API", hint: "Automated web and API scanning against the assets you've verified you own." },
-      { label: "Mobile", hint: "Static and dynamic analysis of Android/iOS builds for exploitable issues." },
-      { label: "Pentest scope", hint: "The rules of engagement an authorizer signs off before a campaign can start." },
+      { label: "Web and API", hint: "Automated web and API scans against the assets that you verified you own." },
+      { label: "Mobile", hint: "Static and dynamic analysis of Android and iOS builds for exploitable vulnerabilities." },
+      { label: "Pentest scope", hint: "The rules of engagement that an authorizer approves before a campaign can start." },
     ],
     accent: "border-severity-critical/40 text-severity-critical",
     dot: "bg-severity-critical",
@@ -869,10 +870,10 @@ const BRANCH_APPS: AppDef[] = [
     tagline: "Protect and monitor continuously",
     body: "Defensive posture: assets and exposure, cloud, compliance, the risk register, SOC operations and threat intelligence.",
     points: [
-      { label: "Assets", hint: "The living inventory every other Defend page reads from — discovered and verified." },
-      { label: "Exposure", hint: "What's actually reachable from the internet, ranked by real blast radius." },
+      { label: "Assets", hint: "The live inventory that every other Defend page reads. SecureGraph discovers and verifies each asset." },
+      { label: "Exposure", hint: "What is reachable from the internet, ranked by the real blast radius." },
       { label: "Cloud", hint: "Cloud posture and misconfiguration findings across connected providers." },
-      { label: "Compliance", hint: "Control mapping and evidence collection against the frameworks you're audited on." },
+      { label: "Compliance", hint: "Control mapping and evidence collection for the frameworks that you are audited against." },
       { label: "SOC", hint: "Case management, alert triage and threat intelligence in one operating view." },
     ],
     accent: "border-severity-low/40 text-severity-low",
@@ -884,10 +885,10 @@ const BRANCH_APPS: AppDef[] = [
     tagline: "Design and build it securely",
     body: "Secure code review with the fix as a pull request, plus the design-time work: threat models and product context.",
     points: [
-      { label: "Code review", hint: "AI-assisted review that flags real vulnerabilities inline, not style nits." },
-      { label: "Repositories", hint: "Connected repos, their branches and where AutoFix is enabled." },
-      { label: "AutoFix PRs", hint: "A finding becomes a pull request with the fix, not just a ticket." },
-      { label: "Threat models", hint: "Design-time modeling so architecture risk is caught before code ships." },
+      { label: "Code review", hint: "AI-assisted review that flags real vulnerabilities inline, not style comments." },
+      { label: "Repositories", hint: "Connected repositories, their branches, and the branches where AutoFix is enabled." },
+      { label: "AutoFix pull requests", hint: "A finding becomes a pull request with the fix, not just a ticket." },
+      { label: "Threat models", hint: "Design-time modeling, so you find architecture risk before the code goes to production." },
     ],
     accent: "border-severity-info/40 text-severity-info",
     dot: "bg-severity-info",
@@ -951,9 +952,9 @@ export function Applications() {
       <motion.div {...fadeUp}>
         <Heading
           eyebrow="One subscription, modules you can leave off"
-          lead="Start with Attack (VAPT)."
-          accent="Add Defend and Code when ready."
-          body="One security graph under the hood. Subscription covers the platform; unused modules stay off. Attack is the assessment front door — Defend and Code deepen continuous coverage when you need them."
+          lead="Start with Attack."
+          accent="Add Defend and Code when you are ready."
+          body="One security graph is under the hood. One subscription covers the platform. Unused modules stay off. Attack runs your vulnerability assessment and penetration testing (VAPT). Add Defend and Code to deepen continuous coverage."
         />
       </motion.div>
 
@@ -985,7 +986,7 @@ export function Applications() {
 
       <motion.p {...fadeUp} className="mx-auto mt-8 max-w-2xl text-center text-[13px] leading-6 text-slate-500">
         Every organization can start on Free. Turn on Defend and Code when you need continuous
-        coverage — it's one graph, so everything you've already found carries over.
+        coverage. It is one graph, so everything that you already found carries over.
       </motion.p>
     </Section>
   );

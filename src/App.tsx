@@ -26,7 +26,7 @@ function SandboxApplyRedirect() {
   }, []);
   return (
     <div className="flex min-h-screen items-center justify-center text-sm text-slate-400">
-      Opening sandbox application…
+      You are going to the sandbox application. One moment.
     </div>
   );
 }

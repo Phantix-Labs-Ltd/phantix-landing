@@ -47,7 +47,7 @@ const BOUNDARY = [
     title: "Never touched",
     tone: "critical" as const,
     points: [
-      "Production ERP / CRM rows",
+      "Production ERP and CRM rows",
       "Customer PII datasets",
       "Application table contents",
       "Anything outside the scope you authorize",
@@ -59,7 +59,7 @@ const PRINCIPLES = [
   {
     icon: KeyRound,
     title: "Least privilege",
-    body: "Integrations request only the access they need — the GitHub App reads repository contents, it never writes.",
+    body: "Integrations request only the access they need. The GitHub App reads repository contents, and it never writes to them.",
   },
   {
     icon: Timer,
@@ -69,30 +69,30 @@ const PRINCIPLES = [
   {
     icon: ShieldCheck,
     title: "Ephemeral analysis",
-    body: "Repository analysis clones into temporary workspaces that are destroyed afterwards. AI sees findings, not your full source tree.",
+    body: "Repository analysis clones into temporary workspaces, and SecureGraph destroys those workspaces afterwards. The AI sees findings, but it does not see your full source tree.",
   },
   {
     icon: FileCheck,
     title: "Verification before reputation",
-    body: "Unverified noise is never dressed up as confirmed executive risk. Heuristic probes stay in an appendix.",
+    body: "We never present unverified noise as confirmed executive risk. Heuristic probes stay in an appendix.",
   },
   {
     icon: Users,
     title: "Dual control",
-    body: "High-impact actions can require more than one person — an initiator and a separate authorizer.",
+    body: "High-impact actions can require 2 people: an initiator and a separate authorizer.",
   },
   {
     icon: Sparkles,
     title: "AI data care",
-    body: "Raw tenant security content isn't shipped to external models by default. Local and minimized paths are preferred, with logging and approval where escalation is needed.",
+    body: "Raw tenant security content isn't shipped to external models by default. SecureGraph prefers local and minimized paths, and logging and approval apply where escalation is necessary.",
   },
 ];
 
 const REVIEWER_QUESTIONS = [
-  "Ask to see the privacy model — the boundary diagram on this page.",
+  "Ask to see the privacy model. The boundary diagram on this page shows it.",
   "Ask how reports treat unverified findings.",
-  "Ask who can run sensitive tests, and whether approvals are enforced.",
-  "Ask where backups of your security database live — with you, or your infrastructure provider.",
+  "Ask who can run sensitive tests. Ask whether SecureGraph enforces approvals.",
+  "Ask where backups of your security database live: with you or with your infrastructure provider.",
 ];
 
 export default function Trust() {
@@ -102,15 +102,15 @@ export default function Trust() {
         <BackLink />
         <motion.div {...fadeUp} className="mx-auto mt-10 max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-gold-400/25 bg-gold-400/10 px-4 py-2 text-xs font-medium text-gold-300">
-            <ShieldCheck size={13} /> Trust &amp; security
+            <ShieldCheck size={13} /> Trust and security
           </span>
           <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl">
             Your security data stays yours
           </h1>
           <p className="mt-5 text-[15px] leading-7 text-slate-400">
-            SecureGraph runs the orchestration, identity, billing and tooling. The record of your posture —
-            assets, scans, findings, risks, investigation detail — lives in a dedicated database under your
-            control, not in a shared pile of everyone's vulnerabilities.
+            SecureGraph runs the orchestration, identity, billing and tooling. The record of your posture
+            lives in a dedicated database that you control. That record holds your assets, scans, findings,
+            risks and investigation detail. It is not a shared pile of everyone's vulnerabilities.
           </p>
         </motion.div>
       </Section>
@@ -125,8 +125,8 @@ export default function Trust() {
               Two databases, one clear line
             </h2>
             <p className="mt-4 text-[15px] leading-7 text-slate-400">
-              Data flows one way — into the database you own. SecureGraph reads what it needs to run a scan and
-              writes the result back to your side of the line.
+              Data flows one way: into the database you own. SecureGraph reads what it needs to run a scan,
+              and it writes the result back to your side of the line.
             </p>
           </motion.div>
           <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
@@ -205,7 +205,7 @@ export default function Trust() {
           <motion.div {...fadeUp} className="card p-8">
             <p className="eyebrow text-gold-400">Evaluating us</p>
             <h3 className="mt-3 font-display text-xl font-semibold text-white">
-              Questions worth asking — ours included
+              Questions worth asking, and our answers
             </h3>
             <ul className="mt-5 space-y-3">
               {REVIEWER_QUESTIONS.map((q) => (
@@ -216,7 +216,7 @@ export default function Trust() {
               ))}
             </ul>
             <p className="mt-6 text-[13px] leading-6 text-slate-500">
-              We answer plainly — including on the parts that are still maturing.
+              We answer plainly, and that answer includes the parts that are still maturing.
             </p>
           </motion.div>
 
@@ -227,18 +227,18 @@ export default function Trust() {
             <h3 className="mt-4 font-display text-xl font-semibold text-white">Compliance posture</h3>
             <p className="mt-3 text-[14px] leading-7 text-slate-400">
               SecureGraph helps you map and evidence controls across ISO-, PCI- and SOC 2-oriented packs as they
-              are available, and keeps an append-only audit trail you can export.
+              are available. It also keeps an append-only audit trail that you can export.
             </p>
             <p className="mt-4 text-[14px] leading-7 text-slate-400">
-              It is a platform for running your programme — not a substitute for certification. We help you
-              build the case; auditors still audit. The architecture was designed with privacy obligations
-              such as Nigeria's NDPA in mind.
+              It is a platform for running your program. It is not a substitute for certification. We help
+              you build the case. Auditors still audit. We designed the architecture with privacy obligations
+              in mind, such as Nigeria's NDPA.
             </p>
             <div className="mt-6 rounded-lg border border-phantix-700/50 bg-phantix-950/50 px-4 py-3">
               <p className="text-[13px] leading-6 text-slate-400">
                 <span className="font-semibold text-slate-200">Authorized testing only.</span> You define
                 scope, and you are responsible for holding the rights to test the targets you connect.
-                SecureGraph provides the controls; you provide the authorization.
+                SecureGraph provides the controls, and you provide the authorization.
               </p>
             </div>
           </motion.div>
@@ -255,8 +255,8 @@ export default function Trust() {
             Bring your security reviewer
           </h2>
           <p className="relative mx-auto mt-4 max-w-xl text-[15px] leading-7 text-slate-300">
-            We'll walk through the data boundary, the approval gates and the audit trail in detail — with
-            the product open, not a slide.
+            We will show the data boundary, the approval gates and the audit trail in detail. We use the
+            live product, not a slide.
           </p>
           <div className="relative mt-7 flex flex-wrap items-center justify-center gap-5">
             <Link to="/demo" className="btn-primary !px-7 !py-3 !text-[15px]">

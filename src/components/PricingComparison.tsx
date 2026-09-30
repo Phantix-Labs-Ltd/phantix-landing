@@ -19,70 +19,78 @@ const PLAN_NAMES = ["Free", "Starter", "Growth", "Enterprise"] as const;
 
 const GROUPS: Group[] = [
   {
-    title: "Pricing & AI credits",
+    title: "Pricing and AI credits",
     rows: [
       // Values overridden at render from live GET /billing/plans (see listPriceCells).
-      { label: "List price (NGN / mo)", values: ["₦0", "₦19,900", "₦49,900", "Quote"] },
-      { label: "Yearly billing", values: ["—", "10× monthly", "10× monthly", "Custom"] },
-      { label: "AI credits (monthly allowance)", values: ["—", "5,000", "20,000", "Custom"] },
-      { label: "AI credits (one-time onboarding)", values: ["500", "5,000", "20,000", "Custom"] },
-      { label: "Credit top-ups (500 / 2k / 5k)", values: ["yes", "yes", "yes", "yes"] },
+      { label: "List price in NGN per month", values: ["₦0", "₦19,900", "₦49,900", "Quote"] },
+      { label: "Yearly billing", values: ["None", "10× monthly", "10× monthly", "Custom"] },
+      { label: "AI credits: monthly allowance", values: ["None", "5,000", "20,000", "Custom"] },
+      { label: "AI credits: one-time onboarding", values: ["500", "5,000", "20,000", "Custom"] },
+      { label: "Credit top-ups: 500, 2k or 5k", values: ["yes", "yes", "yes", "yes"] },
       { label: "Shared AI credit pool", values: ["yes", "yes", "yes", "yes"] },
     ],
   },
   {
-    title: "Engine & AI — identical quality on every paid plan",
+    title: "Engine and AI: identical quality on every paid plan",
     rows: [
-      { label: "Threat modelling & product context", values: ["1 project", "yes", "yes", "yes"] },
-      { label: "Doc & architecture imports (draw.io)", values: ["yes", "yes", "yes", "yes"] },
+      { label: "Threat modeling and product context", values: ["1 project", "yes", "yes", "yes"] },
+      { label: "Document and architecture imports from draw.io", values: ["yes", "yes", "yes", "yes"] },
       {
-        label: "Six-layer code security (SAST / SCA / IaC / secrets / pipeline / malware)",
+        label: "Six-layer code security: SAST, SCA, IaC, secrets, pipeline and malware",
         values: ["no", "yes", "yes", "yes"],
       },
       { label: "Context-aware AI triage", values: ["no", "yes", "yes", "yes"] },
-      { label: "Authenticated / role-aware testing", values: ["no", "yes", "yes", "yes"] },
-      { label: "AI AutoFix (credit-metered)", values: ["no", "yes", "yes", "yes"] },
-      { label: "Agentic branch / PR review", values: ["yes", "yes", "yes", "yes"] },
+      { label: "Authenticated and role-aware tests", values: ["no", "yes", "yes", "yes"] },
+      { label: "AI AutoFix: credit-metered", values: ["no", "yes", "yes", "yes"] },
+      { label: "Agentic branch and pull request review", values: ["yes", "yes", "yes", "yes"] },
     ],
   },
   {
-    title: "Scale & continuity",
+    title: "Scale and continuity",
     rows: [
-      { label: "Projects", values: ["1", "1", "5", "Unlimited / custom"] },
-      { label: "PR / MR reviews / mo", values: ["Credit-metered", "10", "Continuous", "Custom"] },
-      { label: "On-demand assessments / mo", values: ["—", "3", "20", "Custom"] },
-      { label: "Model refreshes / mo", values: ["—", "1", "10", "Custom"] },
+      { label: "Projects", values: ["1", "1", "5", "Unlimited or custom"] },
       {
-        label: "Web / API / mobile assessment",
-        values: ["Light hygiene only", "On-demand VAPT", "Recurring / continuous", "Custom"],
+        label: "Pull request and merge request reviews per month",
+        values: ["Credit-metered", "10", "Continuous", "Custom"],
       },
-      { label: "Continuous PR review", values: ["no", "no", "yes", "yes"] },
-      { label: "Continuous / recurring pentest", values: ["no", "no", "yes", "yes"] },
+      { label: "On-demand assessments per month", values: ["None", "3", "20", "Custom"] },
+      { label: "Model refreshes per month", values: ["None", "1", "10", "Custom"] },
+      {
+        label: "Web, API and mobile assessment",
+        values: ["Light hygiene only", "On-demand VAPT", "Recurring or continuous", "Custom"],
+      },
+      { label: "Continuous pull request review", values: ["no", "no", "yes", "yes"] },
+      { label: "Continuous and recurring pentest", values: ["no", "no", "yes", "yes"] },
     ],
   },
   {
-    title: "Cloud, posture & governance",
+    title: "Cloud, posture and governance",
     rows: [
       { label: "Multi-cloud posture", values: ["no", "no", "yes", "yes"] },
       { label: "Kubernetes posture", values: ["no", "no", "yes", "yes"] },
-      { label: "Blocking policies & path rules", values: ["no", "no", "yes", "yes"] },
+      { label: "Blocking policies and path rules", values: ["no", "no", "yes", "yes"] },
       { label: "Compliance workbench", values: ["no", "no", "yes", "yes"] },
       { label: "SOC alert console", values: ["no", "no", "yes", "yes"] },
-      { label: "Org-wide governance & audit views", values: ["no", "no", "no", "yes"] },
+      { label: "Organization-wide governance and audit views", values: ["no", "no", "no", "yes"] },
     ],
   },
   {
-    title: "Deliverables & support",
+    title: "Deliverables and support",
     rows: [
       {
         label: "Reports",
-        values: ["Every type & format", "Every type & format", "Every type & format", "Custom / white-label"],
+        values: [
+          "Every type and format",
+          "Every type and format",
+          "Every type and format",
+          "Custom or white-label",
+        ],
       },
       {
         label: "Support",
-        values: ["Community", "Email", "Guided / priority email", "Dedicated / priority"],
+        values: ["Community", "Email", "Guided or priority email", "Dedicated or priority"],
       },
-      { label: "Uptime / commercial SLA", values: ["no", "no", "no", "Yes (deal)"] },
+      { label: "Uptime and commercial SLA", values: ["no", "no", "no", "Yes (deal)"] },
       {
         label: "Sales motion",
         values: ["Self-serve", "Paystack", "Paystack", "Quote"],
@@ -141,7 +149,7 @@ export function PricingComparison() {
         <SectionHeading
           kicker="Compare plans"
           title="Every plan, side by side"
-          body="Subscription plan comparison — every paid plan runs the complete security engine. Tiers differ in coverage, continuity, credits and support. Engine quality is never tier-gated."
+          body="This table compares the subscription plans. Every paid plan runs the complete security engine. Tiers differ in coverage, continuity, credits and support. SecureGraph never limits engine quality by tier."
         />
       </motion.div>
 
@@ -195,7 +203,7 @@ export function PricingComparison() {
                 </tr>
                 {group.rows.map((row) => {
                   const values =
-                    row.label === "List price (NGN / mo)" ? listPriceCells(tiers) : row.values;
+                    row.label === "List price in NGN per month" ? listPriceCells(tiers) : row.values;
                   return (
                   <tr
                     key={row.label}
@@ -207,7 +215,7 @@ export function PricingComparison() {
                         key={i}
                         className={cx("px-4 py-3 text-center", i === 2 && "bg-gold-400/5")}
                       >
-                        {loading && row.label === "List price (NGN / mo)" ? (
+                        {loading && row.label === "List price in NGN per month" ? (
                           <span className="skeleton mx-auto block h-3 w-10 rounded" />
                         ) : (
                           <CellView value={v} />
@@ -227,10 +235,10 @@ export function PricingComparison() {
         {...fadeUp}
         className="mx-auto mt-6 max-w-2xl text-center text-xs leading-6 text-slate-500"
       >
-        Deliberate gates — dual control, MFA, audit immutability and evidence redaction — are free on
-        every plan. AI work is metered as credits (allowance → allotment → top-ups); viewing, assigning
-        and exporting results is never billed. Prices in NGN, per company, updated live from SecureGraph
-        billing.
+        Deliberate gates are free on every plan. These gates are dual control, MFA, audit
+        immutability and evidence redaction. AI work uses credits. SecureGraph draws from the allowance
+        first, then the allotment, then top-ups. SecureGraph never bills you to view, assign or export
+        results. Prices are in NGN for each company. SecureGraph billing updates them live.
       </motion.p>
     </Section>
   );

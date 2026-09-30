@@ -208,7 +208,7 @@ export default function GoldVideoPlayer({
 
         {phase === "loading" && (
           <div className="absolute inset-0 flex items-center justify-center bg-phantix-950/70 text-sm text-slate-300">
-            <Loader2 size={20} className="mr-2 animate-spin text-gold-400" /> Loading the player…
+            <Loader2 size={20} className="mr-2 animate-spin text-gold-400" /> Please wait while the player starts.
           </div>
         )}
 
@@ -256,7 +256,7 @@ export default function GoldVideoPlayer({
             value={Math.min(time, duration || 0)}
             onChange={(e) => seek(Number(e.target.value))}
             disabled={phase !== "ready" || duration <= 0}
-            aria-label="Seek"
+            aria-label="Seek the video"
             className="absolute inset-0 h-full w-full cursor-pointer opacity-0 disabled:cursor-default"
           />
         </span>
@@ -278,7 +278,7 @@ export default function GoldVideoPlayer({
         <button
           type="button"
           onClick={() => frameRef.current?.requestFullscreen?.()}
-          aria-label="Full screen"
+          aria-label="Open full screen"
           disabled={phase !== "ready"}
           className={controlBtn}
         >
@@ -294,8 +294,7 @@ export default function GoldVideoPlayer({
           className="transition-colors hover:text-slate-300"
         >
           Watch on YouTube
-        </a>{" "}
-        · Plays here, no redirect.
+        </a>
       </p>
     </div>
   );

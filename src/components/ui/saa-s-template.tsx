@@ -67,7 +67,7 @@ const Navigation = React.memo(() => {
               href="#getting-started"
               className="text-sm text-white/60 hover:text-white transition-colors"
             >
-              Getting started
+              Get started
             </a>
             <a href="#components" className="text-sm text-white/60 hover:text-white transition-colors">
               Components
@@ -85,7 +85,7 @@ const Navigation = React.memo(() => {
               Sign in
             </Button>
             <Button type="button" variant="default" size="sm">
-              Sign Up
+              Sign up
             </Button>
           </div>
 
@@ -108,7 +108,7 @@ const Navigation = React.memo(() => {
               className="text-sm text-white/60 hover:text-white transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Getting started
+              Get started
             </a>
             <a
               href="#components"
@@ -129,7 +129,7 @@ const Navigation = React.memo(() => {
                 Sign in
               </Button>
               <Button type="button" variant="default" size="sm">
-                Sign Up
+                Sign up
               </Button>
             </div>
           </div>
@@ -176,7 +176,7 @@ const Hero = React.memo(() => {
 
       <aside className="mb-8 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full border border-gray-700 bg-gray-800/50 backdrop-blur-sm max-w-full">
         <span className="text-xs text-center whitespace-nowrap" style={{ color: "#9ca3af" }}>
-          New version of template is out!
+          A new version of the template is available.
         </span>
         <a
           href="#new-version"
@@ -203,8 +203,8 @@ const Hero = React.memo(() => {
       </h1>
 
       <p className="text-sm md:text-base text-center max-w-2xl px-6 mb-10" style={{ color: "#9ca3af" }}>
-        Landing page kit template with React, Shadcn/ui and Tailwind <br />
-        that you can copy/paste into your project.
+        This template gives you a landing page kit for React, Shadcn UI, and Tailwind. <br />
+        Copy and paste it into your project.
       </p>
 
       <div className="flex items-center gap-4 relative z-10 mb-16">
@@ -223,7 +223,7 @@ const Hero = React.memo(() => {
         <div className="relative z-10">
           <img
             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80"
-            alt="Dashboard preview showing analytics and metrics interface"
+            alt="A dashboard preview of analytics and metrics"
             className="w-full h-auto rounded-lg shadow-2xl"
             loading="eager"
           />

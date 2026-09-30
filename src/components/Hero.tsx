@@ -38,32 +38,32 @@ const CLAIMS = [
   {
     value: "Assess",
     label: "VAPT campaigns",
-    detail: "Scoped vulnerability assessment and penetration testing — approval-gated, not a one-off PDF vendor.",
+    detail: "Scoped vulnerability assessment and penetration testing with an approval gate. It is not a one-time PDF from a vendor.",
   },
   {
     value: "Verified only",
     label: "findings that ship",
-    detail: "Open findings are the verified ones. Heuristic noise never gets here.",
+    detail: "Only verified findings become open findings. Heuristic results do not get here.",
   },
   {
     value: "Fix guidance",
-    label: "tracked to closure",
-    detail: "Remediation is prioritised and tracked to fixed — and regressions come straight back onto the queue.",
+    label: "tracked until fixed",
+    detail: "Each finding comes with fix guidance. It stays tracked until it is fixed. A regression goes back to the queue.",
   },
   {
     value: "Continuous",
     label: "keep testing",
-    detail: "Growth keeps assessments and PR review running — continuous security, not a yearly scramble.",
+    detail: "Growth keeps assessments and pull request reviews on a schedule. Security work continues all year, not once a year.",
   },
   {
     value: "Your data",
-    label: "security DB",
-    detail: "Security evidence lives in a database you control — not a shared vulnerability lake.",
+    label: "your database",
+    detail: "Your security evidence stays in a database that you control. It is not in a shared data lake.",
   },
   {
     value: "Dual control",
     label: "sensitive actions",
-    detail: "Protected mutations stay locked until an initiator and an authorizer both sign in.",
+    detail: "A protected action stays locked until an initiator and an authorizer both approve it.",
   },
 ];
 
@@ -121,9 +121,9 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-md text-sm text-slate-400 md:text-base">
-            SecureGraph runs vulnerability assessment and penetration testing for lean teams,
-            keeps testing continuously, and helps you fix and prove what matters — with verified
-            findings and security data in a database you control.
+            SecureGraph does vulnerability assessment and penetration testing for lean teams.
+            It keeps the tests on a schedule and helps you fix what matters and show the result.
+            The findings you work from are verified. Your security data stays in a database you control.
           </p>
 
           {/* One primary path: self-serve. The demo is an accelerator for teams
@@ -190,7 +190,7 @@ export default function Hero() {
             </span>
 
             <p className="mt-2.5 max-w-sm text-xs leading-5 text-slate-500">
-              <span className="text-slate-300">{CLAIMS[active].label}</span> — {CLAIMS[active].detail}
+              <span className="text-slate-300">{CLAIMS[active].label}</span>{": "}{CLAIMS[active].detail}
             </p>
           </div>
         </div>

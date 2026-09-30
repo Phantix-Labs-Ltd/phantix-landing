@@ -20,6 +20,8 @@ export interface TeamMember {
   bio: string;
   /** Public LinkedIn profile URL — required for verification. */
   linkedin: string;
+  /** Optional public contact address for this person. */
+  email?: string;
   /** Optional: /team/name.jpg in landing/public. Falls back to an initials tile. */
   photo?: string;
   x?: string;
@@ -46,7 +48,8 @@ export interface CompanyProfile {
     country: string;
     postalCode?: string;
   };
-  contactEmail: string;
+  /** Public contact addresses, most-preferred first. */
+  contactEmails: string[];
   contactPhone: string;
   /** Company social pages (active + public). */
   linkedin: string;
@@ -56,8 +59,8 @@ export interface CompanyProfile {
 }
 
 export const COMPANY: CompanyProfile = {
-  legalName: "Phantix Security Solutions",
-  displayName: "Phantix Security Solutions",
+  legalName: "Phantix Labs ltd",
+  displayName: "Phantix Labs ltd",
   productName: "SecureGraph",
   tagline: "Protect. Prevent. Perform.",
   founded: "",
@@ -69,24 +72,29 @@ export const COMPANY: CompanyProfile = {
     region: "",
     country: "Nigeria",
   },
-  contactEmail: "privacy@phantixlabs.com",
+  contactEmails: ["contact@phantixlabs.com", "info@phantixlabs.com"],
   contactPhone: "",
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/company/securegraph-ai",
   crunchbase: "",
   github: "",
-  x: "",
+  x: "https://x.com/SecureGraph_AI",
 };
 
-// Leadership. Add one entry per founder / core-team member. Example shape:
+// Leadership. One entry per founder / core-team member.
 //
-//   {
-//     name: "Ada Okonkwo",
-//     role: "Founder & Chief Executive",
-//     bio: "Leads product and security engineering. Previously …",
-//     linkedin: "https://www.linkedin.com/in/ada-okonkwo",
-//   },
-//
-export const TEAM: TeamMember[] = [];
+// Every profile has to be verifiable: the name must match the public LinkedIn
+// it links to, and the optional X / GitHub pages must be active and public.
+export const TEAM: TeamMember[] = [
+  {
+    name: "Ayomiposi Ayoola",
+    role: "Founder",
+    bio: "Founder of Phantix Labs ltd, the company behind SecureGraph. Owns the product direction and the security direction for SecureGraph, which covers vulnerability assessment, verification and remediation tracking. Teams use it when they carry security alongside their day job.",
+    email: "ayomiposi.ayoola@phantixlabs.com",
+    linkedin: "https://www.linkedin.com/in/ayoola-ayomiposi-phantom",
+    x: "https://x.com/Phantom_Secure",
+    github: "https://github.com/Phantom-Fort",
+  },
+];
 
 /** Company pages that are safe to expose (only ones actually set). */
 export function companyLinks(): { id: keyof CompanyProfile; label: string; href: string }[] {

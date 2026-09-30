@@ -16,52 +16,52 @@ const capabilityTabs = [
     id: "web",
     label: "Web applications",
     icon: <Globe size={15} />,
-    headline: "OWASP Top 10 as the floor, not the ceiling",
+    headline: "OWASP Top 10 is the minimum, not the maximum",
     points: [
       "Full pipeline: subfinder → httpx → katana → nuclei → sqlmap → gowitness",
-      "Authentication testing: brute force, credential stuffing, session fixation",
-      "Injection coverage: SQL, NoSQL, LDAP and command injection",
-      "CSRF and clickjacking detection on every scanned app",
-      "Subdomain takeover detection as a high-priority module",
+      "Test authentication: brute force, credential stuffing, and session fixation",
+      "Inject tests for SQL, NoSQL, LDAP, and command injection",
+      "Detect CSRF and clickjacking on every app that you test",
+      "Detect subdomain takeover as a high-priority module",
     ],
   },
   {
     id: "api",
     label: "APIs",
     icon: <Zap size={15} />,
-    headline: "Dedicated API security, beyond CVE matching",
+    headline: "Dedicated API security that goes beyond CVE matching",
     points: [
-      "BOLA / BFLA detection and auth-bypass checks",
-      "JWT validation testing — weak algorithms, expiry bypass, algorithm confusion",
-      "Rate-limit and abuse-case probing",
-      "OpenAPI / Postman import turns your spec into scan scope",
-      "Business-logic heuristics, not just signature hits",
+      "Detect BOLA and BFLA, and test for auth bypass",
+      "Test JWT validation for weak algorithms, expiry bypass, and algorithm confusion",
+      "Probe rate limits and abuse cases",
+      "Import an OpenAPI or Postman file to turn your spec into test scope",
+      "Business-logic heuristics, not only signature matches",
     ],
   },
   {
     id: "mobile",
     label: "Mobile",
     icon: <Smartphone size={15} />,
-    headline: "APK intelligence from a single upload",
+    headline: "Get APK intelligence from a single upload",
     points: [
-      "Static analysis of the manifest, permissions and components",
-      "Hardcoded secret and credential-in-file detection",
-      "Exported activity / provider checks with evidence",
-      "Stored in object storage; inventory rows in your security DB",
-      "Re-analyze anytime — findings drive automatic risk creation",
+      "Analyze the manifest, the permissions, and the components",
+      "Detect hardcoded secrets and credentials in files",
+      "Check exported activities and providers, with evidence",
+      "We store the file in object storage and keep inventory rows in your security database",
+      "Analyze the file again at any time. Findings create risks automatically",
     ],
   },
   {
     id: "cloud",
     label: "Cloud",
     icon: <Network size={15} />,
-    headline: "Assessed with the keys you grant, nothing wider",
+    headline: "Assess the cloud with the keys you grant, and nothing wider",
     points: [
-      "Real Nmap with admin-controlled flags and port policy",
-      "TLS posture: legacy protocols, weak ciphers, cert issues",
-      "Port/service assets with first-seen / last-seen timelines",
-      "CIS-style host targets: Windows, Linux, network devices",
-      "Docker-isolated execution with a per-org concurrency lock",
+      "Run real Nmap with admin-controlled flags and a port policy",
+      "Check TLS posture: legacy protocols, weak ciphers, and certificate problems",
+      "Track port and service assets with first-seen and last-seen timelines",
+      "Test CIS-style host targets: Windows, Linux, and network devices",
+      "Each task runs in an isolated Docker container with one concurrency lock for the organization",
     ],
   },
 ];
@@ -74,8 +74,8 @@ export function Capabilities() {
       <motion.div {...fadeUp}>
         <SectionHeading
           kicker="Offensive capability"
-          title="Scoped by you. Run by the engines."
-          body="Customers explicitly define what gets scanned — every assessment is permissioned by design. Then the tool pipeline goes deep."
+          title="You set the scope. The engines run the test."
+          body="You define what we test. Every assessment is permissioned by design. Then the tool pipeline goes deep."
         />
       </motion.div>
 
@@ -120,7 +120,7 @@ export function Capabilities() {
 
         <motion.p {...fadeUp} className="mt-5 flex items-center justify-center gap-2 text-center text-xs text-slate-600">
           <Lock size={12} className="text-gold-400" />
-          SSRF-guarded targets — http/https only, private ranges and cloud metadata endpoints blocked, DNS-rebinding defense.
+          We guard targets against SSRF. Only http and https are allowed. Private ranges and cloud metadata endpoints are blocked. DNS-rebinding defense is on.
         </motion.p>
       </div>
     </Section>
@@ -137,13 +137,13 @@ export function VerificationGate() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">False-positive control</p>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              If it isn't verified, it doesn't ship
+              If we do not verify it, we do not ship it
             </h2>
             <p className="mt-4 text-[15px] leading-7 text-slate-400">
-              Every scan row is stamped with a verification state. Risks skip non-reportable noise,
-              compliance maps verified signals only, and executive reports collate{" "}
-              <span className="text-slate-200">auto- and human-verified findings exclusively</span>.
-              Heuristic probes are held to an appendix — never in your severity rollups.
+              Every test row records a verification state. Risks ignore non-reportable noise.
+              Compliance maps verified signals only. Executive reports include{" "}
+              <span className="text-slate-200">only findings that an engine or a person verified</span>.
+              Heuristic probes stay in an appendix, and never in your severity rollups.
             </p>
           </div>
           <div className="grid grid-cols-3 gap-3">
@@ -158,7 +158,7 @@ export function VerificationGate() {
               </div>
             ))}
             <div className="col-span-3 rounded-2xl border border-gold-400/25 bg-gold-400/[0.06] p-4 text-center text-[13px] text-gold-300/90">
-              REPORT_REQUIRE_VERIFIED_FINDINGS · enforced by the shared classifier across engines
+              REPORT_REQUIRE_VERIFIED_FINDINGS · the shared classifier enforces this rule across engines
             </div>
           </div>
         </div>
@@ -170,12 +170,12 @@ export function VerificationGate() {
 // ── AI governance ─────────────────────────────────────────────────────────────
 export function AIGovernance() {
   const guardrails = [
-    "PII redacted before any provider call",
-    "Prompts versioned like code — review, activate, roll back",
-    "Hallucination heuristics + schema validation on output",
-    "Every call audited: prompt version, model, tokens, cost",
-    "Provider abstraction — swap models without app changes",
-    "AI pentesting gated on an explicit DeepSeek key",
+    "We redact PII before any provider call",
+    "We version prompts like code. You can review, activate, and roll back each version",
+    "We apply hallucination heuristics and schema validation to each output",
+    "We audit every call: prompt version, model, tokens, and cost",
+    "The provider layer is abstract. You can swap models without changes to the app",
+    "AI pentesting needs an explicit DeepSeek key",
   ];
   return (
     <Section id="ai" className="py-24">
@@ -200,12 +200,12 @@ export function AIGovernance() {
         <motion.div {...fadeUp} className="order-1 lg:order-2">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">Governed AI</p>
           <h2 className="mt-3 font-display text-4xl font-bold tracking-tight text-white">
-            AI that advises — <span className="text-gold-300">never decides</span>
+            AI that advises, and <span className="text-gold-300">never decides</span>
           </h2>
           <p className="mt-4 text-[15px] leading-7 text-slate-400">
             The AI Engine writes finding explanations and executive narratives that make reports readable.
-            It <span className="text-slate-200">never determines security facts and never scores risk</span> —
-            scoring stays with the deterministic engines, prose stays with governed, audited, cost-capped models.
+            It <span className="text-slate-200">never determines security facts and never scores risk</span>.
+            The deterministic engines score risk. Governed, audited, cost-capped models write the prose.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {["finding_explanation", "executive_summary", "consensus (multi-model)"].map((p) => (
@@ -242,7 +242,7 @@ export function EnginesGrid() {
         <SectionHeading
           kicker="Modular monolith"
           title="Eleven engines, one bus"
-          body="Every capability is an engine with a clear contract — orchestrated over the engine bus, governed by the Shared SDK."
+          body="Every capability is an engine with a clear contract. The engine bus orchestrates them, and the Shared SDK governs them."
         />
       </motion.div>
       <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -275,18 +275,18 @@ export function EnginesGrid() {
 // ── Surfaces ──────────────────────────────────────────────────────────────────
 export function Surfaces() {
   const surfaces = [
-    { name: "Org Setup", desc: "Register your organization, accept privacy, verify email and complete onboarding — all on the management surface.", token: "Company JWT", href: `${PLATFORM_URL}/login` },
-    { name: "Platform", desc: "Manage tenant identity, create service keys, assign dual‑control, and connect your security database.", token: "Company / org‑user JWT", href: PLATFORM_URL },
-    { name: "Application", desc: "Operator day‑to‑day: scans, findings, risks, reports. Sign in with a login link from your admin — no company password needed.", token: "app_session + device", href: APP_URL },
-    { name: "Docs", desc: "The full implementation canon — auth realms, module deep‑dives, 326 API routes.", token: "Public", href: APP_DOCS_URL },
+    { name: "Org Setup", desc: "Register your organization, accept the privacy terms, verify your email, and complete onboarding. All of this occurs on the management surface.", token: "Company JWT", href: `${PLATFORM_URL}/login` },
+    { name: "Platform", desc: "Manage tenant identity, create service keys, assign dual-control roles, and connect your security database.", token: "Company and org-user JWT", href: PLATFORM_URL },
+    { name: "Application", desc: "Operator day-to-day work: tests, findings, risks, and reports. Sign in with a login link from your admin. You do not need a company password.", token: "app_session + device", href: APP_URL },
+    { name: "Docs", desc: "The full implementation canon: auth realms, module deep dives, and 326 API routes.", token: "Public", href: APP_DOCS_URL },
   ];
   return (
     <Section id="platform" className="py-24">
       <motion.div {...fadeUp}>
         <SectionHeading
           kicker="One platform, two surfaces"
-          title="Management · Operations — cleanly separated"
-          body="Your admin signs in on the Platform (company JWT). Operators get login links — they never touch a company password. Each surface has its own auth realm, storage and rules."
+          title="Management and operations, cleanly separated"
+          body="Your admin signs in on the Platform with a company JWT. Operators get login links and never touch a company password. Each surface has its own auth realm, storage, and rules."
         />
       </motion.div>
       <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">

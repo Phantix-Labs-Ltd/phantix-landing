@@ -48,12 +48,12 @@ export default function FreeScanSection() {
               </p>
 
               <h2 id="free-scan-title" className="mt-5 font-display text-3xl font-semibold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
-                Pentest a domain you own —{" "}
+                Pentest a domain you own, for{" "}
                 <span className="bg-gradient-to-r from-gold-300 to-gold-500 bg-clip-text text-transparent">free</span>
               </h2>
               <p className="mt-4 max-w-md text-[15px] leading-7 text-slate-300">
-                See what an attacker sees from the outside, in minutes. Type your domain into the terminal and we'll
-                review its external exposure — safely, and only once you've proved it's yours.
+                See what an attacker sees from the outside, in minutes. Type your domain into the terminal. We then
+                review its external exposure, safely, and only after you prove that it is yours.
               </p>
 
               <ul className="mt-7 space-y-4">

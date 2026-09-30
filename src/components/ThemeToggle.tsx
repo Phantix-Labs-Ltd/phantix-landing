@@ -47,8 +47,8 @@ export function ThemeToggle({ className }: { className?: string }) {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
-        title="Toggle color theme"
-        aria-label="Toggle color theme"
+        title="Change the color theme"
+        aria-label="Change the color theme"
         className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-phantix-700/50 bg-phantix-800/40 text-slate-300 transition-colors hover:bg-phantix-700/50 hover:text-gold-300"
       >
         <TriggerIcon size={15} />

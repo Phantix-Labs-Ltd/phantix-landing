@@ -77,7 +77,7 @@ export default function PlatformCapability() {
         </div>
 
         <motion.p {...fadeUp} className="mt-10 flex items-center justify-center gap-2 text-center text-xs text-slate-600">
-          SSRF-guarded targets — http/https only, private ranges and cloud metadata endpoints blocked, DNS-rebinding defense.
+          Targets are SSRF-guarded: only http and https. SecureGraph blocks private ranges and cloud metadata endpoints. DNS-rebinding defense is active.
         </motion.p>
       </Section>
 
@@ -86,7 +86,7 @@ export default function PlatformCapability() {
       <Section className="pb-20">
         <motion.div {...fadeUp} className="max-w-2xl">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-white">
-            Every surface, one command centre
+            Every surface, one Command Centre
           </h2>
         </motion.div>
         <div className="mt-8 divide-y divide-phantix-700/40 border-y border-phantix-700/40">
@@ -123,7 +123,7 @@ export default function PlatformCapability() {
         >
           <div className="pointer-events-none absolute inset-0 bg-grid-faint bg-grid opacity-30 [mask-image:radial-gradient(ellipse_60%_80%_at_50%_50%,black,transparent)]" />
           <h2 className="relative font-display text-3xl font-bold tracking-tight text-white">
-            See {page.navLabel.toLowerCase()} testing on your own stack
+            See how SecureGraph tests {page.navLabel.toLowerCase()} on your own stack
           </h2>
           <p className="relative mx-auto mt-4 max-w-xl text-[15px] leading-7 text-slate-300">
             Walk through the product yourself, or talk to the team about a scoped assessment.

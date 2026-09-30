@@ -26,6 +26,7 @@ function organizationPatch(): Record<string, unknown> {
       name: m.name,
       jobTitle: m.role,
       ...(m.linkedin ? { sameAs: m.linkedin } : {}),
+      ...(m.email ? { email: m.email } : {}),
     }));
   }
   if (COMPANY.address.street || COMPANY.address.city) {
@@ -38,11 +39,11 @@ function organizationPatch(): Record<string, unknown> {
       addressCountry: COMPANY.address.country || undefined,
     };
   }
-  if (COMPANY.contactEmail) {
+  if (COMPANY.contactEmails.length) {
     patch.contactPoint = {
       "@type": "ContactPoint",
       contactType: "customer support",
-      email: COMPANY.contactEmail,
+      email: COMPANY.contactEmails.length === 1 ? COMPANY.contactEmails[0] : COMPANY.contactEmails,
     };
   }
   return patch;

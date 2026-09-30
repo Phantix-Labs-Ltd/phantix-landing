@@ -29,57 +29,57 @@ const STEPS = [
     id: "assets",
     icon: Radar,
     title: "See every asset you own",
-    body: "Domains, subdomains, IPs, APIs and mobile builds — discovered continuously, not a spreadsheet someone updates quarterly.",
+    body: "SecureGraph finds domains, subdomains, IPs, APIs, and mobile builds continuously. You do not wait for a quarterly spreadsheet update.",
     shot: "assets",
-    alt: "Attack-surface inventory listing discovered domains and APIs with verification state",
+    alt: "Attack-surface inventory that lists discovered domains and APIs with their verification state",
   },
   {
     id: "vapt",
     icon: Crosshair,
     title: "Test it like an attacker would",
-    body: "Approval-gated VAPT campaigns run the full pipeline across every engine, ending in staff-verified findings.",
+    body: "Approval gates each VAPT campaign. The campaign then runs the full pipeline across every engine and ends with findings that staff verify.",
     shot: "vapt",
-    alt: "VAPT campaigns view showing scoped assessments and their progress",
+    alt: "VAPT campaigns view with scoped assessments and their progress",
   },
   {
     id: "risks",
     icon: ShieldAlert,
     title: "Know what to fix first",
-    body: "Risks are scored with explainable Likelihood × Impact and ordered P1–P5, so the queue reflects real exposure.",
+    body: "SecureGraph scores each risk with explainable Likelihood and Impact, then orders it from P1–P5. The queue then reflects real exposure.",
     shot: "risks",
-    alt: "Risk register ordered by priority with P1 to P5 scoring and treatment states",
+    alt: "Risk register with a priority order, P1 to P5 scores, and treatment states",
   },
   {
     id: "agent",
     icon: Sparkles,
     title: "An AI agent that earns its findings",
-    body: "The pentest agent routes to VAPT, SOC, GRC, Threat Intel and Asset specialists — it never reports a vulnerability without a finding ID.",
+    body: "The Autonomous Pentest Agent routes work to VAPT, SOC, GRC, Threat Intel, and Asset specialists. It never reports a vulnerability without a finding ID.",
     shot: "agent",
-    alt: "The SecureGraph Agent routing to VAPT, SOC, GRC, Threat Intel and Asset specialists",
+    alt: "The SecureGraph Agent sends work to VAPT, SOC, GRC, Threat Intel, and Asset specialists",
   },
   {
     id: "compliance",
     icon: Scale,
     title: "Prove it to the board",
-    body: "Compliance mapping built from verified findings only — evidence, not adjectives.",
+    body: "SecureGraph builds the compliance map from verified findings only. The map gives you evidence, not adjectives.",
     shot: "compliance",
-    alt: "Compliance view mapping verified findings to framework controls",
+    alt: "Compliance view that maps verified findings to framework controls",
   },
   {
     id: "soc",
     icon: BellRing,
-    title: "Stay ahead of what's live",
-    body: "The SOC engine keeps a triage queue current — detections land here, not in a nightly digest.",
+    title: "Stay ahead of live activity",
+    body: "The SOC engine keeps the triage queue current. Detections arrive here, not in a nightly digest.",
     shot: "soc",
-    alt: "SOC queue showing live detections awaiting triage",
+    alt: "SOC queue with live detections that await triage",
   },
   {
     id: "reports",
     icon: FileText,
     title: "Ship a report your board will read",
-    body: "Board-ready PDF/DOCX/XLSX deliverables, built from verified findings exclusively.",
+    body: "SecureGraph builds board-ready deliverables in PDF, DOCX, and XLSX formats from verified findings only.",
     shot: "reports",
-    alt: "Report library showing board-ready deliverables built from verified findings",
+    alt: "Report library with board-ready deliverables that use verified findings",
   },
 ];
 
@@ -161,8 +161,8 @@ export default function ProductDemo() {
               See SecureGraph run a real assessment
             </h1>
             <p className="mt-5 text-[15px] leading-7 text-slate-400">
-              Every screen below is the real Command Centre, not a mockup. Step through the walkthrough,
-              then talk to the team when you're ready for a live, guided demo on your own stack.
+              Every screen below shows the real Command Centre, not a mockup. Step through the walkthrough.
+              Then talk to the team when you want a live guided demo on your own stack.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <button
@@ -177,30 +177,6 @@ export default function ProductDemo() {
               </a>
             </div>
           </motion.div>
-        </Section>
-
-        {/* Intro footage */}
-        <Section className="pb-20">
-          <motion.div
-            {...fadeUp}
-            className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-md border border-phantix-700 shadow-[0_0_0_1px_rgba(232,181,77,0.18),0_1px_2px_0_rgba(0,0,0,0.5)]"
-          >
-            <video
-              src="/scenes/hero-command-centre.mp4"
-              poster="/scenes/hero-command-centre-poster.jpg"
-              className="block w-full"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            >
-              <source src="/scenes/hero-command-centre.webm" type="video/webm" />
-            </video>
-          </motion.div>
-          <p className="mx-auto mt-4 max-w-md text-center text-xs text-slate-500">
-            A minute inside the live Command Centre — sound off, always.
-          </p>
         </Section>
 
         {/* Guided tour */}
@@ -301,7 +277,7 @@ export default function ProductDemo() {
                       onClick={() => openModal("demo-tour-complete")}
                       className="btn-primary !px-4 !py-2 !text-sm"
                     >
-                      Finish · Request a live demo <ArrowRight size={14} />
+                      Finish and request a live demo <ArrowRight size={14} />
                     </button>
                   )}
                 </div>
@@ -336,8 +312,8 @@ export default function ProductDemo() {
               Like what you see?
             </h2>
             <p className="relative mx-auto mt-4 max-w-xl text-[15px] leading-7 text-slate-300">
-              Get a live, guided walkthrough on your own attack surface with someone from the team —
-              no generic slide deck.
+              Get a live guided walkthrough on your own attack surface with a member of the team.
+              We do not use a generic slide deck.
             </p>
             <div className="relative mt-7 flex flex-wrap items-center justify-center gap-5">
               <button
