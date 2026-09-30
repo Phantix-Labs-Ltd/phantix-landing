@@ -47,55 +47,55 @@ interface BillingPricingResponse {
 }
 
 const freeFeatures = [
-  "Know your surface — asset inventory with fair-use caps (no card required)",
-  "Light hygiene scans (DNS / network) to see what's exposed",
-  "Dual control, MFA and immutable audit — free on every plan",
-  "Basic exports (JSON / Markdown) so you can leave with your data",
-  "500 one-time AI credits, then free open-source models (admin opt-in)",
+  "Know your exposure: asset inventory with fair-use caps and no card required",
+  "Light hygiene tests on DNS and network show what is exposed",
+  "Dual control, MFA and an immutable audit trail are free on every plan",
+  "Basic exports to JSON and Markdown let you leave with your data",
+  "500 one-time AI credits, then free open-source models with admin opt-in",
   "Community support",
   "Not included: full VAPT campaigns, continuous testing, private-repo depth, board PDF packs",
 ];
 
 const starterFeatures = [
   "Everything in Free",
-  "Vulnerability assessment & penetration testing (VAPT) — scoped, approval-gated campaigns",
-  "Verified findings with remediation guidance — not a raw scanner dump",
-  "10 PR / MR security reviews / mo · 3 on-demand assessments / mo",
-  "Full engine quality: web/API, code security, mobile static, AI AutoFix (credit-metered)",
-  "5,000 AI credits / mo + 5,000 onboarding allotment · email support",
+  "Vulnerability assessment and penetration testing (VAPT): scoped, approval-gated campaigns",
+  "Verified findings with remediation guidance, not a raw scanner dump",
+  "10 pull request and merge request security reviews each month and 3 on-demand assessments each month",
+  "Full engine quality for web and API, code security and mobile static analysis. AI AutoFix is credit-metered.",
+  "5,000 AI credits per month and a 5,000 onboarding allotment. Email support is included.",
 ];
 
 const growthFeatures = [
   "Everything in Starter",
-  "Continuous / recurring pentest and continuous PR / MR review",
-  "5 projects · 20 on-demand assessments / mo · 10 model refreshes / mo",
-  "Multi-cloud + Kubernetes posture · blocking policies & path rules",
+  "Recurring VAPT work and continuous pull request and merge request review",
+  "5 projects, 20 on-demand assessments per month and 10 model refreshes per month",
+  "Multi-cloud and Kubernetes posture. Blocking policies and path rules are included.",
   "Compliance workbench and SOC console depth when you need them",
-  "20,000 AI credits / mo + 20,000 onboarding allotment · guided onboarding",
+  "20,000 AI credits per month and a 20,000 onboarding allotment. Guided onboarding is included.",
 ];
 
 const enterpriseFeatures = [
   "Everything in Growth, at custom volume",
-  "Unlimited / negotiated projects & assessments",
-  "Org-wide governance & audit views",
-  "Multi-company groups, custom branding & report retention",
-  "Priority support · dedicated success (deal-dependent)",
-  "Partner / white-label reports + custom SLA (deal-dependent)",
+  "Unlimited or negotiated projects and assessments",
+  "Organization-wide governance and audit views",
+  "Multi-company groups, custom branding and report retention",
+  "Priority support and dedicated success. Both depend on the deal.",
+  "White-label reports for partners and a custom SLA that depends on the deal.",
 ];
 
 const engagementOffers: EngagementOffer[] = [
   {
     title: "Full VAPT engagement",
     detail:
-      "Broad, multi-party approved assessment with correlated attack paths and verified findings.",
+      "This broad assessment needs approval from multiple parties. It correlates attack paths and shows verified findings.",
     tag: "Most requested",
     source: "pricing-most-requested-full-vapt",
     interestTag: "[interest:full_vapt_engagement]",
   },
   {
-    title: "Dynamic mobile / AVD testing",
+    title: "Dynamic mobile and AVD tests",
     detail:
-      "Deep runtime analysis of Android apps and virtual devices — beyond static APK checks.",
+      "Deep runtime analysis of Android apps and virtual devices. This goes beyond static APK checks.",
     tag: "Project",
     source: "pricing-most-requested-dynamic-mobile",
     interestTag: "[interest:dynamic_mobile_testing]",
@@ -103,7 +103,7 @@ const engagementOffers: EngagementOffer[] = [
   {
     title: "AI Pentest Agent",
     detail:
-      "Autonomous, governed investigation with skills minted only after anonymization + review.",
+      "Autonomous and governed investigation. The system mints skills only after anonymization and review.",
     tag: "New",
     source: "pricing-most-requested-ai-pentest-agent",
     interestTag: "[interest:ai_pentest_agent]",
@@ -111,7 +111,7 @@ const engagementOffers: EngagementOffer[] = [
   {
     title: "White-label deliverables",
     detail:
-      "MSSP / partner branded reports — your logo on the board-ready package.",
+      "Branded reports for managed security service provider (MSSP) partners. Your logo goes on the board-ready package.",
     tag: "Partners",
     source: "pricing-most-requested-white-label",
     interestTag: "[interest:white_label_reports]",
@@ -154,21 +154,21 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
       free: {
         heroMetric: "500",
         heroUnit: "one-time AI credits",
-        tagline: "For teams exploring SecureGraph with no card",
+        tagline: "For teams that explore SecureGraph with no card",
         features: freeFeatures,
         cta: "Get started free",
       },
       starter: {
         heroMetric: "5,000",
-        heroUnit: "AI credits / month (+ 5,000 allotment)",
-        tagline: "Assess like an attacker — VAPT with verified findings",
+        heroUnit: "AI credits per month and a 5,000 allotment",
+        tagline: "Assess like an attacker: VAPT with verified findings",
         features: starterFeatures,
         cta: "Get started",
       },
       growth: {
         heroMetric: "20,000",
-        heroUnit: "AI credits / month (+ 20,000 allotment)",
-        tagline: "Keep testing — continuous security every week",
+        heroUnit: "AI credits per month and a 20,000 allotment",
+        tagline: "Keep testing: continuous security every week",
         features: growthFeatures,
         highlighted: true,
         badge: "Most popular",
@@ -176,8 +176,8 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
       },
       enterprise: {
         heroMetric: "Custom",
-        heroUnit: "AI credits & volume",
-        tagline: "For platforms and regulated orgs at serious scale",
+        heroUnit: "AI credits and volume",
+        tagline: "For platforms and regulated organizations that operate at scale",
         features: enterpriseFeatures,
         cta: "Talk to sales",
       },
@@ -190,7 +190,7 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
           id: p.id,
           name: p.name ?? p.id,
           tagline: p.tagline ?? d.tagline ?? "",
-          heroMetric: p.heroMetric ?? d.heroMetric ?? "—",
+          heroMetric: p.heroMetric ?? d.heroMetric ?? "Not set",
           heroUnit: p.heroUnit ?? d.heroUnit ?? "",
           monthly_ngn: p.monthly_ngn,
           first_month_ngn: p.first_month_ngn ?? null,
@@ -224,7 +224,7 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
     {
       id: "free",
       name: "Free",
-      tagline: "For teams exploring SecureGraph with no card",
+      tagline: "For teams that explore SecureGraph with no card",
       heroMetric: "500",
       heroUnit: "one-time AI credits",
       monthly_ngn: 0,
@@ -236,9 +236,9 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
     {
       id: "starter",
       name: "Starter",
-      tagline: "Assess like an attacker — VAPT with verified findings",
+      tagline: "Assess like an attacker: VAPT with verified findings",
       heroMetric: "5,000",
-      heroUnit: "AI credits / month (+ 5,000 allotment)",
+      heroUnit: "AI credits per month and a 5,000 allotment",
       monthly_ngn: starterMonthly,
       first_month_ngn: starterFirstMonth,
       yearly_price_ngn: starterYearly,
@@ -249,9 +249,9 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
     {
       id: "growth",
       name: "Growth",
-      tagline: "Keep testing — continuous security every week",
+      tagline: "Keep testing: continuous security every week",
       heroMetric: "20,000",
-      heroUnit: "AI credits / month (+ 20,000 allotment)",
+      heroUnit: "AI credits per month and a 20,000 allotment",
       monthly_ngn: growthMonthly,
       yearly_price_ngn: growthMonthly * 10,
       yearly_note: yearsNote(growthMonthly),
@@ -263,9 +263,9 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
     {
       id: "enterprise",
       name: "Enterprise",
-      tagline: "For platforms and regulated orgs at serious scale",
+      tagline: "For platforms and regulated organizations that operate at scale",
       heroMetric: "Custom",
-      heroUnit: "AI credits & volume",
+      heroUnit: "AI credits and volume",
       monthly_ngn: null,
       cta: "Talk to sales",
       features: enterpriseFeatures,
@@ -276,7 +276,7 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
 export { engagementOffers, yearlySavePercent };
 
 export const pricingFootnote =
-  "Prices in Nigerian Naira (NGN), per company per month — updated live from SecureGraph billing; annual = 10× monthly. AI work is metered as credits (allowance → allotment → top-ups). Viewing, assigning and exporting results is never billed. Enterprise is a custom quote.";
+  "Prices are in Nigerian Naira (NGN) for each company each month. SecureGraph billing updates them live. You pay 10× the monthly price for a full year. AI work uses credits. SecureGraph draws from the allowance first, then the allotment, then top-ups. SecureGraph never bills you to view, assign or export results. Enterprise uses a custom quote.";
 
 const CACHE_TTL_MS = 2 * 60_000;
 let _cache: { tiers: PricingTier[]; ts: number } | null = null;

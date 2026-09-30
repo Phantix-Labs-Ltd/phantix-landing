@@ -19,9 +19,9 @@ export default function PricingPage() {
             Simple pricing for assessment and continuous security
           </h1>
           <p className="mt-5 text-[15px] leading-7 text-slate-400">
-            Free helps you know your surface. Starter runs vulnerability assessment and
+            Free helps you find your exposure. Starter runs vulnerability assessment and
             penetration testing with verified findings. Growth keeps testing continuously.
-            Enterprise is quoted.
+            We quote Enterprise on request.
           </p>
         </motion.div>
       </Section>

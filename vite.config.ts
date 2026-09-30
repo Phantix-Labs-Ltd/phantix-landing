@@ -34,7 +34,9 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      chunkSizeWarningLimit: 1600,
+      // Warn on any chunk past 500 KB (Vite default): the site has no heavy
+      // diagram or graph libraries, so nothing legitimate needs more.
+      chunkSizeWarningLimit: 500,
     },
   };
 });

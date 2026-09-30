@@ -157,7 +157,7 @@ export function DemoRequestModal({ open, onClose, source, title, defaultMessage 
                   Request received
                 </h2>
                 <p className="mt-2 max-w-xs text-sm leading-6 text-slate-400">
-                  Thanks, {name.split(" ")[0]} — someone from our team will reach out to{" "}
+                  Thanks, {name.split(" ")[0]}. Someone from our team will reach out to{" "}
                   <span className="text-slate-200">{email}</span> to schedule your live demo.
                 </p>
                 <button type="button" onClick={close} className="btn-primary mt-7 !px-6">
@@ -174,8 +174,8 @@ export function DemoRequestModal({ open, onClose, source, title, defaultMessage 
                 </h2>
                 <p className="mt-2 text-[13px] leading-5 text-slate-400">
                   {title
-                    ? "Share your details and we'll follow up about this engagement."
-                    : "Tell us a bit about you and we'll set up a walkthrough tailored to your stack."}
+                    ? "Share your details and we will follow up about this engagement."
+                    : "Tell us about yourself and we will set up a walkthrough for your stack."}
                 </p>
 
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -231,7 +231,7 @@ export function DemoRequestModal({ open, onClose, source, title, defaultMessage 
                     </select>
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="label" htmlFor="demo-phone">Phone (optional)</label>
+                    <label className="label" htmlFor="demo-phone">Phone, optional</label>
                     <input
                       id="demo-phone"
                       type="tel"
@@ -243,7 +243,7 @@ export function DemoRequestModal({ open, onClose, source, title, defaultMessage 
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="label" htmlFor="demo-message">What would you like to see? (optional)</label>
+                    <label className="label" htmlFor="demo-message">What would you like to see? This field is optional.</label>
                     <textarea
                       id="demo-message"
                       className="input min-h-[72px] resize-none"
@@ -261,7 +261,7 @@ export function DemoRequestModal({ open, onClose, source, title, defaultMessage 
                 )}
                 {status === "error" && (
                   <p className="mt-4 rounded-lg border border-severity-critical/30 bg-severity-critical/10 px-3 py-2 text-[13px] text-severity-critical">
-                    Something went wrong sending your request. Please try again.
+                    We could not send your request. Try again.
                   </p>
                 )}
 
@@ -279,7 +279,7 @@ export function DemoRequestModal({ open, onClose, source, title, defaultMessage 
                   )}
                 </button>
                 <p className="mt-3 text-center text-[12px] leading-4 text-slate-600">
-                  No spam. We'll only use this to reach out about your demo.
+                  No spam. We use this information only to contact you about your demo.
                 </p>
               </form>
             )}

@@ -115,7 +115,7 @@ export function Pricing({
           <SectionHeading
             kicker="Pricing"
             title="Simple, per-company pricing"
-            body="Every tier includes the privacy-first architecture, dual control and the immutable audit trail. Plan and rate limits bind to the company — all its users and keys share the bucket."
+            body="Every tier includes the privacy-first architecture, dual control and the immutable audit trail. Plan and rate limits belong to the company. All of its users and keys share the same bucket."
           />
         </motion.div>
       )}
@@ -195,18 +195,18 @@ export function Pricing({
 
           const caption = custom ? (
             <>
-              {t.heroUnit || "Custom AI credits & volume"} — scoped and quoted per organization
+              {t.heroUnit || "Custom AI credits and volume"}: scoped and quoted for each organization
             </>
           ) : monthly === 0 ? (
             t.yearly_note ?? "No card required"
           ) : yearly ? (
             <>
-              Billed once a year — that's ≈NGN{" "}
-              {Math.round((t.yearly_price_ngn ?? 0) / 12).toLocaleString()}/mo
+              You pay once each year. That is about NGN{" "}
+              {Math.round((t.yearly_price_ngn ?? 0) / 12).toLocaleString()} per month
             </>
           ) : (
             <>
-              {t.heroMetric} AI credits / month
+              {t.heroMetric} AI credits per month
               {t.first_month_ngn != null && t.first_month_ngn > 0 && (
                 <>
                   {" · "}
@@ -314,7 +314,7 @@ export function Pricing({
       <motion.div {...fadeUp} className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a href={PLATFORM_REGISTER_URL} className="btn-secondary !px-6">
           <Sparkles size={15} className="text-gold-400" />
-          {free?.cta ?? "Start free"} — no card required
+          {free?.cta ?? "Start free"}: no card required
         </a>
         <Link
           to="/pricing#compare"
@@ -346,8 +346,8 @@ export function Pricing({
               Project engagements
             </span>
             <span className="block text-sm text-slate-400">
-              When you need a full test or hands-on experts — full VAPT, dynamic mobile, AI Pentest
-              Agent, white-label deliverables.
+              When you need a full test or hands-on experts. This band covers full VAPT, dynamic
+              mobile, AI Pentest Agent and white-label deliverables.
             </span>
           </span>
           <span className="hidden shrink-0 sm:block">
@@ -392,8 +392,8 @@ export function Pricing({
             </div>
             <div className="flex flex-wrap items-center gap-3 border-t border-phantix-700/40 px-6 py-4">
               <p className="text-xs text-slate-500">
-                Engagements are quoted per project — scoped with a security engineer. Not a
-                self-serve subscription.
+                A security engineer scopes each engagement and quotes it for each project. This is
+                not a self-serve subscription.
               </p>
               <button
                 type="button"
@@ -441,11 +441,11 @@ export function FinalCTA() {
         {/* The FinalCTA panel is always navy, so the mark stays white in both themes. */}
         <BrandMark surface="dark" className="relative mx-auto h-20 w-20" />
         <h2 className="relative mt-6 font-display text-4xl font-bold tracking-tight text-white">
-          Find out what an attacker would find — first
+          Find out what an attacker would find first
         </h2>
         <p className="relative mx-auto mt-4 max-w-xl text-[15px] leading-7 text-slate-300">
           Create your organization, add your assets and run your first assessment today. Upgrade when
-          you need continuous testing — or talk to us if you'd like a guided walkthrough first.
+          you need continuous testing, or talk to us when you want a guided walkthrough first.
         </p>
         <div className="relative mt-7 flex flex-wrap items-center justify-center gap-5">
           <a href={PLATFORM_REGISTER_URL} className="btn-primary btn-shine !px-7 !py-3 !text-[15px]">
@@ -460,7 +460,8 @@ export function FinalCTA() {
           </button>
         </div>
         <p className="relative mt-5 text-[12px] leading-5 text-slate-400">
-          Free plan · No credit card required · Enterprise needs SSO, SLAs or custom deployment?{" "}
+          Free plan. You do not need a credit card. Does Enterprise need SSO, SLAs or a custom
+          deployment?{" "}
           <button
             type="button"
             onClick={() => setLead("enterprise")}

@@ -11,30 +11,30 @@ import { GlowBloom } from "@/components/effects";
 import { PLATFORM_REGISTER_URL } from "@/lib/links";
 
 const OUTCOMES = [
-  { icon: Eye, title: "Visibility", body: "A current inventory of the domains, apps, APIs and critical systems that are actually in scope." },
-  { icon: FileCheck, title: "Credible findings", body: "Issues that passed verification — not a raw dump of scanner output with your logo on the cover." },
-  { icon: TrendingUp, title: "Business impact", body: "Every reportable finding carries what's at stake, not only a severity label an executive can't act on." },
-  { icon: Presentation, title: "Board-ready packages", body: "PDF and structured reports built for leadership review — every report type and format is free on every plan." },
-  { icon: Users, title: "Governance", body: "Sensitive actions can require dual control — no single person runs an unreviewed high-risk test." },
-  { icon: Database, title: "Data control", body: "Findings and assets live in your own dedicated security database, and leave with you if you go." },
+  { icon: Eye, title: "Visibility", body: "A current inventory of the domains, apps, APIs, and critical systems in scope." },
+  { icon: FileCheck, title: "Credible findings", body: "Findings that passed verification. This is not a raw dump of scanner output with your logo on the cover." },
+  { icon: TrendingUp, title: "Business impact", body: "Every reportable finding states what is at stake. It is not only a severity label that an executive cannot act on." },
+  { icon: Presentation, title: "Board-ready packages", body: "PDF and structured reports for leadership review. Every report type and format is free on every plan." },
+  { icon: Users, title: "Governance", body: "Sensitive actions can require dual control. No single person can run an unreviewed high-risk test." },
+  { icon: Database, title: "Data control", body: "Findings and assets live in your own dedicated security database. They leave with you if you go." },
 ];
 
 const QUESTIONS = [
   {
     q: "Will this expose our customer data?",
-    a: "No. Security evidence — assets, scans, findings, risks — lives in a dedicated database you control. SecureGraph manages tenancy, identity, billing and orchestration. Your production business systems are not a scanning playground; you define scope, and nothing runs outside it.",
+    a: "No. Security evidence lives in a dedicated database that you control. That evidence includes assets, scans, findings, and risks. SecureGraph manages tenancy, identity, billing, and orchestration. Your production business systems are not a test environment. You define scope, and nothing runs outside it.",
   },
   {
     q: "How do I know the report is real?",
-    a: "Client-facing reports emphasise verified findings. Heuristic noise is held back or listed separately for transparency, rather than mixed into the executive narrative as though every line were confirmed.",
+    a: "Reports for clients emphasize verified findings. Heuristic noise is held back or listed separately for transparency. We do not mix it into the executive narrative as though every line were confirmed.",
   },
   {
     q: "What do Starter and Growth actually buy?",
-    a: "Starter (₦19,900/mo) is full vulnerability assessment and penetration testing with verified findings, remediation guidance, and board-ready output. Growth (₦49,900/mo) adds continuous / recurring testing and continuous PR review, plus deeper cloud, Kubernetes, compliance and SOC options when you turn them on. Free is the limited entry surface — inventory and light hygiene — not a substitute for Starter. Engagements cover human-led work.",
+    a: "Starter costs ₦19,900/mo. Starter includes full vulnerability assessment and penetration testing with verified findings, remediation guidance, and board-ready output. Growth costs ₦49,900/mo. Growth adds tests that run on a repeating schedule, plus continuous pull request review. It also adds deeper cloud, Kubernetes, compliance, and SOC options when you turn them on. Free is the limited entry surface. Free includes inventory and light hygiene, and it is not a substitute for Starter. Engagements cover human-led work.",
   },
   {
-    q: "Can we start without committing to a project?",
-    a: "Yes. Free is safe onboarding — inventory a small scope, run light checks. Move to Starter when you need real VAPT and verified reporting, and to Growth when you need continuous coverage. Engagements are optional.",
+    q: "Can we start without a project commitment?",
+    a: "Yes. Free lets you start safely. Inventory a small scope and run light checks. Move to Starter when you need real VAPT and verified reports. Move to Growth when you need continuous coverage. Engagements are optional.",
   },
 ];
 
@@ -48,12 +48,12 @@ export default function BusinessLeaders() {
             <Presentation size={13} /> For business leaders
           </span>
           <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl">
-            You don't need another dashboard. You need real tests — and proof.
+            You do not need another dashboard. You need real tests and proof.
           </h1>
           <p className="mt-5 text-[15px] leading-7 text-slate-400">
-            Run vulnerability assessment and penetration testing, keep testing when the business needs
-            continuous coverage, fix what matters, and show directors evidence that stands up to a second
-            question. Compliance mapping is available when you need it — it is not the reason to buy.
+            Run vulnerability assessment and penetration testing. Keep tests current when the business
+            needs continuous coverage. Fix what matters, and show directors evidence that stands up to a
+            second question. You can map frameworks when you need it. It is not the reason to buy.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link to="/demo" className="btn-primary btn-shine !px-6 !py-3 !text-base">
@@ -122,10 +122,10 @@ export default function BusinessLeaders() {
           <div className="card border-gold-400/25 p-8">
             <p className="eyebrow text-gold-400">How to describe it in a meeting</p>
             <blockquote className="mt-4 border-l-2 border-gold-400/60 pl-5 font-display text-lg leading-8 text-slate-200">
-              "We run a command centre for our attack surface. Assets and findings stay in our own security
-              database. Scans and VAPT produce verified issues with business impact, packaged for both
-              engineers and the board. Sensitive tests need dual approval. We're not handing our
-              vulnerability list to a random cloud folder."
+              "We run a Command Centre for our security exposure. Assets and findings stay in our own
+              security database. Scans and VAPT produce verified findings with business impact. We package
+              those findings for engineers and for the board. Sensitive tests need dual approval. We do not
+              hand our vulnerability list to a random cloud folder."
             </blockquote>
           </div>
         </motion.div>
@@ -141,7 +141,8 @@ export default function BusinessLeaders() {
             Start small. Expand when it earns it.
           </h2>
           <p className="relative mx-auto mt-4 max-w-xl text-[15px] leading-7 text-slate-300">
-            Begin on Free with a narrow scope, or ask for a guided pilot and we'll scope it with you.
+            Begin on Free with a narrow scope. You can also ask for a guided pilot, and we will define the
+            scope with you.
           </p>
           <div className="relative mt-7 flex flex-wrap items-center justify-center gap-5">
             <Link to="/demo" className="btn-primary !px-7 !py-3 !text-[15px]">

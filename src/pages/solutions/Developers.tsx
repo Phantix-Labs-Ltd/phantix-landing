@@ -20,12 +20,12 @@ const INCLUDED = [
   "Paid access to the SecureGraph AI Agent",
   "Domain agents: SOC, GRC, VAPT, threat intel, asset, chief",
   "Invoke, poll runs, skills, approvals, repo-analysis assist",
-  "Agent auth via org token or documented agent service token",
+  "Agent authentication through an org token or a documented agent service token",
 ];
 
 const NOT_INCLUDED = [
   "Full platform automation of every engine as a standalone API product",
-  "Unlimited scan / VAPT / reporting API without an app subscription",
+  "Unlimited API access for scans, VAPT, or reports without an app subscription",
   "Staff and admin APIs",
   "Free unauthenticated agent use",
 ];
@@ -34,16 +34,16 @@ const ROUTE_GROUPS = [
   ["/ai/agent/status", "Enabled flag and domain list"],
   ["/ai/agent/domains", "Catalog and policies"],
   ["/ai/agent/domains/{domain}/invoke", "On-demand domain agent"],
-  ["/ai/agent/runs", "Start, list and poll investigations"],
+  ["/ai/agent/runs", "Start, list, and poll investigations"],
   ["/ai/agent/skills", "Skills list, promote, reinforce"],
   ["/ai/agent/approvals", "Human gates for sensitive actions"],
 ];
 
 const RULES = [
-  "Honour 402 — no agent access without entitlement.",
-  "Poll async runs; a run returns an analysis_id rather than blocking.",
-  "Agents work from engine evidence — never synthesise findings client-side.",
-  "Ground truth stays in SecureGraph; agents orchestrate, they don't replace the security database.",
+  "Honor 402. There is no agent access without entitlement.",
+  "Poll async runs. A run returns an analysis_id and does not block.",
+  "Agents work from engine evidence. They never synthesize findings on the client.",
+  "Ground truth stays in SecureGraph. Agents orchestrate, and they do not replace the security database.",
 ];
 
 const SAMPLE = `# List the domain agents available to your org
@@ -73,9 +73,9 @@ export default function Developers() {
             One public API, and we're specific about which
           </h1>
           <p className="mt-5 text-[15px] leading-7 text-slate-400">
-            The AI Agent is the only public API we sell a plan for. Inventory, scans, VAPT, risk,
-            compliance and reporting stay Platform product surfaces — we'd rather say that plainly than
-            let you discover it after integrating.
+            The AI Agent is the only public API with a paid plan. Inventory, scans, VAPT, risk,
+            compliance, and reports stay Platform product surfaces. We prefer to say that plainly. You
+            should not discover it after you integrate.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a href={APP_DOCS_URL} className="btn-primary btn-shine !px-6 !py-3 !text-base">
@@ -104,7 +104,7 @@ export default function Developers() {
             </ul>
           </motion.div>
           <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.08 }} className="card p-8">
-            <h2 className="font-display text-lg font-semibold text-white">What it isn't sold as</h2>
+            <h2 className="font-display text-lg font-semibold text-white">What it is not sold as</h2>
             <ul className="mt-5 space-y-3">
               {NOT_INCLUDED.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-[14px] leading-6 text-slate-400">
@@ -126,8 +126,9 @@ export default function Developers() {
               Invoke, then poll
             </h2>
             <p className="mt-4 text-[15px] leading-7 text-slate-400">
-              Runs are asynchronous — an invoke returns an <code className="rounded bg-phantix-800/80 px-1.5 py-0.5 font-mono text-[12.5px] text-gold-300">analysis_id</code>{" "}
-              you poll, rather than an HTTP call you hold open. Expect a{" "}
+              Runs are asynchronous. An invoke returns an
+              <code className="rounded bg-phantix-800/80 px-1.5 py-0.5 font-mono text-[12.5px] text-gold-300">analysis_id</code>{" "}
+              that you poll. It is not an HTTP call that you hold open. Expect a{" "}
               <code className="rounded bg-phantix-800/80 px-1.5 py-0.5 font-mono text-[12.5px] text-gold-300">402</code>{" "}
               when the organization lacks AI Agent entitlement.
             </p>
@@ -179,8 +180,8 @@ export default function Developers() {
               ))}
             </ul>
             <p className="mt-6 text-[13px] leading-6 text-slate-500">
-              Teams using SecureGraph day to day don't need any of this — the agent can be invoked from the
-              app under the same entitlements.
+              Teams that use SecureGraph each day do not need any of this. You can invoke the agent from
+              the app under the same entitlements.
             </p>
           </motion.div>
         </div>
@@ -193,11 +194,11 @@ export default function Developers() {
         >
           <div className="pointer-events-none absolute inset-0 bg-grid-faint bg-grid opacity-30 [mask-image:radial-gradient(ellipse_60%_80%_at_50%_50%,black,transparent)]" />
           <h2 className="relative font-display text-3xl font-bold tracking-tight text-white">
-            Building on the agent?
+            Ready to build on the agent?
           </h2>
           <p className="relative mx-auto mt-4 max-w-xl text-[15px] leading-7 text-slate-300">
-            Talk to us about AI Agent plan pricing and design-partner access — we'd rather scope your
-            integration with you than guess at it.
+            Talk to us about AI Agent plan pricing and design-partner access. We prefer to define your
+            integration with you, not guess at it.
           </p>
           <div className="relative mt-7 flex flex-wrap items-center justify-center gap-5">
             <Link to="/demo" className="btn-primary !px-7 !py-3 !text-[15px]">

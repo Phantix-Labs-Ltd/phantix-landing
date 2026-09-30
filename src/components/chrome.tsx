@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { APP_DOCS_URL, BLOG_URL, PLATFORM_REGISTER_URL } from "@/lib/links";
 import { PLATFORM_PAGES } from "@/lib/platform-content";
+import { COMPANY, companyLinks } from "@/lib/company";
 import { cx } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandWordmark } from "@/components/BrandLogo";
@@ -35,7 +36,7 @@ const PLATFORM_MENU: MegaConfig = {
   intro: {
     eyebrow: "SecureGraph platform",
     title: "One command centre for every surface you own.",
-    body: "Assets, assessments, risk and evidence stay in a single register — under your keys.",
+    body: "Assets, assessments, risk and evidence stay in one register that you control.",
     linkLabel: "Explore the platform",
     linkTo: "/#applications",
     icon: <Layers size={16} />,
@@ -51,12 +52,12 @@ const PLATFORM_MENU: MegaConfig = {
   promo: {
     eyebrow: "Start with VAPT",
     title: "Assess like an attacker. Verify. Fix. Keep testing.",
-    body: "One subscription for the platform — turn modules on when you need them. AI never invents findings.",
+    body: "One subscription covers the platform. Turn a module on when you need it. AI never invents findings.",
     linkLabel: "See how it works",
     linkTo: "/#capabilities",
     icon: <Sparkles size={16} />,
   },
-  footNote: "Vulnerability assessment & penetration testing first — continuous security on Growth.",
+  footNote: "Vulnerability assessment and penetration testing first. Continuous security on Growth.",
   width: "w-[920px]",
 };
 
@@ -64,7 +65,7 @@ const SOLUTIONS_MENU: MegaConfig = {
   intro: {
     eyebrow: "Who it's for",
     title: "Built for the person who also happens to own security.",
-    body: "Whether that's the board asking for assurance, the engineer holding the pager, or the team integrating the agent.",
+    body: "Whether that is the board asking for assurance, the engineer holding the pager, or the team that integrates the agent.",
     linkLabel: "See pricing",
     linkTo: "/pricing",
     icon: <Users size={16} />,
@@ -74,32 +75,32 @@ const SOLUTIONS_MENU: MegaConfig = {
     {
       label: "For business leaders",
       to: "/solutions/business-leaders",
-      desc: "Assurance you can put in front of a board — evidence, not adjectives.",
+      desc: "Assurance you can put in front of a board. Evidence, not adjectives.",
       icon: <Presentation size={15} />,
     },
     {
       label: "For security teams",
       to: "/solutions/security-teams",
-      desc: "Built for people burned by noisy scanners and unreadable PDFs.",
+      desc: "Built for people who are tired of noisy scanners and unreadable PDF files.",
       icon: <Terminal size={15} />,
     },
     {
       label: "For developers",
       to: "/solutions/developers",
-      desc: "Programmatic access to the AI agent — and we're specific about which API.",
+      desc: "Programmatic access to the AI agent. We tell you which API.",
       icon: <Code2 size={15} />,
     },
   ],
   cols: 1,
   promo: {
-    eyebrow: "Trust & security",
+    eyebrow: "Trust and security",
     title: "Your security data stays yours.",
-    body: "The boundary, the approval gates and the audit trail — documented, not asserted.",
+    body: "The boundary, the approval gates, and the audit trail are documented, not asserted.",
     linkLabel: "Read the trust model",
     linkTo: "/trust",
     icon: <ShieldCheck size={16} />,
   },
-  footNote: "Start on Free. Expand when the pipeline has earned it.",
+  footNote: "Start on Free. Expand when the pipeline earns it.",
   width: "w-[860px]",
 };
 
@@ -496,8 +497,15 @@ const FOOTER_SOLUTIONS_LINKS: FootLink[] = [
   { label: "Business leaders", to: "/solutions/business-leaders" },
   { label: "Security teams", to: "/solutions/security-teams" },
   { label: "Developers", to: "/solutions/developers" },
-  { label: "Trust & security", to: "/trust" },
+  { label: "Trust and security", to: "/trust" },
   { label: "Pricing", to: "/pricing" },
+];
+/* Who is behind the product — the identity a buyer (or a startup-programme
+   reviewer) checks. The third-party links only appear once those pages exist. */
+const FOOTER_COMPANY_LINKS: FootLink[] = [
+  { label: "About", to: "/company" },
+  { label: "Contact", href: COMPANY.contactEmails[0] ? `mailto:${COMPANY.contactEmails[0]}` : "/demo" },
+  ...companyLinks().map((l) => ({ label: l.label, href: l.href }) as FootLink),
 ];
 const FOOTER_RESOURCE_LINKS: FootLink[] = [
   { label: "Documentation", href: APP_DOCS_URL },
@@ -524,7 +532,7 @@ export function Footer() {
   return (
     <footer className="border-t border-phantix-700/30 pb-12 pt-16 md:pt-20">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(5,1fr)] lg:gap-8">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(6,1fr)] lg:gap-8">
           <div className="max-w-xs">
             <div className="flex items-center gap-2.5">
               <div className="flex flex-col">
@@ -533,20 +541,21 @@ export function Footer() {
               </div>
             </div>
             <p className="mt-5 text-sm leading-6 text-slate-500">
-              Vulnerability assessment and penetration testing for lean teams — continuous security,
+              Vulnerability assessment and penetration testing for lean teams. Continuous security,
               verified findings, and data you control.
             </p>
           </div>
 
           <FooterLinkColumn label="Platform" links={FOOTER_PLATFORM_LINKS} />
           <FooterLinkColumn label="Solutions" links={FOOTER_SOLUTIONS_LINKS} />
+          <FooterLinkColumn label="Company" links={FOOTER_COMPANY_LINKS} />
           <FooterLinkColumn label="Resources" links={FOOTER_RESOURCE_LINKS} />
           <FooterLinkColumn label="Get started" links={FOOTER_START_LINKS} />
           <FooterLinkColumn label="Legal" links={FOOTER_LEGAL_LINKS} />
         </div>
 
         <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-phantix-700/30 pt-8 text-xs text-slate-500">
-          <span>© {new Date().getFullYear()} Phantix Security Solutions</span>
+          <span>© {new Date().getFullYear()} Phantix Labs ltd</span>
           <span className="font-mono">13 engines · 10+ AI agents · 600+ checks</span>
         </div>
       </div>

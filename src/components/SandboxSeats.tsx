@@ -18,7 +18,7 @@ export default function SandboxSeats() {
         <div className="min-w-0 flex-1">
           <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-gold-400">BETA design partners</p>
           <h2 className="mt-1 font-display text-2xl font-bold text-white sm:text-3xl">
-            Sandbox cohort · up to <span className="text-gold-300">20</span> organizations
+            Sandbox cohort: up to <span className="text-gold-300">20</span> organizations
           </h2>
           <p className="mt-2 max-w-xl text-sm leading-6 text-slate-400">
             Apply for staging access to Platform and the four applications. SecureGraph staff review every
@@ -27,7 +27,7 @@ export default function SandboxSeats() {
         </div>
         <div className="shrink-0">
           <a href={APPLY_URL} className="btn-primary !px-6 !py-3 !text-[15px]">
-            Apply for sandbox <ArrowRight size={16} />
+            Apply for the sandbox <ArrowRight size={16} />
           </a>
         </div>
       </div>

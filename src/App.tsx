@@ -2,15 +2,20 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import Landing from "@/pages/Landing";
-import LegalPage from "@/pages/Legal";
-import ProductDemo from "@/pages/ProductDemo";
-import PlatformCapability from "@/pages/PlatformCapability";
-import PricingPage from "@/pages/PricingPage";
-import Trust from "@/pages/Trust";
-import BusinessLeaders from "@/pages/solutions/BusinessLeaders";
-import SecurityTeams from "@/pages/solutions/SecurityTeams";
-import Developers from "@/pages/solutions/Developers";
-import Cookies from "@/pages/Cookies";
+
+// The home page ships with the first paint; every other page loads when visited.
+const LegalPage = React.lazy(() => import("@/pages/Legal"));
+const ProductDemo = React.lazy(() => import("@/pages/ProductDemo"));
+const PlatformCapability = React.lazy(() => import("@/pages/PlatformCapability"));
+const PricingPage = React.lazy(() => import("@/pages/PricingPage"));
+const Trust = React.lazy(() => import("@/pages/Trust"));
+const Company = React.lazy(() => import("@/pages/Company"));
+const BusinessLeaders = React.lazy(() => import("@/pages/solutions/BusinessLeaders"));
+const SecurityTeams = React.lazy(() => import("@/pages/solutions/SecurityTeams"));
+const Developers = React.lazy(() => import("@/pages/solutions/Developers"));
+const Cookies = React.lazy(() => import("@/pages/Cookies"));
+const NotFound = React.lazy(() => import("@/pages/NotFound"));
+import { useCanonicalUrl } from "@/lib/useCanonicalUrl";
 import CookieConsent from "@/components/CookieConsent";
 import { SANDBOX_APPLY_URL } from "@/lib/links";
 
@@ -21,7 +26,7 @@ function SandboxApplyRedirect() {
   }, []);
   return (
     <div className="flex min-h-screen items-center justify-center text-sm text-slate-400">
-      Opening sandbox application…
+      You are going to the sandbox application. One moment.
     </div>
   );
 }
@@ -53,6 +58,12 @@ function ScrollToTop() {
   return null;
 }
 
+/** Must render inside the router: it reads the current path. */
+function CanonicalUrl() {
+  useCanonicalUrl("https://phantixlabs.com");
+  return null;
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -60,6 +71,10 @@ export default function App() {
           its final state immediately when the OS asks for reduced motion. */}
       <MotionConfig reducedMotion="user">
         <ScrollToTop />
+        <CanonicalUrl />
+        {/* A page chunk arrives in well under a second; a blank canvas (the
+            site background) reads better than a spinner flashing past. */}
+        <React.Suspense fallback={<div className="min-h-screen" />}>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/demo" element={<ProductDemo />} />
@@ -68,6 +83,7 @@ export default function App() {
           <Route path="/platform/:slug" element={<PlatformCapability />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/trust" element={<Trust />} />
+          <Route path="/company" element={<Company />} />
           <Route path="/solutions/business-leaders" element={<BusinessLeaders />} />
           <Route path="/solutions/security-teams" element={<SecurityTeams />} />
           <Route path="/solutions/developers" element={<Developers />} />
@@ -76,8 +92,9 @@ export default function App() {
           <Route path="/aup" element={<LegalPage docKey="aup" />} />
           <Route path="/privacy" element={<LegalPage docKey="privacy" />} />
           <Route path="/cookies" element={<Cookies />} />
-          <Route path="*" element={<Landing />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
+        </React.Suspense>
         <CookieConsent />
       </MotionConfig>
     </BrowserRouter>

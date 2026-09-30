@@ -34,9 +34,9 @@ export default function Cookies() {
               <BrandMark className="h-16 w-16" />
               <div>
                 <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-gold-400">
-                  Cookies &amp; Analytics
+                  Cookies and analytics
                 </p>
-                <h1 className="mt-1 text-2xl font-semibold text-white">Cookies &amp; analytics policy</h1>
+                <h1 className="mt-1 text-2xl font-semibold text-white">Cookies and analytics policy</h1>
               </div>
             </div>
           </motion.div>
@@ -55,13 +55,13 @@ export default function Cookies() {
             </section>
 
             <section>
-              <h2 className="text-base font-semibold text-white">What the analytics records</h2>
+              <h2 className="text-base font-semibold text-white">What the analytics system records</h2>
               <ul className="mt-3 space-y-2">
                 {[
                   "Page path and the referring page",
-                  "Coarse device info: screen size, browser language and time zone",
-                  "Campaign parameters (UTM) when a link carries them",
-                  "A random per-session id kept in sessionStorage — not a cookie",
+                  "Coarse device information: screen size, browser language and time zone",
+                  "Campaign parameters, known as UTM tags, when a link carries them",
+                  "A random id for each session, kept in sessionStorage and not in a cookie",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
                     <ShieldCheck size={15} className="mt-0.5 shrink-0 text-emerald-400" />
@@ -71,15 +71,15 @@ export default function Cookies() {
               </ul>
               <p className="mt-3 text-slate-400">
                 It does <strong>not</strong> record your name, email, keystrokes, page content or any personal
-                data. We honour <code>Do Not Track</code> and a deployment kill-switch.
+                data. We honor <code>Do Not Track</code> and a deployment kill-switch.
               </p>
             </section>
 
             <section>
               <h2 className="text-base font-semibold text-white">Your choice</h2>
               <p className="mt-2.5">
-                Analytics runs only after you accept. You can change your choice at any time; declining stops
-                all beacons and affects nothing else.
+                Analytics runs only after you accept. You can change your choice at any time. If you
+                decline, all beacons stop, and nothing else changes.
               </p>
               <p className="mt-2 text-xs text-slate-500">
                 Current choice:{" "}
@@ -93,11 +93,11 @@ export default function Cookies() {
             </section>
 
             <section>
-              <h2 className="text-base font-semibold text-white">Retention &amp; contact</h2>
+              <h2 className="text-base font-semibold text-white">Retention and contact</h2>
               <p className="mt-2.5">
-                Analytics records are retained in aggregate for product measurement and are not used to
-                identify you. For access, correction or erasure requests, contact our Data Protection Officer
-                at privacy@phantixlabs.com.
+                We keep analytics records in aggregate for product measurement. We do not use them to
+                identify you. For requests about access, correction or erasure, contact our Data Protection
+                Officer at privacy@phantixlabs.com.
               </p>
             </section>
           </div>
