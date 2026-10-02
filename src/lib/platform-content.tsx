@@ -1,5 +1,5 @@
 import React from "react";
-import { Globe, Zap, Smartphone, Cloud } from "lucide-react";
+import { Bot, Globe, Zap, Smartphone, Cloud } from "lucide-react";
 
 export interface PlatformPage {
   slug: string;
@@ -17,6 +17,26 @@ export interface PlatformPage {
 // Testing-domain pages — the depth behind the homepage's Capabilities section.
 // Copy grounded in docs/05-product-capabilities.md; nothing here is invented.
 export const PLATFORM_PAGES: PlatformPage[] = [
+  {
+    slug: "autonomous-pentesting",
+    navLabel: "Autonomous pentest agent",
+    icon: <Bot size={15} />,
+    eyebrow: "Autonomous pentest agent",
+    headline: "An agent that makes the plan for the attack and shows the proof for each finding",
+    intro:
+      "The agent uses the same method as a senior tester. It does recon, makes a decision, acts, continues along the path, does a check, and writes the report. It operates in the agreed scope and in an isolated container. It never promotes a result without proof.",
+    points: [
+      "A 34-phase method that agrees with the asset type",
+      "Three autonomy levels, from guard-railed to model-led",
+      "An independent adversarial verifier for each candidate finding",
+      "Attack chains kept as one finding with evidence for each link",
+      "Actions that change a system and authentication steps need human approval",
+    ],
+    shot: "agent",
+    alt: "The SecureGraph Agent and its routes to VAPT, SOC, GRC, Threat Intel and Asset specialists, with dual control necessary",
+    footnote:
+      "The agent makes plans and shows the proof. It is not a fully autonomous hacker, and it never invents a finding. Read the limits on the full page.",
+  },
   {
     slug: "web-applications",
     navLabel: "Web applications",

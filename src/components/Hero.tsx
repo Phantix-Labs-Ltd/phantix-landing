@@ -114,6 +114,15 @@ export default function Hero() {
        */}
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-10">
         <div>
+          {/* First-time visitors land here: name the product and the company
+              that makes it, so the phantixlabs.com address reads as the
+              parent brand rather than a mismatch. */}
+          <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-phantix-700 bg-phantix-900/60 px-3.5 py-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-gold-400" aria-hidden />
+            <span className="font-display text-[13px] font-bold tracking-tight text-white">SecureGraph</span>
+            <span className="text-[12px] font-medium text-slate-500">by</span>
+            <span className="font-display text-[13px] font-bold tracking-tight text-gold-300">Phantix Labs</span>
+          </div>
           <h1 className="max-w-xl font-display text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.1rem]">
             <span className="hero-heading block">{HEADLINE.lead}</span>
             <span className="hero-accent block">{HEADLINE.highlight_1}</span>

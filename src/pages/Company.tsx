@@ -9,7 +9,7 @@ import PageShell from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
 import { Section, fadeUp } from "@/components/Section";
 import { GlowBloom } from "@/components/effects";
-import { COMPANY, companyLinks, hasRegisteredIdentity } from "@/lib/company";
+import { COMPANY, addressLines, companyLinks, hasRegisteredIdentity } from "@/lib/company";
 
 /*
  * /company — who is behind SecureGraph.
@@ -37,7 +37,6 @@ const PRODUCT_FACTS = [
 export default function Company() {
   const links = companyLinks();
   const registered = hasRegisteredIdentity();
-  const contactHref = COMPANY.contactEmails[0] ? `mailto:${COMPANY.contactEmails[0]}` : "/demo";
 
   return (
     <PageShell>
@@ -109,16 +108,7 @@ export default function Company() {
               {COMPANY.rcNumber && <Fact label="Registration" value={COMPANY.rcNumber} />}
               {COMPANY.founded && <Fact label="Founded" value={COMPANY.founded} />}
               {registered && (
-                <Fact
-                  label="Registered address"
-                  value={[
-                    COMPANY.address.street,
-                    COMPANY.address.city,
-                    COMPANY.address.region,
-                    COMPANY.address.postalCode,
-                    COMPANY.address.country,
-                  ].filter(Boolean).join(", ")}
-                />
+                <Fact label="Registered address" value={addressLines().join(", ")} />
               )}
             </dl>
             <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-phantix-700/40 pt-5">
@@ -192,9 +182,9 @@ export default function Company() {
             <Link to="/demo" className="btn-primary !px-7 !py-3 !text-[15px]">
               <CalendarClock size={16} /> Request a live demo
             </Link>
-            <a href={contactHref} className="btn-secondary !px-7 !py-3 !text-[15px]">
+            <Link to="/contact" className="btn-secondary !px-7 !py-3 !text-[15px]">
               <Mail size={16} /> Contact us
-            </a>
+            </Link>
           </div>
         </motion.div>
       </Section>

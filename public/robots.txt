@@ -2,14 +2,53 @@
 User-agent: *
 Allow: /
 
-# Common AI/answer engines — welcome to cite the marketing site
+# Common AI / answer engines — welcome to cite the marketing site.
+# The canonical machine-readable reference is https://phantixlabs.com/ai-info.md
+# and the index is https://phantixlabs.com/llms.txt
 User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# LLMs-Txt: https://phantixlabs.com/llms.txt
 Sitemap: https://phantixlabs.com/sitemap.xml
