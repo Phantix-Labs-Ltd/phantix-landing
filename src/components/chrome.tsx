@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { APP_DOCS_URL, BLOG_URL, PLATFORM_REGISTER_URL } from "@/lib/links";
 import { PLATFORM_PAGES } from "@/lib/platform-content";
-import { COMPANY, companyLinks } from "@/lib/company";
+import { COMPANY, addressLines, companyLinks } from "@/lib/company";
 import { cx } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandWordmark } from "@/components/BrandLogo";
@@ -347,6 +347,8 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         <Link to="/pricing" className={plain}>Pricing</Link>
         <a href={APP_DOCS_URL} className={plain}>Documentation</a>
         <a href={BLOG_URL} className={plain}>Blog</a>
+        <Link to="/contact" className={plain}>Contact</Link>
+        <Link to="/ai-info" className={plain}>AI information</Link>
         <Link to="/demo" className={plain}>Book a demo</Link>
       </div>
       <div className="mt-3 border-t border-white/10 pt-3">
@@ -400,7 +402,7 @@ export function Nav({ focused = false }: { focused?: boolean }) {
       >
         <div className="flex flex-col">
           <BrandWordmark className="h-8 self-start" />
-          <p className="-mt-[0.46rem] hidden whitespace-nowrap pl-[2.25rem] text-[8px] font-semibold uppercase leading-none tracking-[0.26em] text-gold-400 sm:block">AI-Powered Security</p>
+          <p className="-mt-[0.46rem] hidden whitespace-nowrap pl-[2.25rem] text-[8px] font-semibold uppercase leading-none tracking-[0.26em] text-gold-400 sm:block">by Phantix Labs</p>
         </div>
         {focused ? (
           <nav className="ml-6 hidden items-center gap-1 text-sm text-slate-300 xl:flex">
@@ -422,6 +424,7 @@ export function Nav({ focused = false }: { focused?: boolean }) {
             <a href="/#how-it-works" className="transition-colors hover:text-white">How it works</a>
             <Link to="/pricing" className="transition-colors hover:text-white">Pricing</Link>
             <a href={BLOG_URL} className="transition-colors hover:text-white">Blog</a>
+            <Link to="/contact" className="transition-colors hover:text-white">Contact</Link>
           </nav>
         )}
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
@@ -504,12 +507,13 @@ const FOOTER_SOLUTIONS_LINKS: FootLink[] = [
    reviewer) checks. The third-party links only appear once those pages exist. */
 const FOOTER_COMPANY_LINKS: FootLink[] = [
   { label: "About", to: "/company" },
-  { label: "Contact", href: COMPANY.contactEmails[0] ? `mailto:${COMPANY.contactEmails[0]}` : "/demo" },
+  { label: "Contact", to: "/contact" },
   ...companyLinks().map((l) => ({ label: l.label, href: l.href }) as FootLink),
 ];
 const FOOTER_RESOURCE_LINKS: FootLink[] = [
   { label: "Documentation", href: APP_DOCS_URL },
   { label: "Blog", href: BLOG_URL },
+  { label: "AI information", to: "/ai-info" },
 ];
 /* Self-serve first, demo as the accelerator, sales for Enterprise — and no
    sign-in: the marketing site only ever starts accounts. */
@@ -541,9 +545,29 @@ export function Footer() {
               </div>
             </div>
             <p className="mt-5 text-sm leading-6 text-slate-500">
-              Vulnerability assessment and penetration testing for lean teams. Continuous security,
-              verified findings, and data you control.
+              Vulnerability assessment and penetration testing for lean teams.
             </p>
+            <p className="mt-4 text-[13px] font-semibold text-slate-400">
+              SecureGraph is a product of {COMPANY.legalName}.
+            </p>
+
+            {/* Registered office — the line a first-time buyer looks for to tell
+                a real company from a landing page. Renders whatever is set in
+                lib/company.ts; never a fabricated address. */}
+            <div className="mt-6">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-500">
+                Registered office
+              </p>
+              <address className="mt-2.5 not-italic text-[13px] leading-6 text-slate-500">
+                <span className="block font-medium text-slate-400">{COMPANY.legalName}</span>
+                {addressLines().map((line) => (
+                  <span key={line} className="block">{line}</span>
+                ))}
+              </address>
+              {COMPANY.rcNumber && (
+                <p className="mt-1.5 font-mono text-[11px] text-slate-600">{COMPANY.rcNumber}</p>
+              )}
+            </div>
           </div>
 
           <FooterLinkColumn label="Platform" links={FOOTER_PLATFORM_LINKS} />

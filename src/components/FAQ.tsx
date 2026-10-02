@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Section, fadeUp } from "./Section";
 
-const faqs = [
+/**
+ * The FAQ is the page's main answer-engine surface. It is exported so the
+ * FAQPage schema below stays in step with what the reader sees; the questions
+ * are already phrase-matched to how people search.
+ */
+export const faqs = [
   {
     q: "What is SecureGraph?",
     a: "SecureGraph helps small teams find real weaknesses, keep testing, and fix what matters.\n\nThe front door is vulnerability assessment and penetration testing (VAPT). Growth adds continuous security, remediation guidance, and reports that use only verified findings. Asset inventory, risk, and optional compliance or SOC depth sit on the same platform. You get one subscription and you can leave modules off.\n\nYour security records live in a database you control. We never treat your production business systems as a playground. We never invent vulnerabilities. AI explains what the engines already found.",
@@ -88,6 +93,33 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 export function FAQ() {
+  // AEO: the page carries one FAQPage node built from the visible questions, so
+  // answer engines can lift a direct answer without guessing. Injected at
+  // runtime and removed on unmount; the questions above are the single source.
+  useEffect(() => {
+    const id = "faq-page-schema";
+    document.getElementById(id)?.remove();
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = id;
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: f.a.replace(/\s*\n+\s*/g, " ").trim(),
+        },
+      })),
+    });
+    document.head.appendChild(script);
+    return () => {
+      document.getElementById(id)?.remove();
+    };
+  }, []);
+
   return (
     <Section id="faq" className="py-20">
       <motion.div {...fadeUp} className="mx-auto max-w-2xl">

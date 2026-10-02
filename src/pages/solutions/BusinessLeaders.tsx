@@ -30,7 +30,7 @@ const QUESTIONS = [
   },
   {
     q: "What do Starter and Growth actually buy?",
-    a: "Starter costs ₦19,900/mo. Starter includes full vulnerability assessment and penetration testing with verified findings, remediation guidance, and board-ready output. Growth costs ₦49,900/mo. Growth adds tests that run on a repeating schedule, plus continuous pull request review. It also adds deeper cloud, Kubernetes, compliance, and SOC options when you turn them on. Free is the limited entry surface. Free includes inventory and light hygiene, and it is not a substitute for Starter. Engagements cover human-led work.",
+    a: "Starter costs ₦49,900/mo. Starter includes full vulnerability assessment and penetration testing with verified findings, remediation guidance, and board-ready output. Growth costs ₦99,900/mo. Growth adds tests that run on a repeating schedule, plus continuous pull request review. It also adds deeper cloud, Kubernetes, compliance, and SOC options when you turn them on. Free is the limited entry surface. Free includes inventory and light hygiene, and it is not a substitute for Starter. Engagements cover human-led work.",
   },
   {
     q: "Can we start without a project commitment?",

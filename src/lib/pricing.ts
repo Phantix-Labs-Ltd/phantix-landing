@@ -53,13 +53,14 @@ const freeFeatures = [
   "Basic exports to JSON and Markdown let you leave with your data",
   "500 one-time AI credits, then free open-source models with admin opt-in",
   "Community support",
-  "Not included: full VAPT campaigns, continuous testing, private-repo depth, board PDF packs",
+  "Not included: full VAPT campaigns, continuous testing, the Autonomous Pentest Agent, private-repo depth, board PDF packs",
 ];
 
 const starterFeatures = [
   "Everything in Free",
   "Vulnerability assessment and penetration testing (VAPT): scoped, approval-gated campaigns",
   "Verified findings with remediation guidance, not a raw scanner dump",
+  "Autonomous Pentest Agent: included and credit-metered",
   "10 pull request and merge request security reviews each month and 3 on-demand assessments each month",
   "Full engine quality for web and API, code security and mobile static analysis. AI AutoFix is credit-metered.",
   "5,000 AI credits per month and a 5,000 onboarding allotment. Email support is included.",
@@ -68,6 +69,7 @@ const starterFeatures = [
 const growthFeatures = [
   "Everything in Starter",
   "Recurring VAPT work and continuous pull request and merge request review",
+  "Autonomous Pentest Agent: included and credit-metered",
   "5 projects, 20 on-demand assessments per month and 10 model refreshes per month",
   "Multi-cloud and Kubernetes posture. Blocking policies and path rules are included.",
   "Compliance workbench and SOC console depth when you need them",
@@ -99,14 +101,6 @@ const engagementOffers: EngagementOffer[] = [
     tag: "Project",
     source: "pricing-most-requested-dynamic-mobile",
     interestTag: "[interest:dynamic_mobile_testing]",
-  },
-  {
-    title: "AI Pentest Agent",
-    detail:
-      "Autonomous and governed investigation. The system mints skills only after anonymization and review.",
-    tag: "New",
-    source: "pricing-most-requested-ai-pentest-agent",
-    interestTag: "[interest:ai_pentest_agent]",
   },
   {
     title: "White-label deliverables",
@@ -142,10 +136,10 @@ function pickFeatures(raw: string[] | undefined, curated: string[] | undefined):
 
 export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTier[] {
   const fallback = raw ?? {
-    monthly_list_price_ngn: 19_900,
-    first_month_price_ngn: 9_950,
-    yearly_price_ngn: 199_000,
-    growth_monthly_price_ngn: 49_900,
+    monthly_list_price_ngn: 49_900,
+    first_month_price_ngn: 24_950,
+    yearly_price_ngn: 499_000,
+    growth_monthly_price_ngn: 99_900,
     first_month_discount_percent: 50,
   };
 
@@ -218,7 +212,7 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
   const starterMonthly = fallback.monthly_list_price_ngn;
   const starterFirstMonth = fallback.first_month_price_ngn ?? 0;
   const starterYearly = fallback.yearly_price_ngn ?? starterMonthly * 10;
-  const growthMonthly = fallback.growth_monthly_price_ngn ?? 49_900;
+  const growthMonthly = fallback.growth_monthly_price_ngn ?? 99_900;
 
   return [
     {
@@ -297,8 +291,8 @@ export async function loadPricing(force = false): Promise<PricingTier[]> {
         const list = Array.isArray(plansJson) ? plansJson : plansJson?.plans;
         if (Array.isArray(list) && list.length) {
           data = {
-            monthly_list_price_ngn: 19_900,
-            growth_monthly_price_ngn: 49_900,
+            monthly_list_price_ngn: 49_900,
+            growth_monthly_price_ngn: 99_900,
             plans: list.map(
               (p: {
                 key?: string;

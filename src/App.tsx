@@ -13,6 +13,9 @@ const Company = React.lazy(() => import("@/pages/Company"));
 const BusinessLeaders = React.lazy(() => import("@/pages/solutions/BusinessLeaders"));
 const SecurityTeams = React.lazy(() => import("@/pages/solutions/SecurityTeams"));
 const Developers = React.lazy(() => import("@/pages/solutions/Developers"));
+const AutonomousPentest = React.lazy(() => import("@/pages/AutonomousPentest"));
+const Contact = React.lazy(() => import("@/pages/Contact"));
+const AiInfo = React.lazy(() => import("@/pages/AiInfo"));
 const Cookies = React.lazy(() => import("@/pages/Cookies"));
 const NotFound = React.lazy(() => import("@/pages/NotFound"));
 import { useCanonicalUrl } from "@/lib/useCanonicalUrl";
@@ -80,7 +83,12 @@ export default function App() {
           <Route path="/demo" element={<ProductDemo />} />
           {/* Renamed when the capability moved to cloud provisioning — keep old links alive. */}
           <Route path="/platform/infrastructure" element={<Navigate to="/platform/cloud" replace />} />
+          {/* Dedicated page for the flagship AI capability. Declared before the
+              dynamic capability route so it wins the match. */}
+          <Route path="/platform/autonomous-pentesting" element={<AutonomousPentest />} />
           <Route path="/platform/:slug" element={<PlatformCapability />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/ai-info" element={<AiInfo />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/trust" element={<Trust />} />
           <Route path="/company" element={<Company />} />

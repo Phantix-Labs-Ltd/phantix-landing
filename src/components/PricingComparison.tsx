@@ -22,7 +22,7 @@ const GROUPS: Group[] = [
     title: "Pricing and AI credits",
     rows: [
       // Values overridden at render from live GET /billing/plans (see listPriceCells).
-      { label: "List price in NGN per month", values: ["₦0", "₦19,900", "₦49,900", "Quote"] },
+      { label: "List price in NGN per month", values: ["₦0", "₦49,900", "₦99,900", "Quote"] },
       { label: "Yearly billing", values: ["None", "10× monthly", "10× monthly", "Custom"] },
       { label: "AI credits: monthly allowance", values: ["None", "5,000", "20,000", "Custom"] },
       { label: "AI credits: one-time onboarding", values: ["500", "5,000", "20,000", "Custom"] },
@@ -43,6 +43,7 @@ const GROUPS: Group[] = [
       { label: "Authenticated and role-aware tests", values: ["no", "yes", "yes", "yes"] },
       { label: "AI AutoFix: credit-metered", values: ["no", "yes", "yes", "yes"] },
       { label: "Agentic branch and pull request review", values: ["yes", "yes", "yes", "yes"] },
+      { label: "Autonomous Pentest Agent", values: ["no", "Included, credit-metered", "Included, credit-metered", "Included, credit-metered"] },
     ],
   },
   {
@@ -101,8 +102,8 @@ const GROUPS: Group[] = [
 
 const PRICE_FALLBACK: Record<string, string> = {
   free: "NGN 0",
-  starter: "NGN 19,900/mo",
-  growth: "NGN 49,900/mo",
+  starter: "NGN 49,900/mo",
+  growth: "NGN 99,900/mo",
   enterprise: "Custom quote",
 };
 
@@ -123,7 +124,7 @@ function listPriceCells(tiers: PricingTier[]): [Cell, Cell, Cell, Cell] {
     if (t.monthly_ngn === 0) return "₦0";
     return `₦${t.monthly_ngn.toLocaleString()}`;
   };
-  return [cell("free", "₦0"), cell("starter", "₦19,900"), cell("growth", "₦49,900"), "Quote"];
+  return [cell("free", "₦0"), cell("starter", "₦49,900"), cell("growth", "₦99,900"), "Quote"];
 }
 
 function CellView({ value }: { value: Cell }) {

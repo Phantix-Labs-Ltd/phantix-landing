@@ -29,7 +29,6 @@ import { DemoRequestModal } from "@/components/DemoRequestModal";
 const engagementIcons = [
   <Crosshair size={16} key="vapt" />,
   <Smartphone size={16} key="mobile" />,
-  <Sparkles size={16} key="ai" />,
   <FileText size={16} key="white" />,
 ];
 
@@ -347,7 +346,7 @@ export function Pricing({
             </span>
             <span className="block text-sm text-slate-400">
               When you need a full test or hands-on experts. This band covers full VAPT, dynamic
-              mobile, AI Pentest Agent and white-label deliverables.
+              mobile and white-label deliverables.
             </span>
           </span>
           <span className="hidden shrink-0 sm:block">

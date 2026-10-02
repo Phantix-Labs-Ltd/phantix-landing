@@ -42,6 +42,7 @@ export interface CompanyProfile {
   /** CAC / RC registration number, e.g. "RC1234567". */
   rcNumber: string;
   address: {
+    /** Street line. Leave empty to publish only the general locality. */
     street: string;
     city: string;
     region: string;
@@ -51,6 +52,12 @@ export interface CompanyProfile {
   /** Public contact addresses, most-preferred first. */
   contactEmails: string[];
   contactPhone: string;
+  /**
+   * Public WhatsApp business number in E.164, e.g. "+2348012345678".
+   * Leave empty to hide the click-to-chat link; the contact form still pushes a
+   * WhatsApp alert to the team through the backend (CONTACT_WHATSAPP_RECIPIENTS).
+   */
+  whatsapp: string;
   /** Company social pages (active + public). */
   linkedin: string;
   crunchbase: string;
@@ -66,14 +73,19 @@ export const COMPANY: CompanyProfile = {
   founded: "",
   legalForm: "",
   rcNumber: "",
+  // Only the general locality is published. The street address is deliberately
+  // not stored here — this file ships in a public repo and is rendered in the
+  // footer, the /company page and schema.org structured data.
   address: {
     street: "",
-    city: "",
-    region: "",
+    city: "Alimosho",
+    region: "Lagos",
+    postalCode: "",
     country: "Nigeria",
   },
   contactEmails: ["contact@phantixlabs.com", "info@phantixlabs.com"],
   contactPhone: "",
+  whatsapp: "",
   linkedin: "https://www.linkedin.com/company/securegraph-ai",
   crunchbase: "",
   github: "",
@@ -118,6 +130,29 @@ export function verificationLinks(): string[] {
 
 export function hasRegisteredIdentity(): boolean {
   return Boolean(COMPANY.legalForm || COMPANY.rcNumber || COMPANY.address.street || COMPANY.address.city);
+}
+
+/**
+ * Click-to-chat URL for the public WhatsApp business number, or null when none
+ * is configured. Prefer a prefilled message so the first reply has context.
+ */
+export function whatsappLink(text?: string): string | null {
+  const digits = String(COMPANY.whatsapp || "").replace(/\D/g, "");
+  if (!digits) return null;
+  return `https://wa.me/${digits}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
+}
+
+/**
+ * Registered address in postal order, skipping anything unset. Always returns
+ * at least the country, so the footer can show a real (if short) line before
+ * the full street address is filled in.
+ */
+export function addressLines(): string[] {
+  const a = COMPANY.address;
+  const locality = [a.city, a.region].filter(Boolean).join(", ");
+  return [a.street, locality, a.country]
+    .map((s) => (s || "").trim())
+    .filter(Boolean);
 }
 
 export function initials(name: string): string {
