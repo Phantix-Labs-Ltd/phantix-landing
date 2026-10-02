@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Phantix Labs ltd — no-auth marketing site (landing)",
+  "description": "Phantix Labs Ltd — no-auth marketing site (landing)",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

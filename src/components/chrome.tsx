@@ -560,13 +560,13 @@ export function Footer() {
               </p>
               <address className="mt-2.5 not-italic text-[13px] leading-6 text-slate-500">
                 <span className="block font-medium text-slate-400">{COMPANY.legalName}</span>
+                {COMPANY.rcNumber && (
+                  <span className="block font-mono text-[12px] text-slate-500">{COMPANY.rcNumber}</span>
+                )}
                 {addressLines().map((line) => (
                   <span key={line} className="block">{line}</span>
                 ))}
               </address>
-              {COMPANY.rcNumber && (
-                <p className="mt-1.5 font-mono text-[11px] text-slate-600">{COMPANY.rcNumber}</p>
-              )}
             </div>
           </div>
 
@@ -579,7 +579,12 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-phantix-700/30 pt-8 text-xs text-slate-500">
-          <span>© {new Date().getFullYear()} Phantix Labs ltd</span>
+          <span>
+            © {new Date().getFullYear()} {COMPANY.legalName}
+            {COMPANY.rcNumber && (
+              <span className="block font-mono text-[11px] text-slate-600">{COMPANY.rcNumber}</span>
+            )}
+          </span>
           <span className="font-mono">13 engines · 10+ AI agents · 600+ checks</span>
         </div>
       </div>

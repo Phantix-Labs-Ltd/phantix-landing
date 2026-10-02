@@ -15,8 +15,10 @@ function organizationPatch(): Record<string, unknown> {
     "@type": "Organization",
     "@id": ORG_ID,
     name: COMPANY.legalName,
+    legalName: COMPANY.legalName,
     url: "https://phantixlabs.com/",
   };
+  if (COMPANY.rcNumber) patch.identifier = COMPANY.rcNumber;
   const sameAs = verificationLinks();
   if (sameAs.length) patch.sameAs = sameAs;
   if (COMPANY.founded) patch.foundingDate = COMPANY.founded;

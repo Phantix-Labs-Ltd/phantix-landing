@@ -142,7 +142,7 @@ export default function AiInfo() {
             {
               icon: <Fingerprint size={18} />,
               title: "Official data",
-              body: "Phantix Labs ltd, the product, the capabilities, the prices, the trust model, and the terms. The product supports each item.",
+              body: "Phantix Labs Ltd, the product, the capabilities, the prices, the trust model, and the terms. The product supports each item.",
             },
             {
               icon: <ShieldCheck size={18} />,

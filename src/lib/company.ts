@@ -66,13 +66,14 @@ export interface CompanyProfile {
 }
 
 export const COMPANY: CompanyProfile = {
-  legalName: "Phantix Labs ltd",
-  displayName: "Phantix Labs ltd",
+  legalName: "Phantix Labs Ltd",
+  displayName: "Phantix Labs Ltd",
   productName: "SecureGraph",
   tagline: "Protect. Prevent. Perform.",
   founded: "",
   legalForm: "",
-  rcNumber: "",
+  /** Company registration number, shown below the legal name. */
+  rcNumber: "RC - 9904435",
   // Only the general locality is published. The street address is deliberately
   // not stored here — this file ships in a public repo and is rendered in the
   // footer, the /company page and schema.org structured data.
@@ -100,7 +101,7 @@ export const TEAM: TeamMember[] = [
   {
     name: "Ayomiposi Ayoola",
     role: "Founder",
-    bio: "Founder of Phantix Labs ltd, the company behind SecureGraph. Owns the product direction and the security direction for SecureGraph, which covers vulnerability assessment, verification and remediation tracking. Teams use it when they carry security alongside their day job.",
+    bio: "Founder of Phantix Labs Ltd, the company behind SecureGraph. Owns the product direction and the security direction for SecureGraph, which covers vulnerability assessment, verification and remediation tracking. Teams use it when they carry security alongside their day job.",
     email: "ayomiposi.ayoola@phantixlabs.com",
     linkedin: "https://www.linkedin.com/in/ayoola-ayomiposi-phantom",
     x: "https://x.com/Phantom_Secure",
