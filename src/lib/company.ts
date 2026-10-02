@@ -79,8 +79,8 @@ export const COMPANY: CompanyProfile = {
   // footer, the /company page and schema.org structured data.
   address: {
     street: "",
-    city: "Alimosho",
-    region: "Lagos",
+    city: "Lagos",
+    region: "",
     postalCode: "",
     country: "Nigeria",
   },

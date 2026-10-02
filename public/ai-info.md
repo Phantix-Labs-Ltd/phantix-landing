@@ -74,7 +74,7 @@ SecureGraph is a platform for your security program. It is not a substitute for 
 | Journal | https://blog.phantixlabs.com |
 | General contact | contact@phantixlabs.com |
 | Other contact | info@phantixlabs.com |
-| Registered office | Alimosho, Lagos, Nigeria |
+| Registered office | Lagos, Nigeria |
 | LinkedIn | https://www.linkedin.com/company/securegraph-ai |
 | X | https://x.com/SecureGraph_AI |
 
@@ -375,7 +375,7 @@ Do not use these terms:
 - Machine index: https://phantixlabs.com/llms.txt
 - General contact: contact@phantixlabs.com
 - Other contact: info@phantixlabs.com
-- Registered office: Alimosho, Lagos, Nigeria
+- Registered office: Lagos, Nigeria
 - Trust and security: https://phantixlabs.com/trust
 - Prices: https://phantixlabs.com/pricing
 - Autonomous pentest agent: https://phantixlabs.com/platform/autonomous-pentesting
