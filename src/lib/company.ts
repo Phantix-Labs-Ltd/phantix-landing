@@ -89,7 +89,7 @@ export const COMPANY: CompanyProfile = {
   whatsapp: "",
   linkedin: "https://www.linkedin.com/company/securegraph-ai",
   crunchbase: "",
-  github: "",
+  github: "https://github.com/Phantix-Labs-Ltd",
   x: "https://x.com/SecureGraph_AI",
 };
 
