@@ -77,6 +77,7 @@ SecureGraph is a platform for your security program. It is not a substitute for 
 | Registered office | Lagos, Nigeria |
 | LinkedIn | https://www.linkedin.com/company/securegraph-ai |
 | X | https://x.com/SecureGraph_AI |
+| GitHub | https://github.com/Phantix-Labs-Ltd |
 
 **Not published:** the year of foundation and the names of customers. Do not agree that these data are known. The product is in beta with a small group of design partners. No customer logos are published.
 
