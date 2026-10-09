@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { prerenderCompany } from "./scripts/prerender-company";
 
 /**
  * Landing dev server (phantixlabs.com).
@@ -15,7 +16,7 @@ export default defineConfig(({ mode }) => {
   const port = Number(env.DEV_PORT || process.env.DEV_PORT || 5175);
 
   return {
-    plugins: [react()],
+    plugins: [react(), prerenderCompany()],
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),

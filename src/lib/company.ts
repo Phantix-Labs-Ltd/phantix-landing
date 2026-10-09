@@ -100,12 +100,20 @@ export const COMPANY: CompanyProfile = {
 export const TEAM: TeamMember[] = [
   {
     name: "Ayomiposi Ayoola",
-    role: "Founder",
-    bio: "Founder of Phantix Labs Ltd, the company behind SecureGraph. Owns the product direction and the security direction for SecureGraph, which covers vulnerability assessment, verification and remediation tracking. Teams use it when they carry security alongside their day job.",
+    role: "Founder & CEO",
+    bio: "Security engineer with more than four years in application, API and blockchain security, including internal audits of a real-world-asset protocol. Ayomiposi leads product, engineering and company strategy, and built the SecureGraph platform end to end. B.Tech Cybersecurity, Federal University of Technology, Akure.",
     email: "ayomiposi.ayoola@phantixlabs.com",
+    photo: "/team/ayomiposi-ayoola.webp",
     linkedin: "https://www.linkedin.com/in/ayoola-ayomiposi-phantom",
     x: "https://x.com/Phantom_Secure",
     github: "https://github.com/Phantom-Fort",
+  },
+  {
+    name: "Olakojo Olaoluwa",
+    role: "Co-Founder",
+    bio: "Penetration tester and security researcher since 2018, with OSCP, CRTP and HTB CPTS certifications and four published CVEs. Olakojo shapes the SecureGraph attack methodology, the VAPT campaign design and the verification standard that a finding must meet before it reaches a report.",
+    linkedin: "https://www.linkedin.com/in/sci-sec",
+    github: "https://github.com/sec-fortress",
   },
 ];
 

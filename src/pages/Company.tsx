@@ -2,14 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  Building2, CalendarClock, CheckCircle2, Github, Globe, Linkedin,
+  ArrowUpRight, Building2, CalendarClock, CheckCircle2, Github, Globe, Linkedin,
   Mail, MapPin, ShieldCheck, Users,
 } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
 import { Section, fadeUp } from "@/components/Section";
 import { GlowBloom } from "@/components/effects";
-import { COMPANY, addressLines, companyLinks, hasRegisteredIdentity } from "@/lib/company";
+import {
+  COMPANY, TEAM, addressLines, companyLinks, hasRegisteredIdentity, initials,
+} from "@/lib/company";
 
 /*
  * /company — who is behind SecureGraph.
@@ -93,6 +95,93 @@ export default function Company() {
           </motion.div>
         </div>
       </Section>
+
+      {/* Leadership. Google for Startups declines a domain that does not show the
+          founder and core team with active third-party links, so keep this visible. */}
+      {TEAM.length > 0 && (
+        <Section id="team" className="pb-20">
+          <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow text-gold-400">Leadership</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-white">
+              Founder and core team
+            </h2>
+            <p className="mt-4 text-[15px] leading-7 text-slate-400">
+              These people are accountable for the product and for your engagement. Each profile
+              links to a public professional page that you can verify.
+            </p>
+          </motion.div>
+          <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 justify-center gap-4 sm:grid-cols-[repeat(auto-fit,minmax(280px,360px))]">
+            {TEAM.map((m, i) => (
+              <motion.div
+                key={m.name}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: (i % 3) * 0.06 }}
+                className="card-edge card-lift flex h-full flex-col p-6"
+              >
+                <div className="flex items-center gap-4">
+                  {m.photo ? (
+                    <img
+                      src={m.photo}
+                      alt={m.name}
+                      loading="lazy"
+                      className="h-20 w-20 shrink-0 rounded-2xl border border-gold-400/30 bg-gradient-to-b from-phantix-700/60 to-phantix-900 object-cover object-top"
+                    />
+                  ) : (
+                    <span className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-gold-400/30 bg-gold-400/10 font-display text-xl font-semibold text-gold-300">
+                      {initials(m.name)}
+                    </span>
+                  )}
+                  <div className="min-w-0">
+                    <h3 className="truncate font-display text-base font-semibold text-white">{m.name}</h3>
+                    <p className="mt-0.5 text-[13px] text-gold-300/90">{m.role}</p>
+                  </div>
+                </div>
+                <p className="mt-4 flex-1 text-[13px] leading-6 text-slate-400">{m.bio}</p>
+                <div className="mt-5 flex flex-wrap items-center gap-4 border-t border-phantix-700/40 pt-4">
+                  {m.linkedin && (
+                    <a
+                      href={m.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[13px] font-medium text-gold-300 transition-colors hover:text-gold-200"
+                    >
+                      <Linkedin size={14} /> LinkedIn <ArrowUpRight size={12} />
+                    </a>
+                  )}
+                  {m.github && (
+                    <a
+                      href={m.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[13px] font-medium text-slate-400 transition-colors hover:text-slate-200"
+                    >
+                      <Github size={14} /> GitHub <ArrowUpRight size={12} />
+                    </a>
+                  )}
+                  {m.x && (
+                    <a
+                      href={m.x}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[13px] font-medium text-slate-400 transition-colors hover:text-slate-200"
+                    >
+                      <XLogo size={13} /> X <ArrowUpRight size={12} />
+                    </a>
+                  )}
+                  {m.email && (
+                    <a
+                      href={`mailto:${m.email}`}
+                      className="inline-flex items-center gap-1.5 text-[13px] font-medium text-slate-400 transition-colors hover:text-slate-200"
+                    >
+                      <Mail size={14} /> Email
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* Company & product facts */}
       <Section className="pb-20">
