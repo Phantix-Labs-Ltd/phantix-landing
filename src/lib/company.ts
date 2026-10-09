@@ -115,6 +115,18 @@ export const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/sci-sec",
     github: "https://github.com/sec-fortress",
   },
+  {
+    name: "Fredrick George",
+    role: "CTO",
+    bio: "Penetration tester and Chief Technology Officer of Phantix Labs. Fredrick is responsible for the technology behind SecureGraph.",
+    linkedin: "https://www.linkedin.com/in/george-fredrick-4b38a9375/",
+  },
+  {
+    name: "Yisa Silas",
+    role: "Head of Security Research",
+    bio: "Security researcher who leads security research at Phantix Labs for the SecureGraph platform.",
+    linkedin: "https://www.linkedin.com/in/silas-yisa/",
+  },
 ];
 
 /** Company pages that are safe to expose (only ones actually set). */
