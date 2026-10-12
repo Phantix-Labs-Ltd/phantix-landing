@@ -1,21 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Cookie, RefreshCw, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Cookie, ShieldCheck } from "lucide-react";
 import { Nav, Footer } from "@/components/chrome";
-import { clearConsent, getConsent } from "@/lib/consent";
+import { COOKIE_SETTINGS_EVENT } from "@/components/CookieConsent";
 import { BrandMark } from "@/components/BrandLogo";
 
 // ── Cookies & analytics policy (public) ──────────────────────────────────────
 
 export default function Cookies() {
-  const consent = getConsent();
-
-  const reset = () => {
-    clearConsent();
-    window.location.reload();
-  };
-
   return (
     <div className="relative min-h-screen overflow-x-clip bg-phantix-950">
       <div className="pointer-events-none fixed inset-0">
@@ -47,15 +40,15 @@ export default function Cookies() {
                 <Cookie size={16} className="text-gold-400" /> We do not use advertising cookies
               </h2>
               <p className="mt-2.5">
-                We use <strong className="text-slate-100">first-party, cookieless analytics</strong> to
-                understand which pages are useful so we can improve the site. We do <strong>not</strong> use
-                advertising cookies, we do <strong>not</strong> sell data, and we do <strong>not</strong> track
-                you across other sites.
+                On phantixlabs.com and blog.phantixlabs.com we use two kinds of analytics, and only after you
+                accept: our own <strong className="text-slate-100">first-party, cookieless analytics</strong>,
+                and <strong className="text-slate-100">Zoho PageSense</strong>. We do <strong>not</strong> use
+                advertising cookies and we do <strong>not</strong> sell data.
               </p>
             </section>
 
             <section>
-              <h2 className="text-base font-semibold text-white">What the analytics system records</h2>
+              <h2 className="text-base font-semibold text-white">What our own analytics records</h2>
               <ul className="mt-3 space-y-2">
                 {[
                   "Page path and the referring page",
@@ -76,19 +69,43 @@ export default function Cookies() {
             </section>
 
             <section>
-              <h2 className="text-base font-semibold text-white">Your choice</h2>
+              <h2 className="text-base font-semibold text-white">Zoho PageSense</h2>
               <p className="mt-2.5">
-                Analytics runs only after you accept. You can change your choice at any time. If you
-                decline, all beacons stop, and nothing else changes.
+                PageSense is a service from Zoho Corporation that shows us how visitors use these sites: heatmaps
+                of clicks and scrolling, session recordings of how a page was used, and tests of page variants.
+                It sets its own cookies, and Zoho processes the data on our behalf under its own{" "}
+                <a href="https://www.zoho.com/privacy.html" className="text-gold-400 underline hover:text-gold-300" target="_blank" rel="noreferrer">
+                  privacy policy
+                </a>
+                .
               </p>
-              <p className="mt-2 text-xs text-slate-500">
-                Current choice:{" "}
-                <strong className="text-slate-300">
-                  {consent === "accepted" ? "Accepted" : consent === "declined" ? "Declined" : "Not set"}
-                </strong>
+              <p className="mt-2.5 text-slate-400">
+                It loads only after you accept, never with <code>Do Not Track</code> on, and only on the public
+                sites. It never runs in the signed-in SecureGraph applications, so it never sees your security
+                data.
               </p>
-              <button className="btn-secondary mt-4 text-xs" onClick={reset}>
-                <RefreshCw size={13} className="mr-1.5 inline" /> Change my choice
+            </section>
+
+            <section>
+              <h2 className="text-base font-semibold text-white">In the SecureGraph applications</h2>
+              <p className="mt-2.5">
+                Signed-in users have accepted the Terms of Service, so the applications don't show this banner.
+                They count page views with our own analytics only. If you decline here, they don't count yours.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-base font-semibold text-white">Cookie settings</h2>
+              <p className="mt-2.5">
+                Analytics and PageSense run on these sites only after you accept. You can change your choice
+                at any time. If you decline, beacons stop and PageSense is not loaded; nothing else changes.
+              </p>
+              <button
+                type="button"
+                className="btn-secondary mt-4 text-xs"
+                onClick={() => window.dispatchEvent(new CustomEvent(COOKIE_SETTINGS_EVENT))}
+              >
+                <Cookie size={13} className="mr-1.5 inline" /> Open cookie settings
               </button>
             </section>
 
