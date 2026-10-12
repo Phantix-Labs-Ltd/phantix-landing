@@ -11,6 +11,7 @@ import { COMPANY, addressLines, companyLinks } from "@/lib/company";
 import { cx } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { BrandWordmark } from "@/components/BrandLogo";
+import { COOKIE_SETTINGS_EVENT } from "@/components/CookieConsent";
 
 interface MegaItem {
   label: string;
@@ -467,6 +468,8 @@ interface FootLink {
   label: string;
   to?: string;
   href?: string;
+  /** A button instead of a link (e.g. reopening the cookie settings). */
+  onClick?: () => void;
 }
 
 /** A category as a proper footer column — heading on top, links stacked below. */
@@ -477,7 +480,11 @@ function FooterLinkColumn({ label, links }: { label: string; links: FootLink[] }
       <ul className="mt-4 space-y-2.5">
         {links.map((l) => (
           <li key={l.label}>
-            {l.to ? (
+            {l.onClick ? (
+              <button type="button" onClick={l.onClick} className="text-left text-sm text-slate-500 transition-colors hover:text-slate-200">
+                {l.label}
+              </button>
+            ) : l.to ? (
               <Link to={l.to} className="text-sm text-slate-500 transition-colors hover:text-slate-200">
                 {l.label}
               </Link>
@@ -526,6 +533,8 @@ const FOOTER_LEGAL_LINKS: FootLink[] = [
   { label: "Terms of Service", href: "/terms" },
   { label: "Acceptable Use Policy", href: "/aup" },
   { label: "Privacy Notice", href: "/privacy" },
+  { label: "Cookie policy", to: "/cookies" },
+  { label: "Cookie settings", onClick: () => window.dispatchEvent(new CustomEvent(COOKIE_SETTINGS_EVENT)) },
 ];
 
 /*

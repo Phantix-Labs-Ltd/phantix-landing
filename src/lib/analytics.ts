@@ -7,6 +7,7 @@
 // staff via GET /api/v1/admin/analytics/summary (staff portal → Analytics).
 
 import { getConsent } from "./consent";
+import { loadPageSense } from "./pagesense";
 
 const COLLECT_URL = "/api/v1/analytics/collect";
 const APP_SOURCE = "landing";
@@ -100,9 +101,11 @@ function start(): void {
  */
 export function initAnalytics(): void {
   if (getConsent() === "accepted") start();
+  loadPageSense();
 }
 
 /** Called by the consent banner when the user accepts. */
 export function onConsentAccepted(): void {
   start();
+  loadPageSense();
 }
