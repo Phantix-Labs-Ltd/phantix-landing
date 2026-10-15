@@ -346,7 +346,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         <Link to="/trust" className={plain}>Trust</Link>
         <a href="/#how-it-works" className={plain}>How it works</a>
         <Link to="/pricing" className={plain}>Pricing</Link>
-        <a href={APP_DOCS_URL} className={plain}>Documentation</a>
+        <Link to="/securegraph/docs" className={plain}>Documentation</Link>
         <a href={BLOG_URL} className={plain}>Blog</a>
         <Link to="/contact" className={plain}>Contact</Link>
         <Link to="/ai-info" className={plain}>AI information</Link>
@@ -431,14 +431,14 @@ export function Nav({ focused = false }: { focused?: boolean }) {
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
           <ThemeToggle />
           {!focused && (
-            <a
-              href={APP_DOCS_URL}
+            <Link
+              to="/securegraph/docs"
               title="Documentation"
               aria-label="Documentation"
               className="hidden h-10 w-10 items-center justify-center rounded-full border border-phantix-700/50 bg-phantix-900/50 text-slate-400 transition-colors hover:border-phantix-500/50 hover:text-white sm:inline-flex"
             >
               <BookOpen size={16} />
-            </a>
+            </Link>
           )}
           {/* The one primary action, identical on every page. */}
           <a href={PLATFORM_REGISTER_URL} className="btn-primary whitespace-nowrap !rounded-full !px-3.5 !py-2">
@@ -518,7 +518,8 @@ const FOOTER_COMPANY_LINKS: FootLink[] = [
   ...companyLinks().map((l) => ({ label: l.label, href: l.href }) as FootLink),
 ];
 const FOOTER_RESOURCE_LINKS: FootLink[] = [
-  { label: "Documentation", href: APP_DOCS_URL },
+  { label: "Documentation", to: "/securegraph/docs" },
+  { label: "How-to guides", href: APP_DOCS_URL },
   { label: "Blog", href: BLOG_URL },
   { label: "AI information", to: "/ai-info" },
 ];

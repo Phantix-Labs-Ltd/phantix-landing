@@ -17,6 +17,7 @@ const AutonomousPentest = React.lazy(() => import("@/pages/AutonomousPentest"));
 const Contact = React.lazy(() => import("@/pages/Contact"));
 const AiInfo = React.lazy(() => import("@/pages/AiInfo"));
 const Cookies = React.lazy(() => import("@/pages/Cookies"));
+const SecureGraphDocs = React.lazy(() => import("@/pages/SecureGraphDocs"));
 const NotFound = React.lazy(() => import("@/pages/NotFound"));
 import { useCanonicalUrl } from "@/lib/useCanonicalUrl";
 import CookieConsent from "@/components/CookieConsent";
@@ -100,6 +101,8 @@ export default function App() {
           <Route path="/aup" element={<LegalPage docKey="aup" />} />
           <Route path="/privacy" element={<LegalPage docKey="privacy" />} />
           <Route path="/cookies" element={<Cookies />} />
+          <Route path="/securegraph/docs" element={<SecureGraphDocs />} />
+          <Route path="/docs" element={<Navigate to="/securegraph/docs" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </React.Suspense>

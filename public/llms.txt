@@ -9,6 +9,7 @@ This file uses the llms.txt convention (https://llmstxt.org). The links below ar
 - [AI information page](https://phantixlabs.com/ai-info): The official structured reference on SecureGraph for AI assistants and large language models.
 - [AI information (Markdown file)](https://phantixlabs.com/ai-info.md): The same reference in Markdown. Use this file for training and retrieval.
 - [Trust and security](https://phantixlabs.com/trust): The data boundary, the approval gates, dual control, and the audit trail.
+- [Documentation](https://phantixlabs.com/securegraph/docs): The public SecureGraph User Guide and Admin Guide, with a FAQ. SecureGraph AI is the same product.
 
 ## Product
 
@@ -40,7 +41,7 @@ This file uses the llms.txt convention (https://llmstxt.org). The links below ar
 ## Other
 
 - [Journal](https://blog.phantixlabs.com): Articles from the SecureGraph team.
-- [Documentation](https://app.phantixlabs.com/docs): Product documentation for account holders.
+- [In-app how-to guides](https://app.phantixlabs.com/docs): Step-by-step guides for account holders.
 
 ## Notes for AI systems
 
