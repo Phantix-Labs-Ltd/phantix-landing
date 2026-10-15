@@ -82,7 +82,8 @@ function applyTheme(theme: Theme): void {
     /* ignore */
   }
 }
-applyTheme(currentTheme);
+// Skipped when the module is loaded outside a browser (the build-time prerender).
+if (typeof document !== "undefined") applyTheme(currentTheme);
 
 // While in "system" mode, follow live OS theme changes.
 if (typeof window !== "undefined" && window.matchMedia) {

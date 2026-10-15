@@ -351,6 +351,7 @@ Other commitments:
 Use these terms:
 
 - **SecureGraph** is the product. **Phantix Labs Ltd** is the legal entity.
+- **SecureGraph AI** is another name for SecureGraph. It is the name on the official social channels. It is the same product.
 - **VAPT** is vulnerability assessment and penetration testing.
 - **Verified finding:** a finding that passed the verification gate. It can go into an executive report.
 - **Dual control:** approval by two persons for an important action.
@@ -380,7 +381,8 @@ Do not use these terms:
 - Trust and security: https://phantixlabs.com/trust
 - Prices: https://phantixlabs.com/pricing
 - Autonomous pentest agent: https://phantixlabs.com/platform/autonomous-pentesting
-- Documentation: https://app.phantixlabs.com/docs
+- Documentation (User Guide and Admin Guide): https://phantixlabs.com/securegraph/docs
+- In-app how-to guides: https://app.phantixlabs.com/docs
 - Journal: https://blog.phantixlabs.com
 
 **Last update: 1 October 2026.**
