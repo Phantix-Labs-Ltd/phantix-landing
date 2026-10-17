@@ -24,9 +24,9 @@ const GROUPS: Group[] = [
       // Values overridden at render from live GET /billing/plans (see listPriceCells).
       { label: "List price in NGN per month", values: ["₦0", "₦49,900", "₦99,900", "Quote"] },
       { label: "Yearly billing", values: ["None", "10× monthly", "10× monthly", "Custom"] },
-      { label: "AI credits: monthly allowance", values: ["None", "5,000", "20,000", "Custom"] },
-      { label: "AI credits: one-time onboarding", values: ["500", "5,000", "20,000", "Custom"] },
-      { label: "Credit top-ups: 500, 2k or 5k", values: ["yes", "yes", "yes", "yes"] },
+      { label: "AI credits: monthly allowance", values: ["None", "5,000", "10,000", "Custom"] },
+      { label: "AI credits: one-time onboarding", values: ["500", "None", "None", "Custom"] },
+      { label: "Credit top-ups: from ₦5,000 (₦6 a credit)", values: ["yes", "yes", "yes", "yes"] },
       { label: "Shared AI credit pool", values: ["yes", "yes", "yes", "yes"] },
     ],
   },

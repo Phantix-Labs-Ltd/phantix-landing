@@ -43,7 +43,44 @@ interface BillingPricingResponse {
   yearly_price_ngn?: number;
   first_month_discount_percent?: number;
   growth_monthly_price_ngn?: number;
-  plans?: Array<Partial<PricingTier> & { id: string; monthly_ngn: number | null }>;
+  plans?: Array<Partial<PricingTier> & { id: string; monthly_ngn: number | null; credits?: PlanCredits }>;
+}
+
+/** AI credits a plan grants: a monthly allowance and a one-time onboarding allotment. */
+interface PlanCredits {
+  monthly: number | null;
+  allotment: number | null;
+}
+
+/**
+ * Offline fallback for AI credits per plan. It mirrors the backend catalog
+ * (Starter 5,000 a month, Growth 10,000 a month, no onboarding allotment on
+ * paid plans; Free gets 500 once). The live GET /billing/plans values replace
+ * it, so the page follows the backend when the budgets change.
+ */
+const PLAN_CREDITS: Record<string, PlanCredits> = {
+  free: { monthly: 0, allotment: 500 },
+  starter: { monthly: 5_000, allotment: 0 },
+  growth: { monthly: 10_000, allotment: 0 },
+  enterprise: { monthly: null, allotment: null },
+};
+
+const fmt = (n: number) => n.toLocaleString("en-US");
+
+/** The big number and the unit under it on a plan card. */
+function creditHero(id: string, c: PlanCredits): Pick<PricingTier, "heroMetric" | "heroUnit"> {
+  if (id === "enterprise" || c.monthly == null) return { heroMetric: "Custom", heroUnit: "AI credits and volume" };
+  if (!c.monthly) return { heroMetric: fmt(c.allotment ?? 0), heroUnit: "one-time AI credits" };
+  return {
+    heroMetric: fmt(c.monthly),
+    heroUnit: c.allotment ? `AI credits per month and a ${fmt(c.allotment)} allotment` : "AI credits per month",
+  };
+}
+
+/** The credits sentence in a plan's feature list. */
+function creditLine(c: PlanCredits): string {
+  const monthly = `${fmt(c.monthly ?? 0)} AI credits per month`;
+  return c.allotment ? `${monthly} and a ${fmt(c.allotment)} onboarding allotment.` : `${monthly}.`;
 }
 
 const freeFeatures = [
@@ -51,29 +88,29 @@ const freeFeatures = [
   "Light hygiene tests on DNS and network show what is exposed",
   "Dual control, MFA and an immutable audit trail are free on every plan",
   "Basic exports to JSON and Markdown let you leave with your data",
-  "500 one-time AI credits, then free open-source models with admin opt-in",
+  `${fmt(PLAN_CREDITS.free.allotment ?? 0)} one-time AI credits, then free open-source models with admin opt-in`,
   "Community support",
   "Not included: full VAPT campaigns, continuous testing, the Autonomous Pentest Agent, private-repo depth, board PDF packs",
 ];
 
-const starterFeatures = [
+const starterFeatures = (c: PlanCredits = PLAN_CREDITS.starter) => [
   "Everything in Free",
   "Vulnerability assessment and penetration testing (VAPT): scoped, approval-gated campaigns",
   "Verified findings with remediation guidance, not a raw scanner dump",
   "Autonomous Pentest Agent: included and credit-metered",
   "10 pull request and merge request security reviews each month and 3 on-demand assessments each month",
   "Full engine quality for web and API, code security and mobile static analysis. AI AutoFix is credit-metered.",
-  "5,000 AI credits per month and a 5,000 onboarding allotment. Email support is included.",
+  `${creditLine(c)} Email support is included.`,
 ];
 
-const growthFeatures = [
+const growthFeatures = (c: PlanCredits = PLAN_CREDITS.growth) => [
   "Everything in Starter",
   "Recurring VAPT work and continuous pull request and merge request review",
   "Autonomous Pentest Agent: included and credit-metered",
   "5 projects, 20 on-demand assessments per month and 10 model refreshes per month",
   "Multi-cloud and Kubernetes posture. Blocking policies and path rules are included.",
   "Compliance workbench and SOC console depth when you need them",
-  "20,000 AI credits per month and a 20,000 onboarding allotment. Guided onboarding is included.",
+  `${creditLine(c)} Guided onboarding is included.`,
 ];
 
 const enterpriseFeatures = [
@@ -146,31 +183,21 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
   if (Array.isArray(fallback.plans) && fallback.plans.length > 0) {
     const defaults: Record<string, Partial<PricingTier>> = {
       free: {
-        heroMetric: "500",
-        heroUnit: "one-time AI credits",
         tagline: "For teams that explore SecureGraph with no card",
         features: freeFeatures,
         cta: "Get started free",
       },
       starter: {
-        heroMetric: "5,000",
-        heroUnit: "AI credits per month and a 5,000 allotment",
         tagline: "Assess like an attacker: VAPT with verified findings",
-        features: starterFeatures,
         cta: "Get started",
       },
       growth: {
-        heroMetric: "20,000",
-        heroUnit: "AI credits per month and a 20,000 allotment",
         tagline: "Keep testing: continuous security every week",
-        features: growthFeatures,
         highlighted: true,
         badge: "Most popular",
         cta: "Get started",
       },
       enterprise: {
-        heroMetric: "Custom",
-        heroUnit: "AI credits and volume",
         tagline: "For platforms and regulated organizations that operate at scale",
         features: enterpriseFeatures,
         cta: "Talk to sales",
@@ -180,12 +207,17 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
       .filter((p) => p && typeof p.id === "string")
       .map((p) => {
         const d = defaults[p.id] ?? {};
+        // Credits come from the backend plan; the fallback table covers a gap.
+        const credits = p.credits ?? PLAN_CREDITS[p.id] ?? { monthly: null, allotment: null };
+        const hero = creditHero(p.id, credits);
+        const curated =
+          p.id === "starter" ? starterFeatures(credits) : p.id === "growth" ? growthFeatures(credits) : d.features;
         return {
           id: p.id,
           name: p.name ?? p.id,
           tagline: p.tagline ?? d.tagline ?? "",
-          heroMetric: p.heroMetric ?? d.heroMetric ?? "Not set",
-          heroUnit: p.heroUnit ?? d.heroUnit ?? "",
+          heroMetric: p.heroMetric ?? hero.heroMetric,
+          heroUnit: p.heroUnit ?? hero.heroUnit,
           monthly_ngn: p.monthly_ngn,
           first_month_ngn: p.first_month_ngn ?? null,
           yearly_price_ngn: p.yearly_price_ngn,
@@ -204,7 +236,7 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
               : p.id === "enterprise"
                 ? "Talk to sales"
                 : "Get started"),
-          features: pickFeatures(p.features, d.features),
+          features: pickFeatures(p.features, curated),
         };
       });
   }
@@ -219,8 +251,7 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
       id: "free",
       name: "Free",
       tagline: "For teams that explore SecureGraph with no card",
-      heroMetric: "500",
-      heroUnit: "one-time AI credits",
+      ...creditHero("free", PLAN_CREDITS.free),
       monthly_ngn: 0,
       first_month_ngn: 0,
       yearly_note: "No card required",
@@ -231,35 +262,32 @@ export function buildPricingTiers(raw: BillingPricingResponse | null): PricingTi
       id: "starter",
       name: "Starter",
       tagline: "Assess like an attacker: VAPT with verified findings",
-      heroMetric: "5,000",
-      heroUnit: "AI credits per month and a 5,000 allotment",
+      ...creditHero("starter", PLAN_CREDITS.starter),
       monthly_ngn: starterMonthly,
       first_month_ngn: starterFirstMonth,
       yearly_price_ngn: starterYearly,
       yearly_note: yearsNote(starterMonthly),
       cta: "Get started",
-      features: starterFeatures,
+      features: starterFeatures(),
     },
     {
       id: "growth",
       name: "Growth",
       tagline: "Keep testing: continuous security every week",
-      heroMetric: "20,000",
-      heroUnit: "AI credits per month and a 20,000 allotment",
+      ...creditHero("growth", PLAN_CREDITS.growth),
       monthly_ngn: growthMonthly,
       yearly_price_ngn: growthMonthly * 10,
       yearly_note: yearsNote(growthMonthly),
       highlighted: true,
       badge: "Most popular",
       cta: "Get started",
-      features: growthFeatures,
+      features: growthFeatures(),
     },
     {
       id: "enterprise",
       name: "Enterprise",
       tagline: "For platforms and regulated organizations that operate at scale",
-      heroMetric: "Custom",
-      heroUnit: "AI credits and volume",
+      ...creditHero("enterprise", PLAN_CREDITS.enterprise),
       monthly_ngn: null,
       cta: "Talk to sales",
       features: enterpriseFeatures,
@@ -300,6 +328,8 @@ export async function loadPricing(force = false): Promise<PricingTier[]> {
                 name?: string;
                 list_price_ngn?: number | null;
                 features?: string[];
+                allowances?: { ai_credits_mo?: number | null };
+                credit_allotment?: number | null;
               }) => ({
                 id: String(p.key ?? p.id ?? ""),
                 name: p.name,
@@ -309,6 +339,10 @@ export async function loadPricing(force = false): Promise<PricingTier[]> {
                     ? p.list_price_ngn * 10
                     : undefined,
                 features: p.features,
+                credits:
+                  p.allowances && "ai_credits_mo" in p.allowances
+                    ? { monthly: p.allowances.ai_credits_mo ?? null, allotment: p.credit_allotment ?? null }
+                    : undefined,
               }),
             ),
           };
