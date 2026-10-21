@@ -49,6 +49,29 @@ export const faqs = [
     q: "How do I get started?",
     a: "Click Get started free, create your organization, and connect a security database. You can bring your own Postgres, or ask about hosted options when available.\n\nAdd a small set of assets and run your first assessment on Free. Move to Starter when you need full VAPT and verified reports, and to Growth when you need continuous testing. You do not need a card to begin.",
   },
+  // Real questions from the webinar. Answered from what the product does, including
+  // the two premises the webinar got wrong (CSV/PDF need no conversion here; SARIF
+  // and CycloneDX are not customer export formats).
+  {
+    q: "Can I connect SecureGraph to GitHub CI/CD?",
+    a: "Yes. Install the GitHub App on the repositories you want reviewed, or connect GitLab or Gitea, and SecureGraph reviews pull requests and new commits as they arrive. Review runs against the changed files, so the findings land where your team already looks: the pull request. You can also report on a branch (Continuous PR) and, where it is switched on, have SecureGraph open a fix PR rather than a ticket. Provider webhooks and CI webhooks from other pipelines are supported too.",
+  },
+  {
+    q: "Does a finding tell me which file and line the problem is on?",
+    a: "For code findings, yes. Each result carries the repository path, the line number and the rule that fired, so you can open the file at the exact place. Findings from network and web testing point at the asset and the request/response instead, because there is no source line to quote. The location is stored on the finding, so it survives into the report and into the ticket your team works from.",
+  },
+  {
+    q: "Can it scan compiled binaries?",
+    a: "Not native binaries. SecureGraph does not decompile or fuzz ELF or PE executables today. It does analyse source code, dependencies and container image contents, mobile packages (.apk and .ipa) statically, and infrastructure-as-code. If what you ship is a binary, scan the source and the dependency manifest before the build — that is where the fixable issues are, and where a fix can actually be merged.",
+  },
+  {
+    q: "Can I scan a repository that contains two or three languages?",
+    a: "Yes, and you do not configure it per language. SecureGraph works out which languages are present from the files it is given and runs the right analyser for each: Python with Bandit, Go with gosec, JavaScript and TypeScript with ESLint plus the general engine, PHP with PHPStan and Psalm when the project has Composer, C# and legacy .NET including .aspx with DevSkim, and OpenGrep across all of them. A monorepo is one scan, not three, and no file is analysed twice.",
+  },
+  {
+    q: "Can I export a report as CSV or PDF?",
+    a: "Yes, both are built in. One report can be produced as PDF, DOCX, XLSX, HTML, Markdown, JSON or CSV from the same findings — no conversion step, and every plan includes the formats. You choose the format on the report itself. For clarity: SARIF and CycloneDX are not customer export formats today; SARIF is what some of our analysers emit internally.",
+  },
 ];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
