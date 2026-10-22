@@ -41,7 +41,10 @@ function isMode(v: unknown): v is ThemeMode {
 
 function getInitialMode(): ThemeMode {
   try {
-    const stored = localStorage.getItem(THEME_KEY);
+    // Check for a browser window first: Node 26 exposes a `localStorage` getter that
+    // emits an ExperimentalWarning when probed outside a browser (prerender/build).
+    if (typeof window === "undefined") return "dark";
+    const stored = window.localStorage.getItem(THEME_KEY);
     if (isMode(stored)) return stored;
   } catch {
     /* storage may be unavailable (private mode) */
