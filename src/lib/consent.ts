@@ -47,7 +47,8 @@ export function getConsent(): ConsentChoice | null {
   if (fromCookie === "accepted" || fromCookie === "declined") return fromCookie;
   // A choice made before consent moved to the shared cookie: promote it.
   try {
-    const legacy = localStorage.getItem(KEY);
+    if (typeof window === "undefined") return null;
+    const legacy = window.localStorage.getItem(KEY);
     if (legacy === "accepted" || legacy === "declined") {
       setConsent(legacy);
       return legacy;
