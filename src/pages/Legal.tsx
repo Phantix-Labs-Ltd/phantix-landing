@@ -5,6 +5,8 @@ import { Nav, Footer } from "@/components/chrome";
 import { loadLegalDocument, LegalDocument, LegalSection } from "@/lib/legal";
 import { APP_LOGIN_URL } from "@/lib/links";
 import { BrandMark } from "@/components/BrandLogo";
+import PageMeta from "@/components/PageMeta";
+import { pageSeo } from "@/lib/routeSeo";
 
 const DOC_META: Record<string, { kicker: string; icon: React.ReactNode }> = {
   terms: { kicker: "Terms of Service", icon: <BookOpen size={18} /> },
@@ -58,6 +60,7 @@ export default function LegalPage({ docKey }: { docKey: "terms" | "aup" | "priva
       </div>
 
       <Nav />
+      <PageMeta {...pageSeo(`/${docKey}`)} />
       <main className="relative px-4 pb-16 pt-28 md:pt-36">
         <div className="mx-auto max-w-3xl">
           <a href="/" className="-ml-2 inline-flex items-center gap-2 rounded-md px-2 py-2 text-sm text-slate-400 hover:bg-white/5 hover:text-slate-200">

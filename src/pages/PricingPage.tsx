@@ -6,10 +6,13 @@ import { Section, fadeUp } from "@/components/Section";
 import { Pricing, FinalCTA } from "@/components/Pricing";
 import { PricingComparison } from "@/components/PricingComparison";
 import { FAQ } from "@/components/FAQ";
+import PageMeta from "@/components/PageMeta";
+import { pageSeo } from "@/lib/routeSeo";
 
 export default function PricingPage() {
   return (
     <PageShell>
+      <PageMeta {...pageSeo("/pricing")} />
       <Section className="pb-6 pt-28 md:pt-36">
         <BackLink />
         {/* De-centred (Hallmark fix): left-biased block, no eyebrow pill —

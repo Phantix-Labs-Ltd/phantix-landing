@@ -12,6 +12,8 @@ import { GlowBloom } from "@/components/effects";
 import {
   COMPANY, TEAM, addressLines, companyLinks, hasRegisteredIdentity, initials,
 } from "@/lib/company";
+import PageMeta from "@/components/PageMeta";
+import { pageSeo } from "@/lib/routeSeo";
 
 /*
  * /company — who is behind SecureGraph.
@@ -42,6 +44,7 @@ export default function Company() {
 
   return (
     <PageShell>
+      <PageMeta {...pageSeo("/company")} />
       <Section className="pb-14 pt-28 md:pt-36">
         <BackLink />
         <motion.div {...fadeUp} className="mx-auto mt-10 max-w-2xl text-center">

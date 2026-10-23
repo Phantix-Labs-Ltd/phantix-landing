@@ -10,6 +10,8 @@ import { BackLink } from "@/components/BackLink";
 import { Section, fadeUp } from "@/components/Section";
 import { GlowBloom } from "@/components/effects";
 import { PLATFORM_REGISTER_URL } from "@/lib/links";
+import PageMeta from "@/components/PageMeta";
+import { pageSeo } from "@/lib/routeSeo";
 
 const OWNERSHIP = {
   yours: [
@@ -60,6 +62,7 @@ const SURFACES = [
 export default function SecurityTeams() {
   return (
     <PageShell>
+      <PageMeta {...pageSeo("/solutions/security-teams")} />
       <Section className="pb-14 pt-28 md:pt-36">
         <BackLink />
         <motion.div {...fadeUp} className="mx-auto mt-10 max-w-2xl text-center">

@@ -11,6 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Plugin } from "vite";
 import { COMPANY, TEAM, addressLines, companyLinks, verificationLinks } from "../src/lib/company";
+import { ROUTE_SEO } from "../src/lib/routeSeo";
 
 const SITE = "https://phantixlabs.com";
 
@@ -73,7 +74,6 @@ function jsonLd(): string {
       ...(COMPANY.rcNumber ? { identifier: COMPANY.rcNumber } : {}),
       email: COMPANY.contactEmails[0],
       sameAs: verificationLinks(),
-      address: { "@type": "PostalAddress", addressLocality: COMPANY.address.city, addressCountry: COMPANY.address.country },
       founder: TEAM.map((m) => ({
         "@type": "Person",
         name: m.name,
@@ -97,8 +97,7 @@ export function prerenderCompany(): Plugin {
     },
     closeBundle() {
       const shell = fs.readFileSync(path.join(outDir, "index.html"), "utf8");
-      const title = `Company and team | ${COMPANY.legalName}`;
-      const description = `${COMPANY.legalName} builds ${COMPANY.productName}. Meet the founder and core team, with verifiable LinkedIn and GitHub profiles.`;
+      const { title, description } = ROUTE_SEO["/company"];
       const html = shell
         .replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`)
         .replace(/(<meta\s+name="description"\s+content=")[^"]*(")/, `$1${esc(description)}$2`)

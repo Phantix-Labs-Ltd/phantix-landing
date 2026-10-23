@@ -12,6 +12,8 @@ import { DemoRequestModal } from "@/components/DemoRequestModal";
 import { useTheme } from "@/lib/theme";
 import { cx } from "@/lib/utils";
 import { sceneImg } from "@/lib/scene-image";
+import PageMeta from "@/components/PageMeta";
+import { pageSeo } from "@/lib/routeSeo";
 
 /*
  * /demo — the self-serve product tour.
@@ -142,6 +144,7 @@ export default function ProductDemo() {
         <div className="absolute -top-40 left-1/2 h-[560px] w-[900px] -translate-x-1/2 rounded-full bg-gold-400/[0.07] blur-[140px]" />
       </div>
 
+      <PageMeta {...pageSeo("/demo")} />
       <Nav />
       <main className="relative">
         {/* Header */}

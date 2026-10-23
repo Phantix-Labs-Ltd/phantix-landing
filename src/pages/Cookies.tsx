@@ -5,6 +5,8 @@ import { ArrowLeft, Cookie, ShieldCheck } from "lucide-react";
 import { Nav, Footer } from "@/components/chrome";
 import { COOKIE_SETTINGS_EVENT } from "@/components/CookieConsent";
 import { BrandMark } from "@/components/BrandLogo";
+import PageMeta from "@/components/PageMeta";
+import { pageSeo } from "@/lib/routeSeo";
 
 // ── Cookies & analytics policy (public) ──────────────────────────────────────
 
@@ -16,6 +18,7 @@ export default function Cookies() {
       </div>
 
       <Nav />
+      <PageMeta {...pageSeo("/cookies")} />
       <main className="relative px-4 pb-16 pt-28 md:pt-36">
         <div className="mx-auto max-w-3xl">
           <Link to="/" className="-ml-2 inline-flex items-center gap-2 rounded-md px-2 py-2 text-sm text-slate-400 hover:bg-white/5 hover:text-slate-200">

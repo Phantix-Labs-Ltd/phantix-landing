@@ -31,16 +31,7 @@ function organizationPatch(): Record<string, unknown> {
       ...(m.email ? { email: m.email } : {}),
     }));
   }
-  if (COMPANY.address.street || COMPANY.address.city) {
-    patch.address = {
-      "@type": "PostalAddress",
-      streetAddress: COMPANY.address.street || undefined,
-      addressLocality: COMPANY.address.city || undefined,
-      addressRegion: COMPANY.address.region || undefined,
-      postalCode: COMPANY.address.postalCode || undefined,
-      addressCountry: COMPANY.address.country || undefined,
-    };
-  }
+  // No address or phone: the brand panel shows the website and profiles only.
   if (COMPANY.contactEmails.length) {
     patch.contactPoint = {
       "@type": "ContactPoint",
