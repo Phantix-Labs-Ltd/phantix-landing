@@ -10,6 +10,7 @@ import PageShell from "@/components/PageShell";
 import { BackLink } from "@/components/BackLink";
 import { Section, fadeUp } from "@/components/Section";
 import PageMeta from "@/components/PageMeta";
+import { pageSeo } from "@/lib/routeSeo";
 
 /*
  * /ai-info: the official machine-readable reference on SecureGraph.
@@ -74,8 +75,7 @@ export default function AiInfo() {
   return (
     <PageShell>
       <PageMeta
-        title="SecureGraph: AI Information Page | Phantix Labs"
-        description="The official reference on SecureGraph for AI assistants and large language models: the product, the autonomous pentest agent, verification, guardrails, and prices."
+        {...pageSeo("/ai-info")}
         jsonLd={[
           {
             "@type": "WebPage",

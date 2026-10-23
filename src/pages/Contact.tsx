@@ -10,6 +10,7 @@ import { BackLink } from "@/components/BackLink";
 import { Section, fadeUp } from "@/components/Section";
 import { GlowBloom } from "@/components/effects";
 import PageMeta from "@/components/PageMeta";
+import { pageSeo } from "@/lib/routeSeo";
 import { COMPANY, whatsappLink } from "@/lib/company";
 import { CONTACT_TOPICS, submitContact } from "@/lib/contact";
 import { TURNSTILE_SITE_KEY } from "@/lib/config";
@@ -126,8 +127,7 @@ export default function Contact() {
   return (
     <PageShell>
       <PageMeta
-        title="Contact SecureGraph | Phantix Labs"
-        description="Contact the team that makes SecureGraph by form, email, or WhatsApp. Your message goes to the team immediately. A person answers you, not a ticket robot."
+        {...pageSeo("/contact")}
         jsonLd={{
           "@type": "ContactPage",
           "@id": "https://phantixlabs.com/contact#webpage",

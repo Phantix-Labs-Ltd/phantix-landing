@@ -11,6 +11,8 @@ import { useTheme } from "@/lib/theme";
 import { sceneImg } from "@/lib/scene-image";
 import { PLATFORM_REGISTER_URL } from "@/lib/links";
 import { cx } from "@/lib/utils";
+import PageMeta from "@/components/PageMeta";
+import { SeoPath, pageSeo } from "@/lib/routeSeo";
 
 export default function PlatformCapability() {
   const { slug } = useParams<{ slug: string }>();
@@ -23,6 +25,7 @@ export default function PlatformCapability() {
 
   return (
     <PageShell>
+      <PageMeta {...pageSeo(`/platform/${page.slug}` as SeoPath)} />
       <Section className="pb-14 pt-28 md:pt-36">
         <BackLink />
 
