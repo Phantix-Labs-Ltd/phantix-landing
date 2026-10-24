@@ -69,7 +69,7 @@ const CLAIMS = [
 
 const ROTATE_MS = 3000;
 
-/** The product explainer: gold player, controls below the video. */
+/** The product explainer: one frame, controls inside it on hover. */
 function HeroVideo() {
   return (
     <motion.div

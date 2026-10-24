@@ -135,6 +135,11 @@
     color: #8f5f13;
   }
 
+  /* The Code application's accent: violet-400 is too pale on white. */
+  :root[data-theme="light"] .text-violet-400 {
+    color: #6d28d9;
+  }
+
   /* Gold sitting on its own gold tint (chips, icon tiles) keeps the lighter tone. */
   :root[data-theme="light"] [class*="bg-gold"] .text-gold-300,
   :root[data-theme="light"] [class*="bg-gold"] .text-gold-400,
