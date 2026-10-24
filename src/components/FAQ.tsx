@@ -70,7 +70,7 @@ export const faqs = [
   },
   {
     q: "Can I export a report as CSV or PDF?",
-    a: "Yes, both are built in. One report can be produced as PDF, DOCX, XLSX, HTML, Markdown, JSON or CSV from the same findings — no conversion step, and every plan includes the formats. You choose the format on the report itself. For clarity: SARIF and CycloneDX are not customer export formats today; SARIF is what some of our analysers emit internally.",
+    a: "Yes, both are built in. One report can be produced as PDF, DOCX, XLSX, HTML, Markdown, JSON or CSV from the same findings — no conversion step, and every plan includes the formats. You choose the format on the report itself.",
   },
 ];
 
