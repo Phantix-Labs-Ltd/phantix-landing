@@ -381,8 +381,14 @@ export function HowItWorks() {
         ))}
       </div>
 
+      {/* Step 03 promises a verified report; the gate right below shows what
+          "verified" means before the visitor is asked to start. */}
+      <div className="mt-20">
+        <VerificationGateBody />
+      </div>
+
       {/* The steps end where the funnel starts — step 01 is one click away. */}
-      <motion.div {...fadeUp} className="mt-10 flex flex-col items-center gap-3">
+      <motion.div {...fadeUp} className="mt-14 flex flex-col items-center gap-3">
         <a href={PLATFORM_REGISTER_URL} className="btn-primary btn-shine !px-6 !py-3 !text-base">
           Start free <ArrowRight size={16} />
         </a>
@@ -392,8 +398,11 @@ export function HowItWorks() {
   );
 }
 
-/** 5. The verification gate — the strongest single proof point on the page. */
-export function VerificationGate() {
+/**
+ * The verification gate — the strongest single proof point on the page. It sits
+ * inside How it works, right after "Three steps to a verified report".
+ */
+function VerificationGateBody() {
   const funnel = [
     { value: 19, label: "After deduplication", tone: "text-slate-300" },
     { value: 14, label: "After verification", tone: "text-gold-300" },
@@ -401,50 +410,48 @@ export function VerificationGate() {
   ];
 
   return (
-    <Section className="py-20">
-      <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
-        <motion.div {...fadeUp}>
-          <Eyebrow>False-positive control</Eyebrow>
-          <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            If it is not verified, it{" "}
-            <span className="hero-accent">does not enter the report</span>
-          </h2>
-          <p className="mt-5 text-[15px] leading-7 text-slate-400">
-            Every scan result has a verification state. The risk register skips noise. Compliance maps
-            verified signals only. Executive reports use auto-verified and human-verified findings only.
-            Heuristic probes stay in an appendix, never in your severity rollups.
-          </p>
-          <p className="mt-6 inline-flex rounded-md border border-gold-400/25 bg-gold-400/[0.08] px-3 py-2 font-mono text-[12px] text-gold-300">
-            REPORT_REQUIRE_VERIFIED_FINDINGS
-          </p>
-        </motion.div>
+    <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-2">
+      <motion.div {...fadeUp}>
+        <Eyebrow>False-positive control</Eyebrow>
+        <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          If it is not verified, it{" "}
+          <span className="hero-accent">does not enter the report</span>
+        </h2>
+        <p className="mt-5 text-[15px] leading-7 text-slate-400">
+          Every scan result has a verification state. The risk register skips noise. Compliance maps
+          verified signals only. Executive reports use auto-verified and human-verified findings only.
+          Heuristic probes stay in an appendix, never in your severity rollups.
+        </p>
+        <p className="mt-6 inline-flex rounded-md border border-gold-400/25 bg-gold-400/[0.08] px-3 py-2 font-mono text-[12px] text-gold-300">
+          REPORT_REQUIRE_VERIFIED_FINDINGS
+        </p>
+      </motion.div>
 
-        <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
-          <div className="grid grid-cols-3 gap-3">
-            {funnel.map((f, i) => (
-              <motion.div
-                key={f.label}
-                {...fadeUp}
-                transition={{ ...fadeUp.transition, delay: i * 0.1 }}
-                className="card-edge p-5 text-center"
-              >
-                <p className={`font-display text-4xl font-semibold ${f.tone}`}>
-                  <CountUp to={f.value} />
-                </p>
-                <p className="mt-2 text-[12px] font-semibold uppercase tracking-wider text-slate-500">
-                  {f.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-          <Shot
-            name="reports"
-            alt="Report library showing board-ready deliverables built from verified findings"
-            className="mt-4"
-          />
-        </motion.div>
-      </div>
-    </Section>
+      <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }}>
+        <div className="grid grid-cols-3 gap-3">
+          {funnel.map((f, i) => (
+            <motion.div
+              key={f.label}
+              {...fadeUp}
+              transition={{ ...fadeUp.transition, delay: i * 0.1 }}
+              className="card-edge p-5 text-center"
+            >
+              <p className={`font-display text-4xl font-semibold ${f.tone}`}>
+                <CountUp to={f.value} />
+              </p>
+              <p className="mt-2 text-[12px] font-semibold uppercase tracking-wider text-slate-500">
+                {f.label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+        <Shot
+          name="reports"
+          alt="Report library showing board-ready deliverables built from verified findings"
+          className="mt-4"
+        />
+      </motion.div>
+    </div>
   );
 }
 
@@ -890,8 +897,8 @@ const BRANCH_APPS: AppDef[] = [
       { label: "AutoFix pull requests", hint: "A finding becomes a pull request with the fix, not just a ticket." },
       { label: "Threat models", hint: "Design-time modeling, so you find architecture risk before the code goes to production." },
     ],
-    accent: "border-severity-info/40 text-severity-info",
-    dot: "bg-severity-info",
+    accent: "border-violet-400/40 text-violet-400",
+    dot: "bg-violet-400",
   },
 ];
 
@@ -918,7 +925,7 @@ function PointPill({ point, ring }: { point: AppPoint; ring: string }) {
 function AppCard({ a, hub = false }: { a: AppDef; hub?: boolean }) {
   return (
     <div
-      className={`card flex flex-col gap-3 border p-5 ${a.accent.split(" ")[0]} ${hub ? "sm:max-w-sm sm:mx-auto" : ""}`}
+      className={`card flex flex-col gap-3 border p-5 ${a.accent.split(" ")[0]} ${hub ? "sm:mx-auto sm:max-w-md" : "h-full"}`}
     >
       <div className="flex items-center gap-2">
         <span className={`h-1.5 w-1.5 rounded-full ${a.dot}`} />
@@ -930,8 +937,8 @@ function AppCard({ a, hub = false }: { a: AppDef; hub?: boolean }) {
         )}
       </div>
       <p className={`text-xs font-medium ${a.accent.split(" ")[1]}`}>{a.tagline}</p>
-      <p className="flex-1 text-[13px] leading-6 text-slate-400">{a.body}</p>
-      <div className="mt-1 flex flex-wrap gap-1.5 border-t border-phantix-700/40 pt-3">
+      <p className="text-[13px] leading-6 text-slate-400">{a.body}</p>
+      <div className="mt-1 flex flex-1 flex-wrap content-start gap-1.5 border-t border-phantix-700/40 pt-3">
         {a.points.map((p) => (
           <PointPill key={p.label} point={p} ring={a.accent.split(" ")[0].replace("border-", "hover:border-")} />
         ))}
@@ -961,25 +968,29 @@ export function Applications() {
       <motion.div {...fadeUp} className="mt-12">
         <AppCard a={CORE_APP} hub />
 
-        {/* Trunk stub, hidden below md where cards stack and proximity alone
-            reads as "grouped under Core". */}
-        <div className="mx-auto hidden h-8 w-px bg-phantix-700/60 md:block" aria-hidden="true" />
-        {/* Branch line spanning the row, each card dropping its own stub up
-            to meet it — an org-chart connector built from plain borders,
-            not an svg that has to track the grid's real column centers. */}
-        <div className="relative hidden md:block" aria-hidden="true">
-          <div className="absolute inset-x-0 top-0 h-px bg-phantix-700/60" />
+        {/* Org-chart connector, hidden below md where the cards stack and
+            proximity alone reads as "grouped under Core". A trunk drops from
+            Core to a bar; the bar is drawn per column on the same grid as the
+            cards (half-width in the outer columns, bridging the gaps), so it
+            runs exactly from the first card's centre to the last one's, and
+            each card hangs from it on its own stub. */}
+        <div className="mx-auto hidden h-6 w-px bg-phantix-600/70 md:block" aria-hidden="true" />
+        <div className="hidden h-6 grid-cols-3 gap-4 md:grid" aria-hidden="true">
+          {BRANCH_APPS.map((a, i) => (
+            <div key={a.key} className="relative">
+              <span
+                className={`absolute top-0 h-px bg-phantix-600/70 ${
+                  i === 0 ? "-right-2 left-1/2" : i === BRANCH_APPS.length - 1 ? "-left-2 right-1/2" : "-inset-x-2"
+                }`}
+              />
+              <span className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-phantix-600/70" />
+            </div>
+          ))}
         </div>
 
-        <div className="mt-0 grid grid-cols-1 gap-4 md:mt-0 md:grid-cols-3">
+        <div className="mt-4 grid grid-cols-1 gap-4 md:mt-0 md:grid-cols-3">
           {BRANCH_APPS.map((a) => (
-            <div key={a.key} className="relative">
-              <div
-                className="absolute -top-8 left-1/2 hidden h-8 w-px -translate-x-1/2 bg-phantix-700/60 md:block"
-                aria-hidden="true"
-              />
-              <AppCard a={a} />
-            </div>
+            <AppCard key={a.key} a={a} />
           ))}
         </div>
       </motion.div>

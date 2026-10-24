@@ -5,7 +5,6 @@ import {
   Capabilities,
   PrivacyModel,
   HowItWorks,
-  VerificationGate,
   WhyWeBuilt,
   Applications,
 } from "@/components/sections-v3";
@@ -27,7 +26,8 @@ const IntegrationsMarquee = React.lazy(() => import("@/components/IntegrationsMa
  * Platform and Solutions menus, a few on-page anchors and the primary button.
  *
  * Written for the decision-maker who owns security but isn't a specialist, and
- * ordered problem → what you get → proof → trust → how to start → price → close.
+ * ordered problem → what you get → trust → how to start (with the proof) →
+ * room to grow → price → close.
  *
  * Retired from this page (components kept for other routes or future use):
  * Marquee (sector list said nothing a buyer could act on), Principles (merged
@@ -58,32 +58,31 @@ export default function Landing() {
         {/* 3 — What you get: Assess → Fix → Prove, one section */}
         <Capabilities />
 
-        {/* 4 — Proof on the biggest pain point: false positives */}
-        <VerificationGate />
-
-        {/* 5 — Start small, grow into it: Attack first, Defend and Code later */}
-        <Applications />
-
-        {/* 6 — Trust: your security data stays in your database */}
+        {/* 4 — Trust: your security data stays in your database */}
         <PrivacyModel />
 
-        {/* 7 — Objection: "will it work with our tools?" */}
+        {/* 5 — Objection: "will it work with our tools?" */}
         <React.Suspense
           fallback={<section aria-hidden className="relative min-h-[360px] border-y border-phantix-800/60 py-10" />}
         >
           <IntegrationsMarquee />
         </React.Suspense>
 
-        {/* 8 — How to start, ending on the primary CTA */}
+        {/* 6 — How to start: three steps to a verified report, then the proof
+            on the biggest pain point (false-positive control), then the CTA */}
         <HowItWorks />
 
-        {/* 9 — Pricing: start free, upgrade, or talk to sales for Enterprise */}
+        {/* 7 — The page sells VAPT; the wider platform is mentioned only next
+            to the price, so it reads as room to grow, not a second offer */}
+        <Applications />
+
+        {/* 8 — Pricing: start free, upgrade, or talk to sales for Enterprise */}
         <Pricing showEngagements={false} />
 
-        {/* 10 — Remaining objections */}
+        {/* 9 — Remaining objections */}
         <FAQ />
 
-        {/* 11 — Close: the same two actions as the hero */}
+        {/* 10 — Close: the same two actions as the hero */}
         <FinalCTA />
       </main>
       <Footer />

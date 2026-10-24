@@ -3,17 +3,19 @@ import { Loader2, Maximize, Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { cx } from "@/lib/utils";
 
 /*
- * GoldVideoPlayer — the product explainer, played from YouTube but skinned in
- * the site's gold, with the controls in a bar BELOW the frame so nothing sits
- * over the video itself (YouTube's own chrome does, and it is blue/red).
+ * GoldVideoPlayer — the product explainer, played from YouTube but presented as
+ * part of the page, not as an embed: one frame, no panel underneath, no link
+ * sending the visitor to youtube.com.
  *
  * The YouTube IFrame API is only fetched when the visitor asks to play, so a
  * read-only visit makes no third-party request and sets no cookie. The player
  * is embedded in privacy-enhanced mode (youtube-nocookie).
  *
- * `controls: 0` hides YouTube's overlay; the bar below is the only chrome.
- * Keyboard: space/arrows are left to the player, so the bar stays a pointer
- * affordance and the video keeps its focus behaviour.
+ * YouTube's chrome never shows: `controls: 0` removes its control bar, the
+ * iframe takes no pointer events (so hovering doesn't raise its title bar),
+ * and whenever the video is paused or finished our poster covers it, hiding
+ * YouTube's pause and end screens ("More videos", channel logo). A slim gold
+ * bar inside the frame appears on hover, on focus and while paused.
  */
 
 type YTPlayerLike = {
@@ -79,6 +81,7 @@ export default function GoldVideoPlayer({
   const playerRef = useRef<YTPlayerLike | null>(null);
   const [phase, setPhase] = useState<"idle" | "loading" | "ready" | "failed">("idle");
   const [playing, setPlaying] = useState(false);
+  const [ended, setEnded] = useState(false);
   const [muted, setMuted] = useState(false);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -135,6 +138,8 @@ export default function GoldVideoPlayer({
           },
           onStateChange: (e: { data: number }) => {
             setPlaying(e.data === 1);
+            if (e.data === 1) setEnded(false);
+            if (e.data === 0) setEnded(true); // ended: cover YouTube's end screen
           },
           onError: () => setPhase("failed"),
         },
@@ -148,7 +153,10 @@ export default function GoldVideoPlayer({
     const p = playerRef.current;
     if (!p) return;
     if (playing) p.pauseVideo();
-    else p.playVideo();
+    else {
+      if (ended) p.seekTo(0, true);
+      p.playVideo();
+    }
   };
 
   const toggleMute = () => {
@@ -166,136 +174,132 @@ export default function GoldVideoPlayer({
   };
 
   const pct = duration > 0 ? Math.min(100, (time / duration) * 100) : 0;
+  const started = phase === "ready" || phase === "loading";
+  // Poster covers the frame before play, while paused and after the end, so
+  // YouTube's pause/end screens are never what the visitor sees.
+  const covered = phase === "idle" || (phase === "ready" && (!playing || ended));
   const controlBtn =
-    "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold-400/40 bg-gold-400/10 text-gold-300 transition-colors hover:border-gold-400/80 hover:bg-gold-400/20 disabled:opacity-40";
+    "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-gold-200 transition-colors hover:bg-gold-400/15 hover:text-gold-100 disabled:opacity-40";
 
   return (
-    <div className="w-full">
+    <div
+      ref={frameRef}
+      className="group/player relative aspect-video w-full overflow-hidden rounded-xl border border-phantix-700 bg-black shadow-[0_0_0_1px_rgba(232,181,77,0.18),0_24px_60px_-20px_rgba(0,0,0,0.8)]"
+    >
+      {/* The video lives here; the API fills this host with its iframe. It
+          takes no pointer events, so YouTube's hover title bar never appears. */}
       <div
-        ref={frameRef}
-        className="relative aspect-video overflow-hidden rounded-md border border-phantix-700 bg-black shadow-[0_0_0_1px_rgba(232,181,77,0.18),0_1px_2px_0_rgba(0,0,0,0.5)]"
-      >
-        {/* The video lives here; the API fills this host with its iframe. */}
-        <div
-          ref={hostRef}
-          className={cx("absolute inset-0 h-full w-full", phase === "idle" && "invisible")}
-        />
+        ref={hostRef}
+        className={cx("pointer-events-none absolute inset-0 h-full w-full", phase === "idle" && "invisible")}
+      />
 
-        {phase === "idle" && (
-          <button
-            type="button"
-            onClick={start}
-            aria-label={`Play ${title}`}
-            className="group absolute inset-0 h-full w-full cursor-pointer"
-          >
-            <img
-              src={poster}
-              alt=""
-              width={1280}
-              height={720}
-              className="absolute inset-0 h-full w-full object-cover"
-              loading="eager"
-              decoding="async"
-            />
-            <span className="absolute inset-0 bg-phantix-950/40" />
-            <span className="absolute inset-0 flex items-center justify-center">
-              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-gold-400/50 bg-phantix-950/80 text-gold-300 backdrop-blur-sm transition-colors duration-200 group-hover:border-gold-400/80 group-hover:bg-phantix-900/90">
-                <Play size={24} className="ml-0.5" fill="currentColor" />
-              </span>
-            </span>
-          </button>
-        )}
+      {/* While playing, a click anywhere on the frame pauses. */}
+      {phase === "ready" && !covered && (
+        <button type="button" onClick={togglePlay} aria-label="Pause" className="absolute inset-0 h-full w-full cursor-pointer" />
+      )}
 
-        {phase === "loading" && (
-          <div className="absolute inset-0 flex items-center justify-center bg-phantix-950/70 text-sm text-slate-300">
-            <Loader2 size={20} className="mr-2 animate-spin text-gold-400" /> Please wait while the player starts.
-          </div>
-        )}
-
-        {phase === "failed" && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-phantix-950/90 px-6 text-center text-sm text-slate-300">
-            <p>The player could not load here.</p>
-            <a
-              href={`https://youtu.be/${videoId}`}
-              target="_blank"
-              rel="noreferrer"
-              className="text-gold-300 underline hover:text-gold-200"
-            >
-              Watch it on YouTube
-            </a>
-          </div>
-        )}
-      </div>
-
-      {/* The controls live BELOW the video, so nothing covers the content. */}
-      <div className="mt-3 flex items-center gap-3 rounded-md border border-phantix-700/60 bg-phantix-950/60 px-3 py-2">
+      {covered && (
         <button
           type="button"
           onClick={phase === "idle" ? start : togglePlay}
-          aria-label={playing ? "Pause" : "Play"}
-          disabled={phase === "loading" || phase === "failed"}
-          className={controlBtn}
+          aria-label={`${phase === "idle" || ended ? "Play" : "Resume"} ${title}`}
+          className="group absolute inset-0 h-full w-full cursor-pointer"
         >
-          {playing ? <Pause size={15} /> : <Play size={15} className="ml-0.5" fill="currentColor" />}
-        </button>
-
-        <span className="w-10 shrink-0 text-right font-mono text-[12px] tabular-nums text-slate-400">
-          {clock(time)}
-        </span>
-
-        <span className="relative h-1.5 flex-1 rounded-full bg-phantix-700">
-          <span
-            className="absolute inset-y-0 left-0 rounded-full bg-gold-400"
-            style={{ width: `${pct}%` }}
+          <img
+            src={poster}
+            alt=""
+            width={1280}
+            height={720}
+            className="absolute inset-0 h-full w-full object-cover"
+            loading="eager"
+            decoding="async"
           />
-          <input
-            type="range"
-            min={0}
-            max={duration || 0}
-            step={0.1}
-            value={Math.min(time, duration || 0)}
-            onChange={(e) => seek(Number(e.target.value))}
-            disabled={phase !== "ready" || duration <= 0}
-            aria-label="Seek the video"
-            className="absolute inset-0 h-full w-full cursor-pointer opacity-0 disabled:cursor-default"
-          />
-        </span>
-
-        <span className="w-10 shrink-0 font-mono text-[12px] tabular-nums text-slate-500">
-          {clock(duration)}
-        </span>
-
-        <button
-          type="button"
-          onClick={toggleMute}
-          aria-label={muted ? "Unmute" : "Mute"}
-          disabled={phase !== "ready"}
-          className={controlBtn}
-        >
-          {muted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+          <span className="absolute inset-0 bg-gradient-to-t from-phantix-950/80 via-transparent to-transparent" />
+          {/* Play sits in the corner, not on the poster's headline. */}
+          <span className="absolute bottom-4 left-4 flex items-center gap-3 rounded-full border border-gold-400/30 bg-phantix-950/85 py-1.5 pl-1.5 pr-4 backdrop-blur-sm transition-colors duration-200 group-hover:border-gold-400/70">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold-400 text-phantix-950 transition-transform duration-200 group-hover:scale-105">
+              <Play size={18} className="ml-0.5" fill="currentColor" />
+            </span>
+            <span className="text-sm font-semibold text-white">
+              {phase === "idle" || ended ? "Watch the product tour" : "Resume the tour"}
+            </span>
+          </span>
         </button>
+      )}
 
-        <button
-          type="button"
-          onClick={() => frameRef.current?.requestFullscreen?.()}
-          aria-label="Open full screen"
-          disabled={phase !== "ready"}
-          className={controlBtn}
-        >
-          <Maximize size={15} />
-        </button>
-      </div>
+      {phase === "loading" && (
+        <div className="absolute inset-0 flex items-center justify-center bg-phantix-950/70 text-sm text-slate-300">
+          <Loader2 size={20} className="mr-2 animate-spin text-gold-400" /> Starting the video…
+        </div>
+      )}
 
-      <p className="mt-2 text-center text-xs text-slate-500">
-        <a
-          href={`https://youtu.be/${videoId}`}
-          target="_blank"
-          rel="noreferrer"
-          className="transition-colors hover:text-slate-300"
+      {phase === "failed" && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-phantix-950/90 px-6 text-center text-sm text-slate-300">
+          <p>The video could not load here.</p>
+          <a
+            href={`https://youtu.be/${videoId}`}
+            target="_blank"
+            rel="noreferrer"
+            className="text-gold-300 underline hover:text-gold-200"
+          >
+            Watch it on YouTube
+          </a>
+        </div>
+      )}
+
+      {/* Slim in-frame controls: only once the video has started, shown on
+          hover, keyboard focus and while paused. */}
+      {started && (
+        <div
+          className={cx(
+            "absolute inset-x-0 bottom-0 flex items-center gap-2 bg-gradient-to-t from-black/85 via-black/50 to-transparent px-3 pb-2.5 pt-8 transition-opacity duration-200",
+            covered ? "opacity-100" : "opacity-0 group-hover/player:opacity-100 focus-within:opacity-100",
+          )}
         >
-          Watch on YouTube
-        </a>
-      </p>
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={playing ? "Pause" : "Play"}
+            disabled={phase !== "ready"}
+            className={controlBtn}
+          >
+            {playing ? <Pause size={16} /> : <Play size={16} className="ml-0.5" fill="currentColor" />}
+          </button>
+
+          <span className="relative h-1 flex-1 rounded-full bg-white/20">
+            <span className="absolute inset-y-0 left-0 rounded-full bg-gold-400" style={{ width: `${pct}%` }} />
+            <input
+              type="range"
+              min={0}
+              max={duration || 0}
+              step={0.1}
+              value={Math.min(time, duration || 0)}
+              onChange={(e) => seek(Number(e.target.value))}
+              disabled={phase !== "ready" || duration <= 0}
+              aria-label="Seek the video"
+              className="absolute -inset-y-2 inset-x-0 h-5 w-full cursor-pointer opacity-0 disabled:cursor-default"
+            />
+          </span>
+
+          <span className="shrink-0 font-mono text-[11px] tabular-nums text-slate-300">
+            {clock(time)} / {clock(duration)}
+          </span>
+
+          <button type="button" onClick={toggleMute} aria-label={muted ? "Unmute" : "Mute"} disabled={phase !== "ready"} className={controlBtn}>
+            {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => frameRef.current?.requestFullscreen?.()}
+            aria-label="Open full screen"
+            disabled={phase !== "ready"}
+            className={controlBtn}
+          >
+            <Maximize size={16} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
