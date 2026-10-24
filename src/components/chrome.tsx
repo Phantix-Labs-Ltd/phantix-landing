@@ -403,7 +403,7 @@ export function Nav({ focused = false }: { focused?: boolean }) {
       >
         <div className="flex flex-col">
           <BrandWordmark className="h-8 self-start" />
-          <p className="-mt-[0.46rem] hidden whitespace-nowrap pl-[2.25rem] text-[8px] font-semibold uppercase leading-none tracking-[0.26em] text-gold-400 sm:block">by Phantix Labs</p>
+          <p className="-mt-[0.46rem] hidden whitespace-nowrap pl-[2.25rem] text-[8px] font-semibold uppercase leading-none tracking-[0.26em] text-gold-400 sm:block">AI-Powered Security</p>
         </div>
         {focused ? (
           <nav className="ml-6 hidden items-center gap-1 text-sm text-slate-300 xl:flex">
