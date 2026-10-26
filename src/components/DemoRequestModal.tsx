@@ -109,6 +109,10 @@ export function DemoRequestModal({ open, onClose, source, title, defaultMessage 
     }
   };
 
+  // The build-time prerender (src/ssr/pages.tsx) has no document to portal
+  // into, and a closed modal has nothing to show a crawler.
+  if (typeof document === "undefined") return null;
+
   return createPortal(
     <AnimatePresence>
       {open && (

@@ -32,17 +32,25 @@ function SectionBody({ section }: { section: LegalSection }) {
   );
 }
 
-export default function LegalPage({ docKey }: { docKey: "terms" | "aup" | "privacy" }) {
-  const [doc, setDoc] = useState<LegalDocument | null>(null);
-  const [loading, setLoading] = useState(true);
+export default function LegalPage({
+  docKey,
+  initialDoc = null,
+}: {
+  docKey: "terms" | "aup" | "privacy";
+  /** The document fetched at build time (src/ssr/pages.tsx), so the prerendered
+   *  page carries its text; the browser still refreshes it on mount. */
+  initialDoc?: LegalDocument | null;
+}) {
+  const [doc, setDoc] = useState<LegalDocument | null>(initialDoc);
+  const [loading, setLoading] = useState(!initialDoc);
   const meta = DOC_META[docKey];
 
   useEffect(() => {
     let active = true;
-    setLoading(true);
+    if (!initialDoc) setLoading(true);
     void loadLegalDocument(docKey).then((d) => {
       if (active) {
-        setDoc(d);
+        if (d || !initialDoc) setDoc(d);
         setLoading(false);
       }
     });
