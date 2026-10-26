@@ -10,6 +10,10 @@
 // it must not pull in JSX or browser code. `heading` repeats the page's <h1>;
 // change both together. The home page's head lives in index.html, and
 // /securegraph/docs has its own module (lib/docsSeo.ts).
+//
+// Every title ends "| SecureGraph" and stays within 60 characters, so Google
+// shows it whole and reads one product name across the site. The home page and
+// /company carry "Phantix Labs" as well, to tie the company to the product.
 
 export interface RouteSeo {
   /** Full document title. */
@@ -23,16 +27,28 @@ export interface RouteSeo {
 
 export const SITE_URL = "https://phantixlabs.com";
 
+/**
+ * The home page. Its <title> and description live in index.html; this is the
+ * body that scripts/prerender-home.ts bakes into dist/index.html. `heading` and
+ * `summary` repeat the hero's <h1> and lead paragraph (components/Hero.tsx);
+ * change both together.
+ */
+export const HOME_SEO = {
+  heading: "Find real weaknesses. Fix what matters. Keep testing.",
+  summary:
+    "SecureGraph does vulnerability assessment and penetration testing for lean teams. It keeps the tests on a schedule and helps you fix what matters and show the result. The findings you work from are verified. Your security data stays in a database you control.",
+};
+
 export const ROUTE_SEO = {
   "/pricing": {
-    title: "SecureGraph Pricing: Free, Starter, Growth and Enterprise | Phantix Labs",
+    title: "Pricing: Free, Starter, Growth and Enterprise | SecureGraph",
     description:
       "SecureGraph prices for vulnerability assessment and continuous security. Free helps you find your exposure. Starter runs VAPT with verified findings. Growth keeps tests continuous. We quote Enterprise on request.",
     heading: "Simple pricing for assessment and continuous security",
     label: "Pricing",
   },
   "/demo": {
-    title: "SecureGraph Product Tour and Demo | Phantix Labs",
+    title: "Product Tour and Demo | SecureGraph",
     description:
       "See SecureGraph run a real assessment. Every screen in the tour shows the real Command Centre, not a mockup. Book a live guided demo on your own stack.",
     heading: "See SecureGraph run a real assessment",
@@ -46,7 +62,7 @@ export const ROUTE_SEO = {
     label: "Trust",
   },
   "/company": {
-    title: "Company and Team | Phantix Labs Ltd",
+    title: "Phantix Labs Ltd: Company and Team | SecureGraph",
     description:
       "Phantix Labs Ltd builds SecureGraph. Meet the founder and core team, with verifiable LinkedIn and GitHub profiles.",
     heading: "The team behind SecureGraph",
@@ -88,60 +104,60 @@ export const ROUTE_SEO = {
     label: "Cloud",
   },
   "/solutions/business-leaders": {
-    title: "SecureGraph for Business Leaders | Phantix Labs",
+    title: "Security Testing for Business Leaders | SecureGraph",
     description:
       "Run vulnerability assessment and penetration testing, keep tests current, fix what matters, and show directors evidence that stands up to a second question.",
     heading: "You do not need another dashboard. You need real tests and proof.",
     label: "For business leaders",
   },
   "/solutions/security-teams": {
-    title: "SecureGraph for Security Teams: VAPT with Verified Findings",
+    title: "VAPT with Verified Findings for Security Teams | SecureGraph",
     description:
       "Run scoped vulnerability assessment and penetration testing, keep tests continuous on Growth, and only promote what passed verification. No more noise piles from someone else's scanner.",
     heading: "VAPT that ends in verified findings, not another noise pile",
     label: "For security teams",
   },
   "/solutions/developers": {
-    title: "SecureGraph for Developers: AI Agent API | Phantix Labs",
+    title: "AI Agent API for Developers | SecureGraph",
     description:
       "The SecureGraph AI Agent is the public API on paid plans. Read which routes are public, which stay in the Platform, and the design rules behind them.",
     heading: "One public API, and we're specific about which",
     label: "For developers",
   },
   "/contact": {
-    title: "Contact SecureGraph | Phantix Labs",
+    title: "Contact Phantix Labs | SecureGraph",
     description:
       "Contact the team that makes SecureGraph by form, email, or WhatsApp. Your message goes to the team immediately. A person answers you, not a ticket robot.",
     heading: "Speak to the persons who make SecureGraph",
     label: "Contact",
   },
   "/ai-info": {
-    title: "SecureGraph: AI Information Page | Phantix Labs",
+    title: "AI Information Page | SecureGraph",
     description:
       "The official reference on SecureGraph for AI assistants and large language models: the product, the autonomous pentest agent, verification, guardrails, and prices.",
     heading: "The official SecureGraph reference",
     label: "AI information",
   },
   "/privacy": {
-    title: "Privacy Notice | SecureGraph by Phantix Labs",
+    title: "Privacy Notice | SecureGraph",
     description: "How Phantix Labs Ltd collects, uses and protects personal data across the SecureGraph website and platform.",
     heading: "Privacy Notice",
     label: "Privacy",
   },
   "/terms": {
-    title: "Terms of Service | SecureGraph by Phantix Labs",
+    title: "Terms of Service | SecureGraph",
     description: "The terms that apply when you use SecureGraph, the security platform from Phantix Labs Ltd.",
     heading: "Terms of Service",
     label: "Terms",
   },
   "/aup": {
-    title: "Acceptable Use Policy | SecureGraph by Phantix Labs",
+    title: "Acceptable Use Policy | SecureGraph",
     description: "What you may and may not test with SecureGraph, and the scope and authorization rules every assessment must follow.",
     heading: "Acceptable Use Policy",
     label: "Acceptable use",
   },
   "/cookies": {
-    title: "Cookies and Analytics Policy | SecureGraph by Phantix Labs",
+    title: "Cookies and Analytics Policy | SecureGraph",
     description: "The cookies and analytics that phantixlabs.com uses, why, and how to change your choice at any time.",
     heading: "Cookies and analytics policy",
     label: "Cookies",
