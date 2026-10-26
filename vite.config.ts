@@ -4,6 +4,7 @@ import path from "path";
 import { prerenderCompany } from "./scripts/prerender-company";
 import { prerenderDocs } from "./scripts/prerender-docs";
 import { prerenderRoutes } from "./scripts/prerender-routes";
+import { prerenderHome } from "./scripts/prerender-home";
 
 /**
  * Landing dev server (phantixlabs.com).
@@ -18,7 +19,7 @@ export default defineConfig(({ mode }) => {
   const port = Number(env.DEV_PORT || process.env.DEV_PORT || 5175);
 
   return {
-    plugins: [react(), prerenderCompany(), prerenderDocs(), prerenderRoutes()],
+    plugins: [react(), prerenderCompany(), prerenderDocs(), prerenderRoutes(), prerenderHome()],
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),

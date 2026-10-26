@@ -13,7 +13,7 @@ export const DOCS_URL = `${SITE}${DOCS_PATH}`;
 /** Bump when the guide changes materially; shown on the page and in the JSON-LD. */
 export const DOCS_UPDATED = "2026-10-15";
 
-export const DOCS_TITLE = "SecureGraph Docs: User & Admin Guide | SecureGraph AI";
+export const DOCS_TITLE = "Docs: User and Admin Guide | SecureGraph";
 export const DOCS_DESCRIPTION =
   "Official SecureGraph (SecureGraph AI) docs: run VAPT and AI pentests, verify findings, generate reports and set up your security database and dual control.";
 

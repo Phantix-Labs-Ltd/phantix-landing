@@ -18,13 +18,13 @@ import { ROUTE_SEO, SITE_URL, type RouteSeo } from "../src/lib/routeSeo";
 
 const OWN_PRERENDER = new Set(["/company"]);
 
-const esc = (s: string) =>
+export const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const ROUTES = Object.entries(ROUTE_SEO) as [string, RouteSeo][];
 
 /** Every page of the site, so a crawler can reach each one from any other. */
-function siteLinks(): string {
+export function siteLinks(): string {
   const links: [string, string][] = [
     ["/", "SecureGraph home"],
     ...ROUTES.map(([p, r]) => [p, r.label] as [string, string]),
