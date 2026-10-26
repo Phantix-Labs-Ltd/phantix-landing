@@ -1,0 +1,208 @@
+<!doctype html>
+<!--
+  Source for public/og-image.png (1200x630), the share card for phantixlabs.com.
+  Render from the landing folder:
+    "C:/Program Files/Google/Chrome/Application/chrome.exe" --headless=new --hide-scrollbars \
+      --force-device-scale-factor=1 --window-size=1200,630 \
+      --screenshot=public/og-image.png design/og/og-image.html
+  Colours are the dark-theme tokens in src/index.css; fonts are the site's Geist.
+  The headline repeats the hero (components/Hero.tsx); change both together.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>SecureGraph share card</title>
+<style>
+  @font-face { font-family: "Geist"; src: url("../../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Geist Mono"; src: url("../../node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; }
+
+  :root {
+    --canvas: rgb(9 8 6);
+    --card: rgb(16 16 16);
+    --line: rgb(63 63 70);
+    --line-soft: rgba(255 255 255 / 0.07);
+    --text: rgb(250 250 250);
+    --muted: rgb(161 161 170);
+    --faint: rgb(113 113 122);
+    --gold-300: rgb(243 205 126);
+    --gold-400: rgb(232 181 77);
+    --gold-600: rgb(185 134 47);
+    --high: rgb(251 146 60);
+    --ok: rgb(52 211 153);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--canvas); }
+  body {
+    position: relative;
+    font-family: "Geist", system-ui, sans-serif;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Atmosphere: a faint grid that fades out, and one warm light behind the product. */
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 80% at 78% 45%, #000 0%, transparent 72%);
+            mask-image: radial-gradient(ellipse 70% 80% at 78% 45%, #000 0%, transparent 72%);
+  }
+  .glow {
+    position: absolute; width: 760px; height: 760px; right: -220px; top: -260px;
+    background: radial-gradient(circle, rgba(232 181 77 / 0.16) 0%, rgba(232 181 77 / 0.05) 38%, transparent 68%);
+  }
+  .rule {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold-600) 0%, var(--gold-300) 45%, rgba(232 181 77 / 0) 100%);
+  }
+
+  /* ── Left column ─────────────────────────────────────────────── */
+  .brand { position: absolute; left: 72px; top: 64px; display: flex; align-items: center; gap: 16px; }
+  .brand img { width: 40px; height: auto; display: block; }
+  .brand .name { font-size: 27px; font-weight: 640; letter-spacing: -0.02em; line-height: 1; }
+  .brand .by { font-size: 15px; color: var(--muted); margin-top: 6px; letter-spacing: 0; font-weight: 450; }
+  .brand .by b { color: var(--gold-300); font-weight: 560; }
+
+  .copy { position: absolute; left: 72px; top: 170px; width: 600px; }
+  .eyebrow {
+    font-family: "Geist Mono", monospace; font-size: 15px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--gold-400); display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--gold-400); }
+  h1 {
+    margin-top: 22px; font-size: 56px; line-height: 1.06; font-weight: 640; letter-spacing: -0.035em;
+  }
+  h1 span { display: block; white-space: nowrap; }
+  h1 .accent {
+    background: linear-gradient(92deg, var(--gold-300) 0%, var(--gold-400) 55%, var(--gold-600) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { margin-top: 24px; font-size: 20px; line-height: 1.45; color: var(--muted); width: 540px; font-weight: 420; }
+
+  .foot {
+    position: absolute; left: 72px; right: 72px; bottom: 46px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: "Geist Mono", monospace; font-size: 16px; color: var(--muted);
+  }
+  .foot .url { display: flex; align-items: center; gap: 12px; color: var(--text); }
+  .foot .url::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gold-400); box-shadow: 0 0 12px rgba(232 181 77 / 0.7); }
+  .foot .pillars span + span::before { content: "·"; margin: 0 12px; color: var(--faint); }
+
+  /* ── Right column: an attack path ending in a verified finding ── */
+  .stage { position: absolute; left: 690px; top: 92px; width: 440px; height: 420px; }
+  .stage svg.path { position: absolute; inset: 0; overflow: visible; }
+  .node {
+    position: absolute; font-family: "Geist Mono", monospace; font-size: 13px; color: var(--muted);
+    padding: 7px 11px; border: 1px solid var(--line); border-radius: 8px; background: rgba(16 16 16 / 0.92);
+    white-space: nowrap; display: flex; align-items: center; gap: 8px;
+  }
+  .node i { width: 6px; height: 6px; border-radius: 50%; background: var(--faint); display: block; }
+  .node.hot { color: var(--text); border-color: rgba(232 181 77 / 0.55); }
+  .node.hot i { background: var(--gold-400); box-shadow: 0 0 10px rgba(232 181 77 / 0.8); }
+
+  .finding {
+    position: absolute; left: 34px; top: 150px; width: 406px;
+    border: 1px solid var(--line); border-radius: 16px;
+    background: linear-gradient(180deg, rgba(24 24 27 / 0.98), rgba(12 12 12 / 0.98));
+    box-shadow: 0 30px 60px -20px rgba(0 0 0 / 0.8), 0 0 0 1px rgba(255 255 255 / 0.02) inset;
+    padding: 22px 24px 20px;
+  }
+  .finding::before {
+    content: ""; position: absolute; left: 24px; right: 24px; top: -1px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(232 181 77 / 0.7), transparent);
+  }
+  .f-top { display: flex; justify-content: space-between; align-items: center; }
+  .sev {
+    font-family: "Geist Mono", monospace; font-size: 12px; letter-spacing: 0.12em; font-weight: 600;
+    color: var(--high); background: rgba(251 146 60 / 0.1); border: 1px solid rgba(251 146 60 / 0.35);
+    padding: 4px 9px; border-radius: 6px;
+  }
+  .kind { font-family: "Geist Mono", monospace; font-size: 12px; color: var(--faint); letter-spacing: 0.06em; }
+  .f-title { margin-top: 16px; font-size: 22px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.25; }
+  .f-req {
+    margin-top: 14px; font-family: "Geist Mono", monospace; font-size: 13.5px; color: var(--muted);
+    border: 1px solid var(--line-soft); background: rgba(0 0 0 / 0.35); border-radius: 8px; padding: 11px 13px; line-height: 1.7;
+  }
+  .f-req b { color: var(--gold-300); font-weight: 500; }
+  .f-req .res { color: var(--text); }
+  .f-foot {
+    margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line-soft);
+    display: flex; align-items: center; justify-content: space-between; font-size: 14px; color: var(--muted);
+  }
+  .verified { display: flex; align-items: center; gap: 9px; color: var(--text); font-weight: 520; }
+  .verified svg { width: 18px; height: 18px; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="grid"></div>
+
+  <div class="brand">
+    <img src="../../public/mark-white.svg" alt="" />
+    <div>
+      <div class="name">SecureGraph</div>
+      <div class="by">by <b>Phantix Labs</b></div>
+    </div>
+  </div>
+
+  <div class="copy">
+    <div class="eyebrow">Verified security testing</div>
+    <h1>
+      <span>Find real weaknesses.</span>
+      <span class="accent">Fix what matters.</span>
+      <span>Keep testing.</span>
+    </h1>
+    <p class="sub">Vulnerability assessment and penetration testing for lean teams. Only verified findings reach your report.</p>
+  </div>
+
+  <div class="stage">
+    <!-- Edges from asset to endpoint to the finding card. -->
+    <svg class="path" viewBox="0 0 440 420" aria-hidden="true">
+      <defs>
+        <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="rgb(113 113 122)" stop-opacity="0.6" />
+          <stop offset="1" stop-color="rgb(232 181 77)" stop-opacity="0.9" />
+        </linearGradient>
+      </defs>
+      <path d="M92 36 C 150 36, 170 70, 214 84" fill="none" stroke="url(#edge)" stroke-width="1.5" stroke-dasharray="4 5" />
+      <path d="M320 98 C 350 112, 352 130, 340 150" fill="none" stroke="url(#edge)" stroke-width="1.5" />
+      <path d="M60 52 C 40 90, 44 128, 70 150" fill="none" stroke="rgb(113 113 122)" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="4 5" />
+      <circle cx="340" cy="150" r="3.5" fill="rgb(232 181 77)" />
+    </svg>
+    <div class="node" style="left:0; top:20px"><i></i>app.example.com</div>
+    <div class="node hot" style="left:206px; top:70px"><i></i>/api/v1/invoices</div>
+
+    <div class="finding">
+      <div class="f-top">
+        <span class="sev">HIGH</span>
+        <span class="kind">API · OWASP API1</span>
+      </div>
+      <div class="f-title">Broken object-level authorization</div>
+      <div class="f-req">
+        <b>GET</b> /api/v1/invoices/<b>{id}</b> as tenant&nbsp;A<br />
+        <span class="res">200 OK</span> · returns tenant B's invoice
+      </div>
+      <div class="f-foot">
+        <span class="verified">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="9" stroke="rgb(232 181 77)" stroke-width="1.5" />
+            <path d="M6 10.4l2.6 2.6L14.2 7.4" stroke="rgb(243 205 126)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          Verified
+        </span>
+        <span>Evidence attached</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="url">phantixlabs.com</span>
+    <span class="pillars"><span>VAPT</span><span>Continuous testing</span><span>AI pentest agent</span></span>
+  </div>
+
+  <div class="rule"></div>
+</body>
+</html>
