@@ -79,7 +79,7 @@ export function prerenderHome(): Plugin {
         );
         const html = shell
           .replace("</head>", `  ${faqJsonLd()}\n  </head>`)
-          .replace('<div id="root"></div>', `<div id="root">${body()}</div>`);
+          .replace('<div id="root"></div>', `<div id="root"><div data-prerendered>${body()}</div></div>`);
         fs.writeFileSync(file, html);
       },
     },

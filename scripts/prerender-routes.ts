@@ -90,7 +90,7 @@ function renderRoute(shell: string, route: string, seo: RouteSeo, body: string):
     .replace(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${title}$2`)
     .replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${description}$2`)
     .replace("</head>", `  ${breadcrumbs(route, seo)}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+    .replace('<div id="root"></div>', `<div id="root"><div data-prerendered>${body}</div></div>`);
 }
 
 export function prerenderRoutes(): Plugin {
