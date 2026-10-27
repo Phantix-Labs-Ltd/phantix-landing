@@ -60,7 +60,7 @@ export function prerenderDocs(): Plugin {
           .replace(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${title}$2`)
           .replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${description}$2`)
           .replace("</head>", `  ${jsonLd}\n  </head>`)
-          .replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+          .replace('<div id="root"></div>', `<div id="root"><div data-prerendered>${body}</div></div>`);
         if (!html.includes('id="what-is"')) throw new Error("prerender-docs: could not inject into #root");
         const dir = path.join(outDir, ...seo.DOCS_PATH.split("/").filter(Boolean));
         fs.mkdirSync(dir, { recursive: true });

@@ -145,6 +145,12 @@
          of type text/plain is neither fetched nor run. src/lib/pagesense.ts starts
          it on consent. It is in the page so PageSense can verify the snippet. -->
     <script type="text/plain" id="zoho-pagesense" data-consent="marketing" src="https://cdn.pagesense.io/js/942607551/d62bd6ac25c94fd6b41c27af8080279f.js"></script>
+    <!-- The build writes each page's content into #root inside [data-prerendered]
+         (scripts/prerender-*.ts) for crawlers that don't run JavaScript. Visitors
+         would see it flash as raw text before React replaces it on mount, so it
+         stays hidden; it is still in the HTML, and shown when JavaScript is off. -->
+    <style>[data-prerendered]{visibility:hidden}</style>
+    <noscript><style>[data-prerendered]{visibility:visible}</style></noscript>
   </head>
   <body>
     <div id="root"></div>

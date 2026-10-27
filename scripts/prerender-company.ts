@@ -104,7 +104,7 @@ export function prerenderCompany(): Plugin {
         .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${SITE}/company$2`)
         .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${SITE}/company$2`)
         .replace("</head>", `  ${jsonLd()}\n  </head>`)
-        .replace('<div id="root"></div>', `<div id="root">${staticBody()}</div>`);
+        .replace('<div id="root"></div>', `<div id="root"><div data-prerendered>${staticBody()}</div></div>`);
       if (!html.includes('id="team"')) throw new Error("prerender-company: could not inject into #root");
       fs.mkdirSync(path.join(outDir, "company"), { recursive: true });
       fs.writeFileSync(path.join(outDir, "company", "index.html"), html);
